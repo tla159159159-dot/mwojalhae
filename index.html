@@ -20,6 +20,10 @@
 <meta name="twitter:description" content="무료 아이 재능검사·적성검사. 만 5~12세 기질·학습성향·사회성부터 부모 양육태도까지 17종, 전문 리포트로 확인하세요.">
 <meta name="twitter:image" content="https://mwojalhae.kr/og.png">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"우리애 뭐잘해?","url":"https://mwojalhae.kr/","description":"무료 아이 재능검사·적성검사. 만 5~12세 기질·학습성향·사회성부터 부모 양육태도까지 17종, 전문 리포트로 확인하세요.","inLanguage":"ko"}</script>
+<script>document.documentElement.classList.add("js")</script>
+<!--GA--><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-15K399GDQG");
+if(/(^|\.)mwojalhae\.kr$/.test(location.hostname))addEventListener("load",function(){setTimeout(function(){var s=document.createElement("script");s.async=1;s.src="https://www.googletagmanager.com/gtag/js?id=G-15K399GDQG";document.head.appendChild(s)},1200)});
+document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a.pc,.family a,a.btn");if(!a)return;gtag("event",a.matches(".btn")?"cta_click":"family_click",{link_url:a.href,link_text:(a.textContent||"").trim().slice(0,40)})});</script><!--/GA-->
 <style>html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -472,10 +476,52 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
 footer select{font:inherit;padding:8px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);min-height:44px}
 
 .mcta{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(8px);border-top:1px solid var(--line);display:none}
-@media (max-width:720px){body.home .mcta{display:block}}
+@media (max-width:720px){body.mc .mcta{display:block;transform:translateY(110%);transition:transform .3s}body.mc.mshow .mcta{transform:none}}
+/* ---- 반응·움직임 ---- */
+.top{transition:box-shadow .2s}.top.scrolled{box-shadow:0 2px 14px rgba(74,38,51,.09)}
+.hero h1 .h1k{display:block;font-family:var(--f-kid);font-size:clamp(15px,1.7vw,18px);letter-spacing:0;color:var(--brand);margin-bottom:10px}
+.hero .cta .alt{font-weight:700;color:var(--brand);background:none;border:0;padding:8px 2px;min-height:44px;font-size:15.5px;text-decoration:underline;text-underline-offset:4px}
+#app>[data-view]:not([hidden]){animation:vin .35s ease both}
+@keyframes vin{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.rv{transition:opacity .6s ease,transform .6s ease}
+.rvok .rv:not(.in){opacity:0;transform:translateY(22px)}
+.kopt.sel,.lopt.sel{animation:tapp .28s cubic-bezier(.3,1.6,.5,1)}
+@keyframes tapp{40%{transform:scale(1.07)}100%{transform:scale(1)}}
+.btn-sun.big-pulse{animation:pulse 2.4s ease-in-out 1.2s 3}
+@keyframes pulse{0%,100%{transform:none}50%{transform:scale(1.04)}}
+@media (hover:hover){
+  .btn-sun:hover{transform:translate(-1px,-2px);box-shadow:5px 6px 0 var(--edge)}
+  .btn-main:hover,.btn-ghost:hover{transform:translateY(-2px)}
+  .tcard,.catcard,.area,.gcards button{transition:transform .18s,box-shadow .18s}
+  .tcard:hover,.catcard:hover,.gcards button:hover{transform:translateY(-4px) rotate(-.4deg)}
+  .area:hover .die{animation:wig .5s}
+  .stk:hover .die{transform:scale(1.06);transition:transform .2s}
+}
+.confetti{position:fixed;top:-12px;width:10px;height:14px;z-index:60;pointer-events:none;border-radius:3px;animation:fall 1.6s cubic-bezier(.2,.6,.4,1) forwards}
+@keyframes fall{to{transform:translate(var(--x),105vh) rotate(var(--rot));opacity:.2}}
+.sitemap-links{display:flex;flex-wrap:wrap;gap:0 4px;font-size:13px;width:100%}
+.sitemap-links a{color:var(--muted);text-decoration:none;padding:6px;min-height:36px;display:inline-block}
 .toast{position:fixed;left:50%;bottom:calc(92px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:12px 20px;border-radius:14px;font-weight:600;z-index:50;max-width:calc(100% - 32px);text-align:center}
 .muted{color:var(--muted)}
 .mt{margin-top:16px}.mt2{margin-top:28px}
+/*PROMOCSS*/
+.promo{margin:40px 0 8px}
+.promo .pl{font-size:13.5px;font-weight:700;color:var(--muted);margin:0 0 8px}
+.promo .pl span{font-size:11px;border:1px solid var(--line);border-radius:6px;padding:0 5px;margin-left:4px;font-weight:600}
+.pcs{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.pc{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;gap:4px 12px;align-items:center;padding:16px;border-radius:20px;background:var(--pc);border:2px solid var(--edge);box-shadow:3px 3px 0 var(--edge);color:var(--ink);text-decoration:none;transition:transform .15s,box-shadow .15s}
+.pc .pe{grid-row:1/3;font-size:34px;width:56px;height:56px;border-radius:16px;background:#fff;display:flex;align-items:center;justify-content:center;border:2px solid var(--edge)}
+.pc .pt{font-size:14.5px;line-height:1.5;word-break:keep-all}
+.pc .pt b{display:block;font-family:var(--f-kid);font-weight:400;font-size:19px}
+.pc .pg{font-weight:800;font-size:14px;color:var(--brand)}
+.pc:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--edge)}
+@media (hover:hover){.pc:hover{transform:translate(-1px,-3px);box-shadow:5px 6px 0 var(--edge)}}
+@media (max-width:640px){.pcs{grid-template-columns:1fr}}
+.family{display:flex;flex-wrap:wrap;align-items:center;gap:0 6px;font-size:13.5px;width:100%}
+.family b{color:var(--ink);margin-right:4px}
+.family a{color:var(--muted);text-decoration:none;padding:8px 6px;min-height:40px;display:inline-flex;align-items:center}
+.family a:hover{color:var(--brand)}
+/*/PROMOCSS*/
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -498,17 +544,18 @@ footer select{font:inherit;padding:8px;border-radius:10px;border:1px solid var(-
   <div class="wrap">
     <section class="hero">
       <div>
-        <h1>우리 아이는<br>뭘 잘할까요?</h1>
+        <h1><span class="h1k">무료 아이 재능검사 · 적성검사</span>우리 아이는<br>뭘 잘할까요?</h1>
         <p class="sub">10분이면 발견하는 우리 아이의 숨은 강점</p>
         <p class="sub2">게임처럼 풀다 보면 아이의 강점이 보여요.</p>
         <div class="cta">
-          <button class="btn btn-sun btn-big" data-go="intake">무료로 재능 찾기 시작하기</button>
+          <button class="btn btn-sun btn-big big-pulse" data-go="intake">무료로 재능 찾기 시작하기</button>
           <span class="note">회원가입 없이 바로 시작해요 · 만 5~12세</span>
+          <button class="alt" data-go="tests" data-arg="parsec">부모 검사부터 해볼래요 →</button>
         </div>
       </div>
       <div class="field" id="heroStickers" aria-label="8가지 재능 스티커"></div>
     </section>
-    <div class="ticket">
+    <div class="ticket rv">
       <div><b>약 10~15분</b><span>아이 혼자서도 끝까지</span></div>
       <div><b>게임형 검사</b><span>미니게임 24개</span></div>
       <div><b>8가지 재능</b><span>관찰력부터 문제해결력까지</span></div>
@@ -516,13 +563,13 @@ footer select{font:inherit;padding:8px;border-radius:10px;border:1px solid var(-
     </div>
   </div>
 
-  <section class="blk"><div class="wrap">
+  <section class="blk"><div class="wrap rv">
     <h2>우리 아이는 어떤 스티커일까요?</h2>
     <p class="lead">8개 중 가장 빛나는 재능이 아이의 캐릭터가 돼요.</p>
     <div class="areas" id="areaGrid"></div>
   </div></section>
 
-  <section class="blk"><div class="wrap">
+  <section class="blk"><div class="wrap rv">
     <h2>아이도, 부모도 알아봐요</h2>
     <p class="lead">발달·양육 이론을 바탕으로 만든 검사 17종. 여러 검사를 하면 아이 종합 리포트와 부모-아이 궁합 리포트도 열려요.</p>
     <div class="cats">
@@ -531,7 +578,7 @@ footer select{font:inherit;padding:8px;border-radius:10px;border:1px solid var(-
     </div>
   </div></section>
 
-  <section class="blk"><div class="wrap">
+  <section class="blk"><div class="wrap rv">
     <h2>결과는 이렇게 나와요</h2>
     <p class="lead">"아, 그래서 그랬구나" 싶은 설명과 바로 해볼 놀이까지요.</p>
     <div class="sheet">
@@ -551,7 +598,7 @@ footer select{font:inherit;padding:8px;border-radius:10px;border:1px solid var(-
   </div></section>
 
   <div class="wrap">
-    <div class="final">
+    <div class="final rv">
       <h2>아이의 재능은<br>찾아주는 순간부터 자라기 시작합니다.</h2>
       <button class="btn btn-sun btn-big" data-go="intake">우리 아이 재능 찾기 시작하기</button>
     </div>
@@ -652,12 +699,28 @@ footer select{font:inherit;padding:8px;border-radius:10px;border:1px solid var(-
     <b class="brand-name" style="color:var(--ink)">우리애 뭐잘해?</b> · 놀이 기반 강점 탐색 서비스<br>
     이 검사는 아이의 성향과 강점을 살펴보는 놀이형 도구이며, 의학적·심리학적 진단이나 지능 검사가 아니에요.
   </div>
+  <!--SITELINKS--><nav class="family" aria-label="패밀리 사이트"><b>패밀리 사이트</b><a href="https://bamtol.co.kr/?utm_source=mwojalhae&utm_medium=referral&utm_campaign=family&utm_content=footer" target="_blank" rel="noopener">🌙 밤톨</a><a href="https://www.dojangkwang.co.kr/?utm_source=mwojalhae&utm_medium=referral&utm_campaign=family&utm_content=footer" target="_blank" rel="noopener">✏️ 도장쾅</a><a href="https://kokcolor.kr/?utm_source=mwojalhae&utm_medium=referral&utm_campaign=family&utm_content=footer" target="_blank" rel="noopener">🖍️ 콕콕</a><a href="https://mommoment.kr/?utm_source=mwojalhae&utm_medium=referral&utm_campaign=family&utm_content=footer" target="_blank" rel="noopener">💬 맘먼트</a><a href="https://malangenglish.co.kr/?utm_source=mwojalhae&utm_medium=referral&utm_campaign=family&utm_content=footer" target="_blank" rel="noopener">🔤 말랑영어</a></nav><nav class="sitemap-links" aria-label="검사·가이드 전체"><a href="/test/talent/">아이 재능검사</a><a href="/test/temper/">아이 기질검사</a><a href="/test/learn/">아이 학습유형 검사</a><a href="/test/career/">아이 진로적성검사</a><a href="/test/social/">아이 사회성 검사</a><a href="/test/style/">양육태도 검사</a><a href="/test/emotion/">감정코칭 검사</a><a href="/test/stress/">육아 스트레스 검사</a><a href="/test/media/">아이 미디어 습관 검사</a><a href="/test/attention/">아이 집중력 검사</a><a href="/test/eq/">아이 정서지능 검사</a><a href="/test/esteem/">아이 자존감 검사</a><a href="/test/mindset/">성장 마인드셋 검사</a><a href="/test/efficacy/">부모 효능감 검사</a><a href="/test/relation/">부모 자녀 관계 검사</a><a href="/test/coparent/">공동양육 검사</a><a href="/test/discipline/">훈육 방식 검사</a><a href="/guide/talent-find/">우리 아이 재능 찾는 법</a><a href="/guide/creativity-play/">아이 창의력 키우는 놀이</a><a href="/guide/spatial-ability/">공간지각력이 좋은 아이 특징</a><a href="/guide/math-talent/">수학을 잘하는 아이 특징</a><a href="/guide/observation/">관찰력이 좋은 아이 특징</a><a href="/guide/focus-play/">집중력이 좋은 아이 놀이</a><a href="/guide/age5-development/">5세 아이 발달</a><a href="/guide/age6-development/">6세 아이 발달</a><a href="/guide/age7-development/">7세 아이 발달</a><a href="/guide/elementary-talent/">초등학생 재능 찾기</a><a href="/faq/">자주 묻는 질문</a></nav><!--/SITELINKS-->
 </div></footer>
 
 <script>
 (()=>{
 "use strict";
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+/*PROMO*/
+// 패밀리 사이트 광고형 CTA — index.html 과 정적 페이지가 같이 쓴다 (gen.js 가 index.html 에 주입)
+const PROMO={
+ bamtol:{n:"밤톨",u:"https://bamtol.co.kr",e:"🌙",c:"#E9E4FF",l:"잠들기 전, 우리 아이 이름이 나오는 동화와 자장가",g:"오늘 밤 들려주기"},
+ dojang:{n:"도장쾅",u:"https://www.dojangkwang.co.kr",e:"✏️",c:"#FFF1C9",l:"집에서 바로 뽑아 쓰는 홈스쿨 프린트 학습지",g:"학습지 보러 가기"},
+ kokcolor:{n:"콕콕",u:"https://kokcolor.kr",e:"🖍️",c:"#FFE1EA",l:"아이가 좋아하는 색칠공부 도안, 화면에서 무료로",g:"색칠하러 가기"},
+ mom:{n:"맘먼트",u:"https://mommoment.kr",e:"💬",c:"#DDF2EA",l:"비슷한 고민을 하는 엄마들과 육아 이야기 나누기",g:"이야기 나누러 가기"},
+ malang:{n:"말랑영어",u:"https://malangenglish.co.kr",e:"🔤",c:"#DCEBFF",l:"엄마표 영어, 학습지부터 소리까지 한 곳에서",g:"말랑영어 보기"}
+};
+const PROMO_FOR={talent:["kokcolor","dojang"],temper:["bamtol","mom"],learn:["dojang","malang"],career:["malang","dojang"],social:["mom","bamtol"],attention:["dojang","kokcolor"],eq:["bamtol","kokcolor"],esteem:["bamtol","dojang"],mindset:["dojang","malang"],style:["mom","bamtol"],emotion:["bamtol","mom"],stress:["mom","bamtol"],media:["kokcolor","bamtol"],efficacy:["mom","malang"],relation:["bamtol","mom"],coparent:["mom","bamtol"],discipline:["mom","bamtol"],
+ "talent-find":["kokcolor","dojang"],"creativity-play":["kokcolor","bamtol"],"spatial-ability":["kokcolor","dojang"],"math-talent":["dojang","malang"],observation:["kokcolor","dojang"],"focus-play":["dojang","kokcolor"],"age5-development":["bamtol","kokcolor"],"age6-development":["kokcolor","dojang"],"age7-development":["dojang","malang"],"elementary-talent":["dojang","malang"]};
+const promoUrl=(k,src)=>PROMO[k].u+"/?utm_source=mwojalhae&utm_medium=referral&utm_campaign=family&utm_content="+src;
+function promoHtml(src){const ks=PROMO_FOR[src]||["bamtol","dojang"];return `<aside class="promo" aria-label="함께 쓰면 좋은 서비스"><p class="pl">함께 쓰면 좋아요 <span>AD</span></p><div class="pcs">${ks.map(k=>{const p=PROMO[k];return `<a class="pc" href="${promoUrl(k,src)}" target="_blank" rel="noopener" style="--pc:${p.c}"><span class="pe" aria-hidden="true">${p.e}</span><span class="pt"><b>${p.n}</b>${p.l}</span><span class="pg">${p.g} →</span></a>`}).join("")}</div></aside>`}
+function familyHtml(){return `<nav class="family" aria-label="패밀리 사이트"><b>패밀리 사이트</b>${Object.keys(PROMO).map(k=>`<a href="${promoUrl(k,"footer")}" target="_blank" rel="noopener">${PROMO[k].e} ${PROMO[k].n}</a>`).join("")}</nav>`}
+/*/PROMO*/
 const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
 const pick=a=>a[Math.random()*a.length|0];
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -975,7 +1038,7 @@ function buildIntake(arg){intakeNext=arg||null;let editId=arg==="add"?null:DB.cu
 /* ---------- test runner ---------- */
 let run=null;
 function setProg(i,n=ORDER.length){const pct=Math.round(i/n*100);$("#progFill").style.width=pct+"%";$("#walker").style.left=pct+"%";$("#progPct").textContent=`탐험 진행률 ${pct}%`}
-function startTest(){SLOW=profile.age<=6?1.4:profile.age>=10?.85:1;go("test");$("#testStage").classList.remove("pstage");$("#walker").innerHTML=mascot("#FFD8A8","star",34);run={i:0,raw:{},ms:{},stars:0,alive:true};KEYS.forEach(k=>{run.raw[k]=[];run.ms[k]=[]});$("#starCount").textContent="⭐ 0";nextQ()}
+function startTest(){SLOW=profile.age<=6?1.4:profile.age>=10?.85:1;go("test");window.gtag?.("event","test_start",{test_id:"talent"});$("#testStage").classList.remove("pstage");$("#walker").innerHTML=mascot("#FFD8A8","star",34);run={i:0,raw:{},ms:{},stars:0,alive:true};KEYS.forEach(k=>{run.raw[k]=[];run.ms[k]=[]});$("#starCount").textContent="⭐ 0";nextQ()}
 async function nextQ(){if(!run||!run.alive)return;const st=$("#testStage");setProg(run.i);
   if(run.i>=ORDER.length){finish();return}
   const g=ORDER[run.i],k=g.slice(0,3),t0=Date.now();
@@ -987,7 +1050,7 @@ function finish(){const sc={};KEYS.forEach(k=>{const a=run.raw[k],avg=a.reduce((
     // 반응 속도는 동점 구분용 소폭 가산(최대 3점). 기억·집중 게임은 시간이 고정이라 제외
     const ms=run.ms[k].reduce((x,y)=>x+y,0)/run.ms[k].length,sp=["mem","foc"].includes(k)?.5:Math.min(1,Math.max(0,(12000-ms)/10000));
     sc[k]=Math.round(60+avg*35+sp*3)});
-  const top=KEYS.slice().sort((a,b)=>sc[b]-sc[a]);history.push({date:today(),scores:sc,top:top[0]});stars.total+=run.stars;saveAll();run.alive=false;run=null;go("result")}
+  const top=KEYS.slice().sort((a,b)=>sc[b]-sc[a]);history.push({date:today(),scores:sc,top:top[0]});stars.total+=run.stars;saveAll();run.alive=false;run=null;go("result");confetti();window.gtag?.("event","test_complete",{test_id:"talent",result_type:top[0]})}
 
 /* ---------- result ---------- */
 function topOf(sc){return KEYS.slice().sort((a,b)=>sc[b]-sc[a])}
@@ -1013,7 +1076,7 @@ function renderResult(){const box=$("#resultBox");const r=latest();if(!r||!profi
    <div><dt>추천 놀이</dt><dd><div class="tags" style="margin:0">${t.plays.map(x=>`<span class="tag">${x}</span>`).join("")}</div></dd></div>
    <div><dt>진로 가능성</dt><dd>${t.n}을 쓰는 활동에 흥미를 보인다면 ${t.career}의 경험을 다양하게 제공해보세요. 직업을 정해주는 결과는 아니에요.</dd></div></dl></div>
   ${S("이번 주 실천 플랜")}<div class="card"><ol class="steps">${[a,b,weak[1]].map((k,i)=>`<li><b>${["월~화","수~목","금~주말"][i]} · ${T[k].n}</b>${T[k].missions[1]}</li>`).join("")}</ol></div>
-  ${missionCard()}
+  ${missionCard()}${promoHtml("talent")}
   <div class="card mt" style="text-align:center"><h3 class="rh">우리 아이 재능 카드</h3><p class="muted" style="font-size:14.5px;margin-top:4px">이미지를 길게 눌러 저장한 뒤 카카오톡·SNS에 공유하세요. 나이·성별은 들어가지 않아요.</p>
    <label class="check mt"><input type="checkbox" id="cardNick"> 카드에 닉네임 넣기</label>
    <img class="share-img mt" id="shareImg" alt="우리 아이 재능 카드"><div class="seg mt" style="justify-content:center"><button class="btn btn-ghost" id="copyShare">공유 문구 복사</button></div></div>
@@ -1342,18 +1405,18 @@ const KID3=[["😐","아니야",1],["🙂","조금",3],["😍","맞아!",5]], LI
 const qBucket=Q=>Q.cat==="parent"?DB.parent.quiz:(DB.kids[DB.cur]?.quiz||{});
 const qHist=id=>{const Q=QUIZ.find(x=>x.id===id);return Q?(qBucket(Q)[id]||[]):[]};
 const quizRes=()=>{const o={};QUIZ.forEach(Q=>{const h=qHist(Q.id);if(h.length)o[Q.id]=h[h.length-1]});return o};
-function startQuiz(id){const Q=QUIZ.find(x=>x.id===id);if(!Q)return;if(Q.cat==="kid"&&!profile){go("intake",id);return}go("test");$("#walker").innerHTML=mascot(col(Q.c),Q.acc,34);
+function startQuiz(id){const Q=QUIZ.find(x=>x.id===id);if(!Q)return;if(Q.cat==="kid"&&!profile){go("intake",id);return}go("test");window.gtag?.("event","test_start",{test_id:Q.id});$("#walker").innerHTML=mascot(col(Q.c),Q.acc,34);
   $("#starCount").textContent=Q.kid?"⭐ 0":"";run={alive:true,quiz:Q,i:0,ans:[],stars:0,young:Q.cat==="kid"&&!!Q.young&&profile.age<=7};nextQuiz()}
 function scoreQuiz(Q,ans){const sum={},cnt={};Q.q.forEach(([,d,rev],i)=>{const v=rev?6-ans[i]:ans[i];sum[d]=(sum[d]||0)+v;cnt[d]=(cnt[d]||0)+1});
   const sc={};Object.keys(sum).forEach(d=>sc[d]=Math.round((sum[d]/cnt[d]-1)/4*100));return sc}
 function nextQuiz(){const me=run;if(!me||!me.alive)return;const Q=me.quiz,st=$("#testStage"),n=Q.q.length;setProg(me.i,n);
   if(me.i>=n){const sc=scoreQuiz(Q,me.ans),type=Q.typeOf(sc),bk=qBucket(Q);(bk[Q.id]=bk[Q.id]||[]).push({sc,type,date:today(),ans:me.ans.slice(0,n),band:me.young?"y":"o"});
-    if(Q.kid)stars.total+=me.stars;saveAll();run.alive=false;run=null;go("qresult",Q.id);return}
+    if(Q.kid)stars.total+=me.stars;saveAll();run.alive=false;run=null;go("qresult",Q.id);confetti();window.gtag?.("event","test_complete",{test_id:Q.id,result_type:type});return}
   const text=(me.young&&Q.young[me.i])||Q.q[me.i][0],scale=Q.kid?KID3:LIK5;
   st.classList.toggle("pstage",!Q.kid);
   st.innerHTML=`<p class="qn">${Q.cat==="kid"?esc(profile.nick)+" · ":""}${me.i+1} / ${n}</p><p class="q">${text}</p>${Q.kid&&me.young&&me.i===0?`<p class="readhint">부모님이 문장을 읽어주고, 아이가 골라요</p>`:""}<div class="play"><div class="${Q.kid?"kscale":"lscale"}">${scale.map(s=>`<button class="${Q.kid?"opt kopt":"lopt"}" data-v="${s[Q.kid?2:1]}">${Q.kid?`<span class="em">${s[0]}</span>${s[1]}`:s[0]}</button>`).join("")}</div>
    ${me.i?`<button class="back" id="qBack">← 이전 문항</button>`:""}</div>`;
-  $$("[data-v]",st).forEach(b=>b.onclick=async()=>{if(run!==me)return;$$("[data-v]",st).forEach(x=>x.disabled=true);b.classList.add("sel");me.ans[me.i]=+b.dataset.v;me.i++;
+  $$("[data-v]",st).forEach(b=>b.onclick=async()=>{if(run!==me)return;$$("[data-v]",st).forEach(x=>x.disabled=true);b.classList.add("sel");try{navigator.vibrate?.(12)}catch(e){}me.ans[me.i]=+b.dataset.v;me.i++;
     if(Q.kid){me.stars++;$("#starCount").textContent="⭐ "+me.stars;if(me.i%6===0&&me.i<n)await reward(st,"벌써 여기까지 왔어요!<br>조금만 더 가볼까요?",true);else await new Promise(r=>setTimeout(r,220))}
     else await new Promise(r=>setTimeout(r,180));
     if(run===me)nextQuiz()});
@@ -1540,11 +1603,12 @@ function renderQResult(id){const Q=QUIZ.find(x=>x.id===id),r=quizRes()[id],box=$
    ${prev?`${S("지난 검사와 비교")}<div class="card"><p class="muted" style="font-size:14.5px">${prev.date} → ${r.date} (${dayGap(prev.date,r.date)}일 간격)</p><div class="delta">${order.map(k=>{const d=sc[k]-prev.sc[k],good=D[k].neg?d<0:d>0;return `<div>${D[k].n}<b class="${Math.abs(d)<5?"same":good?"up":"dn"}">${d>0?"+":""}${d}</b></div>`}).join("")}</div><p class="muted fine">초록은 좋아진 변화, 주황은 살펴볼 변화예요. 5점 미만 차이는 응답할 때의 기분에 따른 자연스러운 변동일 수 있어요. ${prev.type!==r.type?`결과 유형이 '${Q.types[prev.type].n}'에서 '${TY.n}'(으)로 바뀌었어요.`:"결과 유형은 지난번과 같아요."}</p></div>`:""}
    ${S("영역별 해석")}<div class="card"><div class="dlist">${order.map(k=>`<div class="ditem"><div class="dh"><b>${D[k].n}</b><span>${chip(D[k],sc[k])} <span class="pts">${sc[k]}점</span></span></div><p>${D[k][LV(sc[k])]}</p>${D[k].job&&order.indexOf(k)<3?`<p class="job">관련 분야 예시: ${D[k].job}</p>`:""}<p class="dtip">${D[k].tip}</p></div>`).join("")}</div></div>
    ${S("이번 주 실천 플랜")}<div class="card"><ol class="steps">${planKeys(Q,sc).map((k,i)=>`<li><b>${["월~화","수~목","금~주말"][i]} · ${D[k].n}</b>${D[k].tip}</li>`).join("")}</ol></div>
-   ${Q.extra||""}${Q.stress&&r.type!=="low"?Q.help:""}
+   ${promoHtml(Q.id)}${Q.extra||""}${Q.stress&&r.type!=="low"?Q.help:""}
    ${S("검사 안내")}<div class="card basis"><p><b>이론적 근거</b> ${Q.ref}</p>${consistency(r.ans)}${prev?"":`<p>1~3개월 뒤 다시 검사하면 지난 결과와 비교해 변화를 보여드려요.</p>`}<p>${Q.note}</p><p class="muted fine">이 검사는 공인된 표준화 심리검사가 아니라, 위 이론을 바탕으로 만든 자가 체크예요. 또래 규준과 비교한 점수가 아니며, 정확한 평가가 필요하면 아동·청소년 상담 전문가와 상의해 주세요.</p></div>
-   <div class="seg mt2" style="justify-content:center"><button class="btn btn-ghost" data-quiz="${Q.id}">다시 검사하기</button><button class="btn btn-ghost" id="qCopy">결과 요약 복사</button></div>
+   <div class="seg mt2" style="justify-content:center"><button class="btn btn-ghost" data-quiz="${Q.id}">다시 검사하기</button><button class="btn btn-ghost" id="qCopy">결과 요약 복사</button><button class="btn btn-main" id="qShare">이 검사 친구에게 알려주기</button></div>
    <h2 class="page-h" style="font-size:28px;margin-top:56px">${Q.cat==="kid"?"아이 검사 더 보기":"부모 검사 더 보기"}</h2>${testCards(Q.id,Q.cat)}`;
   $("#qCopy").onclick=()=>navigator.clipboard.writeText(`[${Q.t}] ${head.replace(/<[^>]+>/g,"")}${code?" ("+code+")":""}\n`+order.map(k=>`${D[k].n} ${sc[k]}점`).join(" / ")).then(()=>toast("결과 요약을 복사했어요"),()=>toast("복사가 막혀 있어요"));
+  $("#qShare").onclick=()=>shareLink(Q.t,`https://mwojalhae.kr/test/${Q.id}/`);
   document.title=Q.t+" 결과 | "+$(".brand-name").textContent}
 
 const TALENT={id:"talent",cat:"kid",t:"우리 아이는 뭘 잘할까?",s:"미니게임 24개로 찾는 8가지 재능",who:"아이가 해요",min:12,c:"num",acc:"star",main:true};
@@ -1577,7 +1641,7 @@ function renderPost(i){const g=GUIDES[i];if(!g){go("guides");return}
 
 /* ---------- router ---------- */
 let cur="home";
-function go(v,arg){if(run&&v!=="test"){run.alive=false;run=null}cur=v;$$("[data-view]").forEach(s=>s.hidden=s.dataset.view!==v);document.body.classList.toggle("home",v==="home");
+function go(v,arg){setTimeout(()=>window.dispatchEvent(new Event("scroll")),60);if(run&&v!=="test"){run.alive=false;run=null}cur=v;$$("[data-view]").forEach(s=>s.hidden=s.dataset.view!==v);document.body.classList.toggle("home",v==="home");document.body.classList.toggle("mc",["home","guides","faq","post"].includes(v));mcSync();
   if(v==="intake")buildIntake(arg);if(v==="summary")renderSummary();if(v==="fit")renderFit();if(v==="result")renderResult();if(v==="dash")renderDash();if(v==="post")renderPost(arg);if(v==="tests"){renderTests();if(arg)setTimeout(()=>$("."+arg)?.scrollIntoView({behavior:"smooth"}),50)}if(v==="qresult")renderQResult(arg);
   if(v!=="post"&&v!=="qresult")document.title=v==="home"?"아이 재능검사·적성검사 무료 | 기질·양육태도 검사 - 우리애 뭐잘해?":$(".brand-name").textContent;scrollTo(0,0);
   try{history_push(v,arg)}catch(e){}}
@@ -1595,8 +1659,21 @@ $("#exitTest").onclick=()=>{$("#exitConfirm").hidden=false};$("#exitNo").onclick
 
 $("#logoMark").innerHTML=mascot("#FFD8A8","star",32);
 
+/* ---------- 반응: 스크롤 등장·헤더 그림자·모바일 CTA·축하 ---------- */
+let heroCtaSeen=true;
+function mcSync(){document.body.classList.toggle("mshow",!(cur==="home"&&heroCtaSeen))}
+function confetti(){if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;const cs=["#FF8FAB","#C93D67","#FFE680","#9ED8C5","#A9C8FF","#FFC3A0"];
+  for(let i=0;i<46;i++){const c=document.createElement("i");c.className="confetti";c.style.left=Math.random()*100+"vw";c.style.background=cs[i%cs.length];c.style.setProperty("--x",(Math.random()*160-80)+"px");c.style.setProperty("--rot",(Math.random()*720-360)+"deg");c.style.animationDelay=Math.random()*.35+"s";document.body.append(c);setTimeout(()=>c.remove(),2200)}}
+function shareLink(title,url){const d={title:title+" | 우리애 뭐잘해?",text:"우리 아이 무료 검사 해봤는데 결과가 꽤 자세해요",url};
+  if(navigator.share)navigator.share(d).catch(()=>{});else navigator.clipboard.writeText(url).then(()=>toast("링크를 복사했어요"),()=>toast("복사가 막혀 있어요"))}
+document.documentElement.classList.add("js");
+const rvCheck=()=>$$(".rv:not(.in)").forEach(x=>{if(x.getBoundingClientRect().top<innerHeight*.9)x.classList.add("in")});
+document.documentElement.classList.add("rvok");rvCheck();addEventListener("scroll",rvCheck,{passive:true});
+if("IntersectionObserver" in window)new IntersectionObserver(es=>{heroCtaSeen=es[0].isIntersecting||es[0].boundingClientRect.top>0;mcSync()}).observe($(".hero .cta"));
+addEventListener("scroll",()=>$(".top").classList.toggle("scrolled",scrollY>8),{passive:true});
+
 buildHome();
-const h=location.hash.slice(1);if(/^g\d$/.test(h))go("post",+h.slice(1));else if(["tests","guides","faq","dash","result","summary","fit"].includes(h))go(h);else go("home");
+const h=location.hash.slice(1);if(/^q-\w+$/.test(h)&&QQ(h.slice(2)))startQuiz(h.slice(2));else if(h==="intake")go("intake");else if(/^g\d$/.test(h))go("post",+h.slice(1));else if(["tests","guides","faq","dash","result","summary","fit"].includes(h))go(h);else go("home");
 })();
 </script>
 
