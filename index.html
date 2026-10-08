@@ -3,22 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>우리애 뭐잘해? | 아이 재능·기질 검사와 부모 양육 검사</title>
-<meta name="description" content="만 5~12세 아이의 재능·기질·학습 성향과 부모 양육 태도를 알아보는 무료 검사 17종. 결과는 전문 리포트로.">
+<title>아이 재능검사·적성검사 무료 | 기질·양육태도 검사 - 우리애 뭐잘해?</title>
+<meta name="description" content="무료 아이 재능검사·적성검사. 만 5~12세 기질·학습성향·사회성부터 부모 양육태도까지 17종, 전문 리포트로 확인하세요.">
 <link rel="canonical" href="https://mwojalhae.kr/">
 <meta name="theme-color" content="#FFF3F6">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="우리애 뭐잘해?">
-<meta property="og:title" content="우리 아이는 뭘 잘할까요? | 우리애 뭐잘해?">
-<meta property="og:description" content="만 5~12세 아이의 재능·기질·학습 성향과 부모 양육 태도를 알아보는 무료 검사 17종. 결과는 전문 리포트로.">
+<meta property="og:title" content="우리 아이는 뭘 잘할까요? 무료 재능검사·적성검사 | 우리애 뭐잘해?">
+<meta name="keywords" content="아이 재능검사,어린이 적성검사,아이 기질검사,양육태도 검사,초등 적성검사,유아 재능검사,무료 재능검사">
+<meta property="og:description" content="무료 아이 재능검사·적성검사. 만 5~12세 기질·학습성향·사회성부터 부모 양육태도까지 17종, 전문 리포트로 확인하세요.">
 <meta property="og:url" content="https://mwojalhae.kr/">
 <meta property="og:image" content="https://mwojalhae.kr/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="우리 아이는 뭘 잘할까요? | 우리애 뭐잘해?">
-<meta name="twitter:description" content="만 5~12세 아이의 재능·기질·학습 성향과 부모 양육 태도를 알아보는 무료 검사 17종. 결과는 전문 리포트로.">
+<meta name="twitter:title" content="우리 아이는 뭘 잘할까요? 무료 재능검사·적성검사 | 우리애 뭐잘해?">
+<meta name="twitter:description" content="무료 아이 재능검사·적성검사. 만 5~12세 기질·학습성향·사회성부터 부모 양육태도까지 17종, 전문 리포트로 확인하세요.">
 <meta name="twitter:image" content="https://mwojalhae.kr/og.png">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"우리애 뭐잘해?","url":"https://mwojalhae.kr/","description":"만 5~12세 아이의 재능·기질·학습 성향과 부모 양육 태도를 알아보는 무료 검사 17종. 결과는 전문 리포트로.","inLanguage":"ko"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"우리애 뭐잘해?","url":"https://mwojalhae.kr/","description":"무료 아이 재능검사·적성검사. 만 5~12세 기질·학습성향·사회성부터 부모 양육태도까지 17종, 전문 리포트로 확인하세요.","inLanguage":"ko"}</script>
 <style>html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1578,7 +1579,7 @@ function renderPost(i){const g=GUIDES[i];if(!g){go("guides");return}
 let cur="home";
 function go(v,arg){if(run&&v!=="test"){run.alive=false;run=null}cur=v;$$("[data-view]").forEach(s=>s.hidden=s.dataset.view!==v);document.body.classList.toggle("home",v==="home");
   if(v==="intake")buildIntake(arg);if(v==="summary")renderSummary();if(v==="fit")renderFit();if(v==="result")renderResult();if(v==="dash")renderDash();if(v==="post")renderPost(arg);if(v==="tests"){renderTests();if(arg)setTimeout(()=>$("."+arg)?.scrollIntoView({behavior:"smooth"}),50)}if(v==="qresult")renderQResult(arg);
-  if(v!=="post"&&v!=="qresult")document.title=v==="home"?"우리애 뭐잘해? | 아이 재능·기질 검사와 부모 양육 검사":$(".brand-name").textContent;scrollTo(0,0);
+  if(v!=="post"&&v!=="qresult")document.title=v==="home"?"아이 재능검사·적성검사 무료 | 기질·양육태도 검사 - 우리애 뭐잘해?":$(".brand-name").textContent;scrollTo(0,0);
   try{history_push(v,arg)}catch(e){}}
 function history_push(v,arg){const h=v==="post"?"g"+arg:v==="qresult"?"tests":v;if(location.hash.slice(1)!==h)window.history.replaceState(null,"","#"+h)}
 function rerender(){({result:renderResult,dash:renderDash,tests:renderTests,summary:renderSummary,fit:renderFit})[cur]?.()}
