@@ -76,7 +76,7 @@ a.btn{text-decoration:none}
 .sp .faq details{margin:8px 0}
 .flinks a{color:var(--muted);text-decoration:none;padding:6px 8px;display:inline-block;min-height:44px;line-height:32px}
 .sitemap-links{display:flex;flex-wrap:wrap;gap:0 4px;font-size:13px;margin-top:8px;width:100%}
-.sitemap-links a{color:var(--muted);text-decoration:none;padding:6px 6px;min-height:36px;display:inline-block}
+.sitemap-links a{color:var(--muted);text-decoration:none;padding:6px;min-height:44px;display:inline-flex;align-items:center}
 .pcat{margin-top:8px}
 @media (hover:hover){.rel a:hover{transform:translateY(-2px);box-shadow:3px 3px 0 var(--edge)}}
 @media (max-width:640px){.sp-hero{grid-template-columns:1fr;padding:20px;text-align:left}.sp-hero .gi svg{width:84px;height:84px}.dimlist,.flow{grid-template-columns:1fr}.sp-cta .btn{width:100%}}
