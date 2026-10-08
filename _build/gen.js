@@ -1,4 +1,4 @@
-// 검색용 정적 페이지 생성: /test/<id>/, /test/, /guide/<slug>/, /guide/, /faq/, s.css, sitemap.xml
+// 검색용 정적 페이지 생성: /<검사이름>/, /테스트모음/, /<가이드제목>/, /부모가이드/, /자주묻는질문/, s.css, sitemap.xml, vercel.json(옛 영문 주소 301)
 // 실행: node _build/extract.js && node _build/gen.js  (index.html 데이터가 바뀌면 둘 다 다시)
 const fs=require('fs'),path=require('path');
 const ROOT=path.join(__dirname,'..'),D=require('./data.json'),SITE='https://mwojalhae.kr',BRAND='우리애 뭐잘해?';
@@ -29,10 +29,14 @@ const KW={
  coparent:['공동양육 검사','배우자와 육아 방식이 달라 자주 부딪히는 부부','함께 키우는 팀워크를 점검하고 대화 거리를 찾고 싶은 분'],
  discipline:['훈육 방식 검사','훈육하고 나서 "이게 맞나" 후회가 드는 부모님','단호함과 따뜻함 사이 내 훈육 스타일을 알고 싶은 분'],
 };
-const GSLUG=['talent-find','creativity-play','spatial-ability','math-talent','observation','focus-play','age5-development','age6-development','age7-development','elementary-talent'];
+const OLDG=['talent-find','creativity-play','spatial-ability','math-talent','observation','focus-play','age5-development','age6-development','age7-development','elementary-talent'];
+// 한글 주소: 검색어를 띄어쓰기 없이 그대로 경로로
+const GSLUG=['우리아이재능찾는법','아이창의력키우는놀이','공간지각력좋은아이특징','수학잘하는아이특징','관찰력좋은아이특징','집중력키우는놀이','5세아이발달','6세아이발달','7세아이발달','초등학생재능찾기'];
+const HUB_T='테스트모음',HUB_G='부모가이드',HUB_F='자주묻는질문';
 // 가이드 → 같이 보면 좋은 검사
 const GTEST={'talent-find':'talent','creativity-play':'talent','spatial-ability':'talent','math-talent':'talent','observation':'talent','focus-play':'attention','age5-development':'temper','age6-development':'social','age7-development':'learn','elementary-talent':'career'};
 
+const TS=Object.fromEntries(Object.entries(KW).map(([k,v])=>[k,v[0].replace(/\s+/g,'')]));
 const ALL=[{...D.TALENT,n:24,dims:D.AREAS.map(a=>({n:a.n,hi:a.d})),types:[],sample:[],ref:'아이의 놀이 행동을 8가지 재능 영역(관찰력·공간지각·수리·언어·기억·집중·창의·문제해결)으로 나눠 미니게임 24개로 살펴봐요.',base:'놀이 기반 강점 탐색'},...D.QUIZ];
 const byId=Object.fromEntries(ALL.map(x=>[x.id,x]));
 const cta=id=>id==='talent'?'/#intake':`/#q-${id}`;
@@ -85,7 +89,7 @@ body.sp-page .mcta{display:none}
 `;
 fs.writeFileSync(path.join(ROOT,'s.css'),css);
 
-const footLinks=()=>`<nav class="sitemap-links" aria-label="검사·가이드 전체">${ALL.map(x=>`<a href="/test/${x.id}/">${KW[x.id][0]}</a>`).join('')}${D.GUIDES.map((g,i)=>`<a href="/guide/${GSLUG[i]}/">${g.t}</a>`).join('')}<a href="/faq/">자주 묻는 질문</a></nav>`;
+const footLinks=()=>`<nav class="sitemap-links" aria-label="검사·가이드 전체">${ALL.map(x=>`<a href="/${TS[x.id]}/">${KW[x.id][0]}</a>`).join('')}${D.GUIDES.map((g,i)=>`<a href="/${GSLUG[i]}/">${g.t}</a>`).join('')}<a href="/${HUB_F}/">자주 묻는 질문</a></nav>`;
 
 function page({url,title,desc,body,ld,ctaHref,ctaTxt}){
   const full=SITE+url;
@@ -112,14 +116,14 @@ ${GA}
 <body class="sp-page">
 <header class="top"><div class="wrap">
   <a class="logo" href="/" aria-label="${BRAND} 홈"><span class="brand-name">${BRAND}</span></a>
-  <nav><a href="/test/">테스트 모음</a><a href="/guide/" class="hide-m">부모 가이드</a><a href="/faq/" class="hide-m">자주 묻는 질문</a></nav>
+  <nav><a href="/${HUB_T}/">테스트 모음</a><a href="/${HUB_G}/" class="hide-m">부모 가이드</a><a href="/${HUB_F}/" class="hide-m">자주 묻는 질문</a></nav>
 </div></header>
 <main class="wrap sp" style="max-width:860px">
 ${body}
 </main>
 <div class="mcta"><a class="btn btn-sun btn-block" href="${ctaHref}">${ctaTxt}</a></div>
 <footer><div class="wrap">
-  <nav class="flinks"><a href="/test/">테스트 모음</a><a href="/guide/">부모 가이드</a><a href="/faq/">자주 묻는 질문</a><a href="/#dash">우리 아이 기록</a></nav>
+  <nav class="flinks"><a href="/${HUB_T}/">테스트 모음</a><a href="/${HUB_G}/">부모 가이드</a><a href="/${HUB_F}/">자주 묻는 질문</a><a href="/#dash">우리 아이 기록</a></nav>
   <div><b class="brand-name" style="color:var(--ink)">${BRAND}</b> · 놀이 기반 강점 탐색 서비스<br>이 검사는 아이의 성향과 강점을 살펴보는 놀이형 도구이며, 의학적·심리학적 진단이나 지능 검사가 아니에요.</div>
   ${P.familyHtml()}
   ${footLinks()}
@@ -142,7 +146,7 @@ const urls=['/'];
 
 /* ---- 검사별 페이지 ---- */
 ALL.forEach(x=>{
-  const [kw,r1,r2]=KW[x.id],kid=x.cat==='kid',url=`/test/${x.id}/`,catN=kid?'아이 알아보기':'부모 알아보기';
+  const [kw,r1,r2]=KW[x.id],kid=x.cat==='kid',url=`/${TS[x.id]}/`,catN=kid?'아이 알아보기':'부모 알아보기';
   const title=`${kw} 무료 | ${x.t.trim()} - ${BRAND}`;
   const desc=cut(`${kw} 무료. ${x.s}. ${x.id==='talent'?'미니게임 24개':x.n+'문항'}·${timeTxt(x)}, 영역별 점수와 실천 플랜까지 바로 확인해요.`,80);
   const faqs=[
@@ -152,7 +156,7 @@ ALL.forEach(x=>{
     ['전문 심리검사인가요?',`${x.base} 등 발달·양육 이론을 바탕으로 만든 자가 체크예요. 의학적 진단이 아니며, 정확한 평가가 필요하면 전문가와 상의해 주세요.`],
   ];
   const rel=ALL.filter(y=>y.cat===x.cat&&y.id!==x.id).slice(0,6);
-  const body=`${crumbHtml([['홈','/'],['테스트 모음','/test/'],[kw,url]])}
+  const body=`${crumbHtml([['홈','/'],['테스트 모음','/'+HUB_T+'/'],[kw,url]])}
 <section class="sp-hero${kid?"":" par"}" style="--c:${kid?x.tint:"var(--p-soft)"}">
   <span class="gi">${x.svg}</span>
   <div><p class="eyebrow">${catN} · ${x.who}</p>
@@ -175,64 +179,67 @@ ${P.promoHtml(x.id)}
 <div class="final" style="margin-block:56px 8px;padding:44px 20px"><h2 style="margin:0">${kid?'우리 아이 결과, 지금 확인해 보세요':'내 결과, 지금 확인해 보세요'}</h2><a class="btn btn-sun btn-big" href="${cta(x.id)}">${kw} 시작하기</a></div>
 <h2>자주 묻는 질문</h2>${faqHtml(faqs)}
 <h2>${kid?'아이 검사 더 보기':'부모 검사 더 보기'}</h2>
-<div class="rel">${rel.map(y=>`<a href="/test/${y.id}/">${y.svg}<span>${KW[y.id][0]}<small>${y.t.trim()}</small></span></a>`).join('')}</div>`;
-  out(`test/${x.id}`,page({url,title,desc,body,ctaHref:cta(x.id),ctaTxt:'무료로 검사 시작하기',
-    ld:[{'@type':'WebPage',name:title,url:SITE+url,description:desc,inLanguage:'ko',isPartOf:{'@type':'WebSite',name:BRAND,url:SITE+'/'}},crumbLd([['홈','/'],['테스트 모음','/test/'],[kw,url]]),faqLd(faqs)]}));
+<div class="rel">${rel.map(y=>`<a href="/${TS[y.id]}/">${y.svg}<span>${KW[y.id][0]}<small>${y.t.trim()}</small></span></a>`).join('')}</div>`;
+  out(TS[x.id],page({url,title,desc,body,ctaHref:cta(x.id),ctaTxt:'무료로 검사 시작하기',
+    ld:[{'@type':'WebPage',name:title,url:SITE+url,description:desc,inLanguage:'ko',isPartOf:{'@type':'WebSite',name:BRAND,url:SITE+'/'}},crumbLd([['홈','/'],['테스트 모음','/'+HUB_T+'/'],[kw,url]]),faqLd(faqs)]}));
   urls.push(url);
 });
 
 /* ---- 테스트 모음 ---- */
-{const url='/test/',title=`아이 적성검사·부모 양육검사 17종 무료 모음 - ${BRAND}`,desc='아이 재능·기질·학습유형·사회성부터 부모 양육태도·육아 스트레스까지 17종 무료 검사 모음.';
- const sec=(cat,h)=>`<h2>${h}</h2><div class="rel">${ALL.filter(x=>x.cat===cat).map(y=>`<a href="/test/${y.id}/">${y.svg}<span>${KW[y.id][0]}<small>${y.s}</small></span></a>`).join('')}</div>`;
+{const url='/'+HUB_T+'/',title=`아이 적성검사·부모 양육검사 17종 무료 모음 - ${BRAND}`,desc='아이 재능·기질·학습유형·사회성부터 부모 양육태도·육아 스트레스까지 17종 무료 검사 모음.';
+ const sec=(cat,h)=>`<h2>${h}</h2><div class="rel">${ALL.filter(x=>x.cat===cat).map(y=>`<a href="/${TS[y.id]}/">${y.svg}<span>${KW[y.id][0]}<small>${y.s}</small></span></a>`).join('')}</div>`;
  const body=`${crumbHtml([['홈','/'],['테스트 모음',url]])}
 <section class="sp-hero"><span class="gi">${D.TALENT.svg}</span><div><p class="eyebrow">무료 · 가입 없음</p><h1>아이 적성검사 모음</h1><p class="sub">아이 검사 9종, 부모 검사 8종. 여러 개를 하면 종합 리포트와 부모-아이 궁합 리포트가 열려요.</p>
 <div class="sp-cta"><a class="btn btn-sun btn-big" href="/#intake">재능 검사부터 시작하기</a><span class="note">가장 많이 시작하는 검사예요</span></div></div></section>
 ${sec('kid','아이 알아보기 · 9종')}${sec('parent','부모 알아보기 · 8종')}`;
- out('test',page({url,title,desc,body,ctaHref:'/#intake',ctaTxt:'무료로 재능 찾기 시작하기',ld:[{'@type':'CollectionPage',name:title,url:SITE+url,description:desc},crumbLd([['홈','/'],['테스트 모음',url]]),
-  {'@type':'ItemList',itemListElement:ALL.map((x,i)=>({'@type':'ListItem',position:i+1,url:`${SITE}/test/${x.id}/`,name:KW[x.id][0]}))}]}));
+ out(HUB_T,page({url,title,desc,body,ctaHref:'/#intake',ctaTxt:'무료로 재능 찾기 시작하기',ld:[{'@type':'CollectionPage',name:title,url:SITE+url,description:desc},crumbLd([['홈','/'],['테스트 모음',url]]),
+  {'@type':'ItemList',itemListElement:ALL.map((x,i)=>({'@type':'ListItem',position:i+1,url:`${SITE}/${TS[x.id]}/`,name:KW[x.id][0]}))}]}));
  urls.splice(1,0,url);}
 
 /* ---- 부모 가이드 ---- */
 D.GUIDES.forEach((g,i)=>{
-  const slug=GSLUG[i],url=`/guide/${slug}/`,t=byId[GTEST[slug]],title=`${g.t} - ${g.s} | ${BRAND}`;
+  const slug=GSLUG[i],url=`/${slug}/`,t=byId[GTEST[OLDG[i]]],title=`${g.t} - ${g.s} | ${BRAND}`;
   const desc=cut(`${g.t}. ${g.b[0][1]||g.s}`,80);
-  const body=`${crumbHtml([['홈','/'],['부모 가이드','/guide/'],[g.t,url]])}
+  const body=`${crumbHtml([['홈','/'],['부모 가이드','/'+HUB_G+'/'],[g.t,url]])}
 <article class="post">
 <p class="eyebrow" style="margin-top:18px">부모 가이드</p><h1 style="margin-top:6px">${g.t}</h1><p class="muted">${g.s}</p>
 ${g.b.map(([h,p])=>`<h2>${h}</h2>${p?`<p>${p}</p>`:`<ul>${(g.list||[]).map(x=>`<li>${x}</li>`).join('')}</ul>`}`).join('')}
 </article>
 <div class="post-cta sp-cta" style="margin-top:36px"><div style="width:80px">${g.svg}</div><p style="font-weight:800;font-size:18px;margin:0">글로 읽는 것보다 직접 해보면 더 잘 보여요. ${KW[t.id][0]}로 확인해 보세요.</p><a class="btn btn-main" href="${cta(t.id)}">무료로 ${KW[t.id][0]} 하기</a></div>
-${P.promoHtml(slug)}
+${P.promoHtml(OLDG[i])}
 <h2>다른 가이드</h2>
-<div class="rel">${D.GUIDES.map((o,j)=>j===i?'':`<a href="/guide/${GSLUG[j]}/">${o.svg}<span>${o.t}<small>${o.s}</small></span></a>`).join('')}</div>`;
-  out(`guide/${slug}`,page({url,title,desc,body,ctaHref:cta(t.id),ctaTxt:`무료로 ${KW[t.id][0]} 하기`,ld:[{'@type':'Article',headline:g.t,description:desc,url:SITE+url,inLanguage:'ko',datePublished:'2026-10-08',dateModified:TODAY,author:{'@type':'Organization',name:BRAND},publisher:{'@type':'Organization',name:BRAND}},crumbLd([['홈','/'],['부모 가이드','/guide/'],[g.t,url]])]}));
+<div class="rel">${D.GUIDES.map((o,j)=>j===i?'':`<a href="/${GSLUG[j]}/">${o.svg}<span>${o.t}<small>${o.s}</small></span></a>`).join('')}</div>`;
+  out(slug,page({url,title,desc,body,ctaHref:cta(t.id),ctaTxt:`무료로 ${KW[t.id][0]} 하기`,ld:[{'@type':'Article',headline:g.t,description:desc,url:SITE+url,inLanguage:'ko',datePublished:'2026-10-08',dateModified:TODAY,author:{'@type':'Organization',name:BRAND},publisher:{'@type':'Organization',name:BRAND}},crumbLd([['홈','/'],['부모 가이드','/'+HUB_G+'/'],[g.t,url]])]}));
   urls.push(url);
 });
-{const url='/guide/',title=`아이 재능·발달 부모 가이드 - ${BRAND}`,desc='아이 재능 찾는 법, 창의력·집중력 놀이, 5·6·7세 발달까지 3분이면 읽는 부모 가이드.';
+{const url='/'+HUB_G+'/',title=`아이 재능·발달 부모 가이드 - ${BRAND}`,desc='아이 재능 찾는 법, 창의력·집중력 놀이, 5·6·7세 발달까지 3분이면 읽는 부모 가이드.';
  const body=`${crumbHtml([['홈','/'],['부모 가이드',url]])}<h1 class="page-h" style="margin-top:14px">부모 가이드</h1><p class="lead2">궁금한 주제를 골라 3분만 읽어보세요.</p>
-<div class="rel" style="margin-top:18px">${D.GUIDES.map((g,i)=>`<a href="/guide/${GSLUG[i]}/">${g.svg}<span>${g.t}<small>${g.s}</small></span></a>`).join('')}</div>
+<div class="rel" style="margin-top:18px">${D.GUIDES.map((g,i)=>`<a href="/${GSLUG[i]}/">${g.svg}<span>${g.t}<small>${g.s}</small></span></a>`).join('')}</div>
 <div class="final sp-cta" style="display:block;margin-block:56px 8px;padding:44px 20px"><h2 style="margin:0">읽었다면, 이제 우리 아이 차례예요</h2><a class="btn btn-sun btn-big" href="/#intake">무료로 재능 찾기 시작하기</a></div>`;
- out('guide',page({url,title,desc,body,ctaHref:'/#intake',ctaTxt:'무료로 재능 찾기 시작하기',ld:[{'@type':'CollectionPage',name:title,url:SITE+url,description:desc},crumbLd([['홈','/'],['부모 가이드',url]])]}));
+ out(HUB_G,page({url,title,desc,body,ctaHref:'/#intake',ctaTxt:'무료로 재능 찾기 시작하기',ld:[{'@type':'CollectionPage',name:title,url:SITE+url,description:desc},crumbLd([['홈','/'],['부모 가이드',url]])]}));
  urls.push(url);}
 
 /* ---- FAQ ---- */
-{const url='/faq/',title=`아이 재능검사 자주 묻는 질문 - ${BRAND}`,desc='검사 나이·소요 시간·결과 활용·기록 저장·비용까지, 아이 재능검사 자주 묻는 질문을 모았어요.';
+{const url='/'+HUB_F+'/',title=`아이 재능검사 자주 묻는 질문 - ${BRAND}`,desc='검사 나이·소요 시간·결과 활용·기록 저장·비용까지, 아이 재능검사 자주 묻는 질문을 모았어요.';
  const cats=[...new Set(D.FAQ.map(f=>f[0]))];
  const body=`${crumbHtml([['홈','/'],['자주 묻는 질문',url]])}<h1 class="page-h" style="margin-top:14px">자주 묻는 질문</h1>
 ${cats.map(c=>`<h2>${c}</h2>${faqHtml(D.FAQ.filter(f=>f[0]===c).map(f=>[f[1],f[2]]))}`).join('')}
 <div class="post-cta sp-cta" style="margin-top:36px"><p style="font-size:18px;margin:0" class="kid">궁금한 건 직접 해보는 게 제일 빨라요.</p><a class="btn btn-sun" href="/#intake">무료로 재능 찾기 시작하기</a></div>`;
- out('faq',page({url,title,desc,body,ctaHref:'/#intake',ctaTxt:'무료로 재능 찾기 시작하기',ld:[{'@type':'WebPage',name:title,url:SITE+url,description:desc},crumbLd([['홈','/'],['자주 묻는 질문',url]]),faqLd(D.FAQ.map(f=>[f[1],f[2]]))]}));
+ out(HUB_F,page({url,title,desc,body,ctaHref:'/#intake',ctaTxt:'무료로 재능 찾기 시작하기',ld:[{'@type':'WebPage',name:title,url:SITE+url,description:desc},crumbLd([['홈','/'],['자주 묻는 질문',url]]),faqLd(D.FAQ.map(f=>[f[1],f[2]]))]}));
  urls.push(url);}
 
 /* ---- sitemap / llms ---- */
 fs.writeFileSync(path.join(ROOT,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls.map(u=>`  <url><loc>${SITE}${u}</loc><lastmod>${TODAY}</lastmod></url>`).join('\n')}
+${urls.map(u=>`  <url><loc>${SITE}${encodeURI(u)}</loc><lastmod>${TODAY}</lastmod></url>`).join('\n')}
 </urlset>
 `);
 // index.html 에 광고 코드·CSS·푸터 링크 주입
 {const ip=path.join(ROOT,'index.html');let ix=fs.readFileSync(ip,'utf8');const PJS=fs.readFileSync(path.join(__dirname,'promo.js'),'utf8');
  const put=(a,b,v)=>{const re=new RegExp(a.replace(/[*/]/g,'\\$&')+'[\\s\\S]*?'+b.replace(/[*/]/g,'\\$&'));if(!re.test(ix))throw Error('marker '+a);ix=ix.replace(re,()=>a+v+b)};
- put('/*PROMO*/','/*/PROMO*/','\n'+PJS);put('/*PROMOCSS*/','/*/PROMOCSS*/','\n'+PCSS);put('<!--SITELINKS-->','<!--/SITELINKS-->',P.familyHtml()+footLinks());
+ put('/*PROMO*/','/*/PROMO*/','\n'+PJS+'\nconst TSLUG='+JSON.stringify(TS)+';\n');put('/*PROMOCSS*/','/*/PROMOCSS*/','\n'+PCSS);put('<!--SITELINKS-->','<!--/SITELINKS-->',P.familyHtml()+footLinks());
  fs.writeFileSync(ip,ix);}
+fs.writeFileSync(path.join(ROOT,'vercel.json'),JSON.stringify({redirects:[
+  ...[...ALL.map(x=>[`/test/${x.id}`,TS[x.id]]),...OLDG.map((o,i)=>[`/guide/${o}`,GSLUG[i]]),['/test',HUB_T],['/guide',HUB_G],['/faq',HUB_F]]
+    .flatMap(([o,n])=>[o,o+'/'].map(src=>({source:src,destination:encodeURI(`/${n}/`),permanent:true})))]},null,1));
 console.log(urls.length,'urls');

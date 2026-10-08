@@ -9,10 +9,10 @@
 - 사이트: https://mwojalhae.kr/
 
 ## 검사별 안내 페이지
-- 테스트 모음: https://mwojalhae.kr/test/
-- 아이 재능검사: https://mwojalhae.kr/test/talent/
-- 아이 기질검사: https://mwojalhae.kr/test/temper/
-- 양육태도 검사: https://mwojalhae.kr/test/style/
-- 육아 스트레스 검사: https://mwojalhae.kr/test/stress/
-- 부모 가이드: https://mwojalhae.kr/guide/
-- 자주 묻는 질문: https://mwojalhae.kr/faq/
+- 테스트 모음: https://mwojalhae.kr/테스트모음/
+- 아이 재능검사: https://mwojalhae.kr/아이재능검사/
+- 아이 기질검사: https://mwojalhae.kr/아이기질검사/
+- 양육태도 검사: https://mwojalhae.kr/양육태도검사/
+- 육아 스트레스 검사: https://mwojalhae.kr/육아스트레스검사/
+- 부모 가이드: https://mwojalhae.kr/부모가이드/
+- 자주 묻는 질문: https://mwojalhae.kr/자주묻는질문/
