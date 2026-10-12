@@ -14,3 +14,5 @@
 .family b{color:var(--ink);margin-right:4px}
 .family a{color:var(--muted);text-decoration:none;padding:8px 6px;min-height:40px;display:inline-flex;align-items:center}
 .family a:hover{color:var(--brand)}
+.promo.top{margin:22px 0 4px;padding:16px;border-radius:24px;background:var(--soft);border:2px dashed var(--line)}
+.promo.top .pl{font-family:var(--f-kid);font-weight:400;font-size:18px;color:var(--ink)}

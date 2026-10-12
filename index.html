@@ -505,6 +505,25 @@ footer select{font:inherit;padding:8px;border-radius:10px;border:1px solid var(-
 .toast{position:fixed;left:50%;bottom:calc(92px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:12px 20px;border-radius:14px;font-weight:600;z-index:50;max-width:calc(100% - 32px);text-align:center}
 .muted{color:var(--muted)}
 .mt{margin-top:16px}.mt2{margin-top:28px}
+.pvlead{font-size:15px;color:var(--p-deep);font-weight:700;margin-top:4px}
+.pvcard{margin-top:18px;background:linear-gradient(135deg,var(--surface) 0%,var(--p-soft) 100%)}
+.rcard.gap{background:linear-gradient(135deg,var(--p-soft) 0%,var(--stage) 100%)}
+.gaplist{display:grid;gap:12px;margin-top:18px}
+.gapitem{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center}
+.gapitem .gi svg{width:56px;height:56px}
+.gst{display:flex;gap:12px;flex-wrap:wrap;font-size:14px;margin-top:4px}.gst .y{color:var(--p)}.gst .n{color:var(--muted)}
+.gbtn{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.gapscore{display:flex;align-items:baseline;gap:10px}.gapscore b{font-family:var(--f-head);font-weight:400;font-size:56px;color:var(--brand);line-height:1}.gapscore small{font-size:24px}
+.gapbars{display:grid;gap:14px}
+.gb{display:grid;grid-template-columns:110px 1fr auto;gap:10px;align-items:center}
+.two-tr{display:grid;gap:4px}
+.two-tr .tr{position:relative;height:22px;background:var(--soft);border-radius:99px;overflow:hidden}
+.two-tr .tr i{position:absolute;inset:0 auto 0 0;border-radius:99px}.two-tr .kid i{background:var(--sun)}.two-tr .par i{background:color-mix(in srgb,var(--p) 55%,#fff)}
+.two-tr em{position:relative;font-style:normal;font-size:12.5px;font-weight:700;padding-left:10px;line-height:22px}
+.gapq{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.gapq li{background:var(--soft);border-radius:16px;padding:12px 14px;display:flex;flex-wrap:wrap;gap:4px 16px}
+.gapq p{width:100%;margin:0 0 2px;font-weight:700}.gapq .par{color:var(--p-deep)}
+@media (max-width:640px){.gapitem{grid-template-columns:auto 1fr}.gbtn{grid-column:1/-1;justify-content:stretch}.gbtn .btn{flex:1}.gb{grid-template-columns:1fr auto}.gb .two-tr{grid-column:1/-1;grid-row:2}}
 /*PROMOCSS*/
 .promo{margin:40px 0 8px}
 .promo .pl{font-size:13.5px;font-weight:700;color:var(--muted);margin:0 0 8px}
@@ -522,6 +541,8 @@ footer select{font:inherit;padding:8px;border-radius:10px;border:1px solid var(-
 .family b{color:var(--ink);margin-right:4px}
 .family a{color:var(--muted);text-decoration:none;padding:8px 6px;min-height:40px;display:inline-flex;align-items:center}
 .family a:hover{color:var(--brand)}
+.promo.top{margin:22px 0 4px;padding:16px;border-radius:24px;background:var(--soft);border:2px dashed var(--line)}
+.promo.top .pl{font-family:var(--f-kid);font-weight:400;font-size:18px;color:var(--ink)}
 /*/PROMOCSS*/
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
@@ -677,6 +698,7 @@ footer select{font:inherit;padding:8px;border-radius:10px;border:1px solid var(-
   <div class="wrap" style="max-width:820px;padding-bottom:60px" id="qresBox"></div>
 </div>
 <div data-view="summary" hidden><div class="wrap" style="max-width:860px;padding-bottom:60px" id="sumBox"></div></div>
+<div data-view="gap" hidden><div class="wrap" style="max-width:860px;padding-bottom:60px" id="gapBox"></div></div>
 <div data-view="fit" hidden><div class="wrap" style="max-width:860px;padding-bottom:60px" id="fitBox"></div></div>
 <div data-view="faq" hidden>
   <div class="wrap" style="max-width:820px;padding-block:28px 60px">
@@ -716,10 +738,21 @@ const PROMO={
  mom:{n:"맘먼트",u:"https://mommoment.kr",e:"💬",c:"#DDF2EA",l:"비슷한 고민을 하는 엄마들과 육아 이야기 나누기",g:"이야기 나누러 가기"},
  malang:{n:"말랑영어",u:"https://malangenglish.co.kr",e:"🔤",c:"#DCEBFF",l:"엄마표 영어, 학습지부터 소리까지 한 곳에서",g:"말랑영어 보기"}
 };
-const PROMO_FOR={talent:["kokcolor","dojang"],temper:["bamtol","mom"],learn:["dojang","malang"],career:["malang","dojang"],social:["mom","bamtol"],attention:["dojang","kokcolor"],eq:["bamtol","kokcolor"],esteem:["bamtol","dojang"],mindset:["dojang","malang"],style:["mom","bamtol"],emotion:["bamtol","mom"],stress:["mom","bamtol"],media:["kokcolor","bamtol"],efficacy:["mom","malang"],relation:["bamtol","mom"],coparent:["mom","bamtol"],discipline:["mom","bamtol"],
+const PROMO_FOR={gap:["mom","bamtol"],talent:["kokcolor","dojang"],temper:["bamtol","mom"],learn:["dojang","malang"],career:["malang","dojang"],social:["mom","bamtol"],attention:["dojang","kokcolor"],eq:["bamtol","kokcolor"],esteem:["bamtol","dojang"],mindset:["dojang","malang"],style:["mom","bamtol"],emotion:["bamtol","mom"],stress:["mom","bamtol"],media:["kokcolor","bamtol"],efficacy:["mom","malang"],relation:["bamtol","mom"],coparent:["mom","bamtol"],discipline:["mom","bamtol"],
  "talent-find":["kokcolor","dojang"],"creativity-play":["kokcolor","bamtol"],"spatial-ability":["kokcolor","dojang"],"math-talent":["dojang","malang"],observation:["kokcolor","dojang"],"focus-play":["dojang","kokcolor"],"age5-development":["bamtol","kokcolor"],"age6-development":["kokcolor","dojang"],"age7-development":["dojang","malang"],"elementary-talent":["dojang","malang"]};
 const promoUrl=(k,src)=>PROMO[k].u+"/?utm_source=mwojalhae&utm_medium=referral&utm_campaign=family&utm_content="+src;
-function promoHtml(src){const ks=PROMO_FOR[src]||["bamtol","dojang"];return `<aside class="promo" aria-label="함께 쓰면 좋은 서비스"><p class="pl">함께 쓰면 좋아요 <span>AD</span></p><div class="pcs">${ks.map(k=>{const p=PROMO[k];return `<a class="pc" href="${promoUrl(k,src)}" target="_blank" rel="noopener" style="--pc:${p.c}"><span class="pe" aria-hidden="true">${p.e}</span><span class="pt"><b>${p.n}</b>${p.l}</span><span class="pg">${p.g} →</span></a>`}).join("")}</div></aside>`}
+const PROMO_WHY={
+ talent:{kokcolor:"강점이 보인 날, 좋아하는 그림으로 몰입 놀이 이어가기",dojang:"강점 영역부터 시작하는 하루 10분 프린트 학습지"},
+ temper:{bamtol:"기질에 맞춘 잠자리 루틴, 아이 이름이 나오는 동화로",mom:"비슷한 기질 아이 키우는 엄마들 이야기 듣기"},
+ learn:{dojang:"우리 아이 배우는 방식에 맞춰 고르는 학습지",malang:"보고·듣고·따라 하는 엄마표 영어"},
+ career:{malang:"흥미를 넓혀주는 엄마표 영어 그림책·소리",dojang:"관심 분야를 넓혀주는 주제별 학습지"},
+ social:{mom:"친구 관계 고민, 먼저 겪은 엄마들에게 물어보기",bamtol:"친구·마음 이야기를 담은 잠자리 동화"},
+ attention:{dojang:"짧고 분명한 목표로 끝내는 10분 학습지",kokcolor:"집중 연습이 되는 색칠 도안"},
+ eq:{bamtol:"감정 이름을 배우는 잠자리 동화",kokcolor:"기분을 색으로 표현해 보는 색칠 놀이"},
+ esteem:{bamtol:"아이가 주인공이 되는 맞춤 동화로 자신감 채우기",dojang:"매일 '해냈다' 도장을 받는 쉬운 학습지"},
+ mindset:{dojang:"작은 성공을 쌓는 단계별 학습지",malang:"틀려도 즐거운 엄마표 영어 놀이"},
+ gap:{mom:"아이 마음 읽기, 다른 엄마들은 어떻게 할까?",bamtol:"잠들기 전 10분, 마음 대화를 여는 동화"}};
+function promoHtml(src,head){const ks=PROMO_FOR[src]||["bamtol","dojang"],why=PROMO_WHY[src]||{};return `<aside class="promo${head?" top":""}" aria-label="함께 쓰면 좋은 서비스"><p class="pl">${head||"함께 쓰면 좋아요"} <span>AD</span></p><div class="pcs">${ks.map(k=>{const p=PROMO[k];return `<a class="pc" href="${promoUrl(k,src)}" target="_blank" rel="noopener" style="--pc:${p.c}"><span class="pe" aria-hidden="true">${p.e}</span><span class="pt"><b>${p.n}</b>${why[k]||p.l}</span><span class="pg">${p.g} →</span></a>`}).join("")}</div></aside>`}
 function familyHtml(){return `<nav class="family" aria-label="패밀리 사이트"><b>패밀리 사이트</b>${Object.keys(PROMO).map(k=>`<a href="${promoUrl(k,"footer")}" target="_blank" rel="noopener">${PROMO[k].e} ${PROMO[k].n}</a>`).join("")}</nav>`}
 
 const TSLUG={"talent":"아이재능검사","temper":"아이기질검사","learn":"아이학습유형검사","career":"아이진로적성검사","social":"아이사회성검사","attention":"아이집중력검사","eq":"아이정서지능검사","esteem":"아이자존감검사","mindset":"성장마인드셋검사","style":"양육태도검사","emotion":"감정코칭검사","stress":"육아스트레스검사","media":"아이미디어습관검사","efficacy":"부모효능감검사","relation":"부모자녀관계검사","coparent":"공동양육검사","discipline":"훈육방식검사"};
@@ -961,6 +994,7 @@ function buildHome(){
 }
 
 const FAQ=[
+ ["결과","부모 눈 vs 아이 마음 비교는 무엇인가요?","아이가 직접 답하는 검사(학습 선호·진로 흥미·자존감·마인드셋)에 부모님이 '우리 아이라면 뭐라고 할까?'를 예상해서 같은 문항에 답할 수 있어요. 두 답을 나란히 놓고 생각이 같은 곳과 다른 곳, 대화 방법까지 보여드려요."],
  ["검사","몇 살부터 검사할 수 있나요?","만 5세부터 12세까지를 기준으로 만들었어요. 글자를 다 몰라도 그림과 터치로 할 수 있고, 5~6세는 부모님이 옆에서 질문을 읽어주시면 좋아요."],
  ["검사","검사는 얼마나 걸리나요?","미니게임 24개로 약 10~15분 걸려요. 중간중간 별과 배지를 받으며 지루하지 않게 이어가요."],
  ["검사","정답을 많이 맞히면 좋은 건가요?","점수가 높고 낮음보다 어떤 게임에서 더 편하게 움직였는지를 봐요. 창의력 게임처럼 정답이 없는 문제도 있어서 아이에게 맞혀야 한다는 부담을 주지 않아도 돼요."],
@@ -1069,6 +1103,7 @@ function renderResult(){const box=$("#resultBox");const r=latest();if(!r||!profi
    ${likeHit.length?`<div class="aha">처음에 좋아하는 것으로 '${likeHit.join("', '")}'을(를) 골랐죠? 같은 강점이 놀이 취향에서도 보이고 있어요.</div>`:""}
    <div class="two2"><div><h4>두드러진 강점 TOP 3</h4><ul class="tiplist">${[a,b,c].map(k=>`<li><b>${T[k].n} ${sc[k]}</b> · ${T[k].d}</li>`).join("")}</ul></div>
     <div><h4>성장 영역</h4><ul class="tiplist">${weak.map(k=>`<li><b>${T[k].n} ${sc[k]}</b> · 경험을 넓혀주면 좋은 영역</li>`).join("")}</ul></div></div></div>
+  ${promoHtml("talent",`${nick} 강점에 맞춘 추천`)}
   ${S("8개 영역 프로파일")}<div class="card"><div class="two prof"><div>${radar(sc)}</div><div class="dbars">${tp.map(k=>`<div class="dbar"><span class="dn">${T[k].n}</span><span class="tr"><i style="width:${sc[k]}%;background:${col(k)}"></i></span><span class="v">${sc[k]}</span><span class="chip ${rk(k)[0]}">${rk(k)[1]}</span></div>`).join("")}</div></div>
    <p class="muted fine">점수는 게임 수행(정확도·반응 속도)을 60~100점으로 환산한 값이에요. 다른 아이와 비교한 점수가 아니라 아이 안에서 영역끼리 비교한 상대 프로파일이에요.</p></div>
   ${prev?`${S("지난 검사와 비교")}<div class="card"><p class="muted" style="font-size:14.5px">${prev.date} → ${r.date} (${dayGap(prev.date,r.date)}일 간격)</p><div class="delta">${KEYS.map(k=>{const d=sc[k]-prev.scores[k];return `<div>${T[k].n}<b class="${Math.abs(d)<5?"same":d>0?"up":"dn"}">${d>0?"+":""}${d}</b></div>`}).join("")}</div><p class="muted fine">5점 미만 차이는 그날 컨디션에 따른 자연스러운 변동일 수 있어요.${prev.top!==r.top?` 가장 빛나는 재능이 ${T[prev.top].n}에서 ${T[r.top].n}(으)로 바뀌었어요.`:""}</p></div>`:""}
@@ -1079,7 +1114,7 @@ function renderResult(){const box=$("#resultBox");const r=latest();if(!r||!profi
    <div><dt>추천 놀이</dt><dd><div class="tags" style="margin:0">${t.plays.map(x=>`<span class="tag">${x}</span>`).join("")}</div></dd></div>
    <div><dt>진로 가능성</dt><dd>${t.n}을 쓰는 활동에 흥미를 보인다면 ${t.career}의 경험을 다양하게 제공해보세요. 직업을 정해주는 결과는 아니에요.</dd></div></dl></div>
   ${S("이번 주 실천 플랜")}<div class="card"><ol class="steps">${[a,b,weak[1]].map((k,i)=>`<li><b>${["월~화","수~목","금~주말"][i]} · ${T[k].n}</b>${T[k].missions[1]}</li>`).join("")}</ol></div>
-  ${missionCard()}${promoHtml("talent")}
+  ${missionCard()}
   <div class="card mt" style="text-align:center"><h3 class="rh">우리 아이 재능 카드</h3><p class="muted" style="font-size:14.5px;margin-top:4px">이미지를 길게 눌러 저장한 뒤 카카오톡·SNS에 공유하세요. 나이·성별은 들어가지 않아요.</p>
    <label class="check mt"><input type="checkbox" id="cardNick"> 카드에 닉네임 넣기</label>
    <img class="share-img mt" id="shareImg" alt="우리 아이 재능 카드"><div class="seg mt" style="justify-content:center"><button class="btn btn-ghost" id="copyShare">공유 문구 복사</button></div></div>
@@ -1124,6 +1159,8 @@ const KIDSET=()=>{const res=quizRes(),o={};QUIZ.forEach(Q=>{if(Q.cat==="kid"&&re
 const kidDone=()=>Object.keys(KIDSET()).length+(latest()?1:0);
 const QQ=id=>QUIZ.find(x=>x.id===id);
 function reportCard(kind){const nick=profile?esc(profile.nick):"우리 아이",res=quizRes();
+  if(kind==="gap"){const done=PVT().filter(Q=>profile&&res[Q.id]&&pvLast(Q.id)).length;
+    return `<button class="rcard gap" data-go="gap"><span class="tlabel">통합 리포트</span><b>부모 눈 vs ${nick} 마음</b><span class="ts">아이가 직접 답한 검사에 부모님이 '우리 아이라면?'을 예상해 답하면, 생각이 다른 곳을 짚어드려요.</span><span class="tmeta">${done?`비교 ${done}개 완료 · 보기`:"아이 검사 1개 + 부모 예상 1개면 열려요"}</span></button>`}
   if(kind==="summary"){const n=profile?kidDone():0,ok=n>=3;
     return `<button class="rcard sum${ok?"":" lock"}" ${ok?'data-go="summary"':'data-go="tests"'}><span class="tlabel">통합 리포트</span><b>${nick} 종합 리포트</b><span class="ts">아이 검사 결과를 한 장으로 묶고, 검사끼리 엮은 맞춤 조언을 드려요.</span>
      <span class="meter"><i style="width:${Math.min(100,n/3*100)}%"></i></span><span class="tmeta">${ok?`검사 ${n}개 반영 · 리포트 보기`:`아이 검사 ${n}/3 완료 · ${3-n}개 더 하면 열려요`}</span></button>`}
@@ -1150,7 +1187,7 @@ function renderDash(){const box=$("#dashBox"),ids=kidIds(),pq=QUIZ.filter(Q=>Q.c
     const hc=r?r.top:"num";
     h+=`<div class="kidhead"><div class="char sm" style="background:${tint(hc)}">${mascot(col(hc),T[hc].acc,76)}</div><div><h2>${nick} · 만 ${profile.age}세</h2><p class="muted">${r?T[r.top].char+"형 · ":""}관심: ${profile.likes.map(esc).join(", ")||"선택 안 함"}</p></div></div>
     <div class="dash"><div class="stat"><div class="k">완료한 검사</div><div class="v">${kidDone()}/${kq.length+1}</div></div><div class="stat"><div class="k">완료한 미션</div><div class="v">${done}개</div></div><div class="stat"><div class="k">모은 별</div><div class="v">⭐ ${stars.total}</div></div></div>
-    <div class="reports">${reportCard("summary")}${reportCard("fit")}</div>
+    <div class="reports">${reportCard("summary")}${reportCard("fit")}${reportCard("gap")}</div>
     <div class="card mt"><h3 class="rh">재능 성장 기록</h3>${!r?`<p class="muted mt">아직 재능 검사를 하지 않았어요.</p><button class="btn btn-sun mt" data-go="intake">재능 찾기 시작하기</button>`:prev?`<p class="muted" style="font-size:14.5px">${dayGap(prev.date,r.date)}일 전 검사와 비교했어요.</p><div class="delta">${KEYS.map(k=>{const d=r.scores[k]-prev.scores[k];return `<div>${T[k].n}<b class="${Math.abs(d)<5?"same":d>0?"up":"dn"}">${d>0?"+":""}${d}</b></div>`}).join("")}</div>`:
      `<p class="muted mt">1~3개월 뒤 다시 측정하면 지난 결과와 비교한 성장 기록을 볼 수 있어요. 추천 재측정일은 <b>${new Date(new Date(r.date).getTime()+30*864e5).toISOString().slice(0,10)}</b>이에요.</p>`}
      ${r?`<button class="btn btn-ghost mt" data-go="intake">재능 다시 측정하기</button>`:""}
@@ -1408,19 +1445,21 @@ const KID3=[["😐","아니야",1],["🙂","조금",3],["😍","맞아!",5]], LI
 const qBucket=Q=>Q.cat==="parent"?DB.parent.quiz:(DB.kids[DB.cur]?.quiz||{});
 const qHist=id=>{const Q=QUIZ.find(x=>x.id===id);return Q?(qBucket(Q)[id]||[]):[]};
 const quizRes=()=>{const o={};QUIZ.forEach(Q=>{const h=qHist(Q.id);if(h.length)o[Q.id]=h[h.length-1]});return o};
-function startQuiz(id){const Q=QUIZ.find(x=>x.id===id);if(!Q)return;if(Q.cat==="kid"&&!profile){go("intake",id);return}go("test");window.gtag?.("event","test_start",{test_id:Q.id});$("#walker").innerHTML=mascot(col(Q.c),Q.acc,34);
-  $("#starCount").textContent=Q.kid?"⭐ 0":"";run={alive:true,quiz:Q,i:0,ans:[],stars:0,young:Q.cat==="kid"&&!!Q.young&&profile.age<=7};nextQuiz()}
+function startQuiz(id){let pv=false;if(id.startsWith("pv-")){pv=true;id=id.slice(3)}const Q=QUIZ.find(x=>x.id===id);if(!Q)return;if(Q.cat==="kid"&&!profile){go("intake",(pv?"pv-":"")+id);return}go("test");window.gtag?.("event","test_start",{test_id:Q.id});$("#walker").innerHTML=mascot(col(Q.c),Q.acc,34);
+  $("#starCount").textContent=Q.kid&&!pv?"⭐ 0":"";run={alive:true,quiz:Q,pv,i:0,ans:[],stars:0,young:Q.cat==="kid"&&!!Q.young&&profile.age<=7};nextQuiz()}
 function scoreQuiz(Q,ans){const sum={},cnt={};Q.q.forEach(([,d,rev],i)=>{const v=rev?6-ans[i]:ans[i];sum[d]=(sum[d]||0)+v;cnt[d]=(cnt[d]||0)+1});
   const sc={};Object.keys(sum).forEach(d=>sc[d]=Math.round((sum[d]/cnt[d]-1)/4*100));return sc}
 function nextQuiz(){const me=run;if(!me||!me.alive)return;const Q=me.quiz,st=$("#testStage"),n=Q.q.length;setProg(me.i,n);
+  if(me.i>=n&&me.pv){const k=DB.kids[DB.cur];k.pview=k.pview||{};(k.pview[Q.id]=k.pview[Q.id]||[]).push({sc:scoreQuiz(Q,me.ans),date:today(),ans:me.ans.slice(0,n)});
+    saveAll();run.alive=false;run=null;go("gap",Q.id);confetti();window.gtag?.("event","test_complete",{test_id:"pv-"+Q.id});return}
   if(me.i>=n){const sc=scoreQuiz(Q,me.ans),type=Q.typeOf(sc),bk=qBucket(Q);(bk[Q.id]=bk[Q.id]||[]).push({sc,type,date:today(),ans:me.ans.slice(0,n),band:me.young?"y":"o"});
     if(Q.kid)stars.total+=me.stars;saveAll();run.alive=false;run=null;go("qresult",Q.id);confetti();window.gtag?.("event","test_complete",{test_id:Q.id,result_type:type});return}
-  const text=(me.young&&Q.young[me.i])||Q.q[me.i][0],scale=Q.kid?KID3:LIK5;
-  st.classList.toggle("pstage",!Q.kid);
-  st.innerHTML=`<p class="qn">${Q.cat==="kid"?esc(profile.nick)+" · ":""}${me.i+1} / ${n}</p><p class="q">${text}</p>${Q.kid&&me.young&&me.i===0?`<p class="readhint">부모님이 문장을 읽어주고, 아이가 골라요</p>`:""}<div class="play"><div class="${Q.kid?"kscale":"lscale"}">${scale.map(s=>`<button class="${Q.kid?"opt kopt":"lopt"}" data-v="${s[Q.kid?2:1]}">${Q.kid?`<span class="em">${s[0]}</span>${s[1]}`:s[0]}</button>`).join("")}</div>
+  const text=(me.young&&Q.young[me.i])||Q.q[me.i][0],scale=me.pv?PV3:Q.kid?KID3:LIK5;
+  st.classList.toggle("pstage",!Q.kid||me.pv);
+  st.innerHTML=(me.pv?`<p class="qn">부모님이 답해요 · ${me.i+1} / ${n}</p><p class="pvlead">${esc(profile.nick)}에게 이렇게 물으면 뭐라고 할까요?</p><p class="q">“${text}”</p>`:`<p class="qn">${Q.cat==="kid"?esc(profile.nick)+" · ":""}${me.i+1} / ${n}</p><p class="q">${text}</p>`)+`${Q.kid&&!me.pv&&me.young&&me.i===0?`<p class="readhint">부모님이 문장을 읽어주고, 아이가 골라요</p>`:""}<div class="play"><div class="${Q.kid?"kscale":"lscale"}">${scale.map(s=>`<button class="${Q.kid?"opt kopt":"lopt"}" data-v="${s[Q.kid?2:1]}">${Q.kid?`<span class="em">${s[0]}</span>${s[1]}`:s[0]}</button>`).join("")}</div>
    ${me.i?`<button class="back" id="qBack">← 이전 문항</button>`:""}</div>`;
   $$("[data-v]",st).forEach(b=>b.onclick=async()=>{if(run!==me)return;$$("[data-v]",st).forEach(x=>x.disabled=true);b.classList.add("sel");try{navigator.vibrate?.(12)}catch(e){}me.ans[me.i]=+b.dataset.v;me.i++;
-    if(Q.kid){me.stars++;$("#starCount").textContent="⭐ "+me.stars;if(me.i%6===0&&me.i<n)await reward(st,"벌써 여기까지 왔어요!<br>조금만 더 가볼까요?",true);else await new Promise(r=>setTimeout(r,220))}
+    if(Q.kid&&!me.pv){me.stars++;$("#starCount").textContent="⭐ "+me.stars;if(me.i%6===0&&me.i<n)await reward(st,"벌써 여기까지 왔어요!<br>조금만 더 가볼까요?",true);else await new Promise(r=>setTimeout(r,220))}
     else await new Promise(r=>setTimeout(r,180));
     if(run===me)nextQuiz()});
   const bk=$("#qBack",st);if(bk)bk.onclick=()=>{if(run!==me)return;me.i--;nextQuiz()};
@@ -1588,6 +1627,47 @@ const BASE={temper:"Thomas & Chess 기질 이론",learn:"VARK 학습 선호 모�
 function repHead(o){return `<header class="rephead"><div class="rh-top"><span class="rk-badge ${o.cat}">${o.badge||(o.cat==="parent"?"부모 검사 결과지":"아동 검사 결과지")}</span><span class="rh-brand">${esc($(".brand-name").textContent)}</span></div>
   <h1>${o.title}</h1><dl>${[["검사 대상",o.subject],["응답 방식",o.resp],["검사일",o.date],["구성",o.n],["기준 이론",o.base]].map(([k,v])=>`<div><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl></header>`}
 const sec=(n,t)=>`<h2 class="rsec"><span>${n}</span>${t}</h2>`;
+/* ---------- 부모 눈 vs 아이 마음: 아이가 직접 답하는 검사에 부모가 '우리 아이라면?'을 예상해 답하고 비교 ---------- */
+const PV3=[["😐","아니라고 할 것 같아요",1],["🙂","조금이라고 할 것 같아요",3],["😍","맞다고 할 것 같아요",5]];
+const PVT=()=>QUIZ.filter(Q=>Q.kid);
+const pvLast=id=>{const h=DB.kids[DB.cur]?.pview?.[id]||[];return h[h.length-1]};
+const A3=v=>({1:"아니야",3:"조금",5:"맞아!"})[v]||"-";
+function pvBlock(Q){const nick=esc(profile.nick),p=pvLast(Q.id);
+  return `<div class="card pvcard"><p class="rkind">부모 눈 vs 아이 마음</p><h3 class="rh">부모님은 ${josa(nick,"의","의")} 마음을 얼마나 알고 있을까요?</h3>
+   <p class="muted" style="margin-top:6px">같은 문항에 '${josa(nick,"라면","이라면")} 뭐라고 할까?'를 예상해서 답하면, 아이 답과 나란히 놓고 생각이 다른 곳을 짚어드려요. 약 ${Q.min}분.</p>
+   <div class="seg mt">${p?`<button class="btn btn-main" data-go="gap" data-arg="${Q.id}">마음 비교 결과 보기</button><button class="btn btn-ghost" data-quiz="pv-${Q.id}">다시 예상하기</button>`:`<button class="btn btn-main" data-quiz="pv-${Q.id}">부모님 예상 답하기</button>`}</div></div>`}
+function renderGap(id){const box=$("#gapBox");if(!profile){box.innerHTML=emptyState();return}
+  const nick=esc(profile.nick),res=quizRes();
+  if(!id||!QQ(id)){box.innerHTML=`<div style="padding-top:28px"><p class="eyebrow">통합 리포트</p><h1 class="page-h">부모 눈 vs ${nick} 마음</h1>${kidChips()}
+    <p class="lead2">아이가 직접 답한 검사에 부모님이 '우리 아이라면 뭐라고 할까?'를 예상해서 답해 보세요. 생각이 같은 곳과 다른 곳을 문항별로 보여드려요.</p>
+    <div class="gaplist">${PVT().map(Q=>{const c=res[Q.id],p=pvLast(Q.id);return `<div class="card gapitem"><div class="gi">${mascot(col(Q.c),Q.acc,56)}</div><div><b>${Q.t}</b><p class="gst"><span class="${c?"y":"n"}">${c?"✔":"○"} ${nick} 응답</span><span class="${p?"y":"n"}">${p?"✔":"○"} 부모 예상</span></p></div>
+      <div class="gbtn">${c&&p?`<button class="btn btn-main" data-go="gap" data-arg="${Q.id}">비교 보기</button>`:`${c?"":`<button class="btn btn-ghost" data-quiz="${Q.id}">${nick} 차례</button>`}${p?"":`<button class="btn btn-main" data-quiz="pv-${Q.id}">부모 예상하기</button>`}`}</div></div>`}).join("")}</div>
+    ${promoHtml("gap")}</div>`;document.title="부모 눈 vs 아이 마음 | "+$(".brand-name").textContent;return}
+  const Q=QQ(id),c=res[id],p=pvLast(id),D=Q.dims;
+  if(!c||!p){box.innerHTML=needBox(`부모 눈 vs ${nick} 마음`,`${Q.t}를 아이와 부모님이 모두 해야 비교할 수 있어요.`,[
+     ...(c?[]:[{cat:"kid",c:Q.c,acc:Q.acc,who:`${josa(nick,"가","이")} 답해요`,t:Q.t,act:`data-quiz="${id}"`}]),...(p?[]:[{cat:"parent",c:Q.c,acc:Q.acc,who:"부모님이 예상해요",t:`${Q.t} · 부모 예상`,act:`data-quiz="pv-${id}"`}])]);return}
+  let sn=0;const S=t=>sec(++sn,t),keys=Object.keys(D),dd=k=>c.sc[k]-p.sc[k];
+  const match=Math.max(0,Math.round(100-keys.reduce((a,k)=>a+Math.abs(dd(k)),0)/keys.length));
+  const n=Math.min(c.ans.length,p.ans.length),same=[...Array(n).keys()].filter(i=>c.ans[i]===p.ans[i]).length;
+  const items=[...Array(n).keys()].map(i=>({i,d:Math.abs(c.ans[i]-p.ans[i])})).filter(x=>x.d>=2).sort((a,b)=>b.d-a.d).slice(0,4);
+  const txt=i=>(c.band==="y"&&Q.young?.[i])||Q.q[i][0];
+  const lab=match>=85?"아이 마음을 잘 읽고 계세요":match>=70?"대체로 비슷하게 보고 있어요":"생각보다 차이가 있어요";
+  const up=keys.filter(k=>dd(k)>=15),down=keys.filter(k=>dd(k)<=-15);
+  box.innerHTML=`${repHead({cat:"kid",badge:"부모-아이 마음 비교 결과지",title:`${Q.t} · 부모 눈 vs 아이 마음`,subject:`${nick} (만 ${profile.age}세)`,resp:"아이 직접 응답 × 부모 예상 응답 (3단계)",date:`아이 ${c.date} · 부모 ${p.date}`,n:`${Q.q.length}문항 · ${keys.length}개 영역`,base:BASE[id]})}
+   ${S("한눈에 보기")}<div class="card sumcard"><div class="gapscore"><b>${match}<small>%</small></b><span>마음 일치도</span></div><p class="tyname" style="margin-top:6px">${lab}</p>
+    <p class="big">${n}문항 중 <b>${same}문항</b>에서 부모님 예상과 ${nick}의 답이 같았어요.${up.length?` ${up.map(k=>D[k].n).join("·")}은 ${josa(nick,"가","이")} 부모님 생각보다 더 높게 답했어요.`:""}${down.length?` ${down.map(k=>D[k].n).join("·")}은 부모님 예상보다 ${josa(nick,"가","이")} 더 낮게 답했어요.`:""}</p></div>
+   ${promoHtml("gap",`${josa(nick,"와","과")} 마음 대화를 이어갈 추천`)}
+   ${S("영역별 비교")}<div class="card"><div class="gapbars">${keys.map(k=>{const d=dd(k);return `<div class="gb"><span class="dn">${D[k].n}</span><div class="two-tr"><span class="tr kid"><i style="width:${Math.max(3,c.sc[k])}%"></i><em>${nick} ${c.sc[k]}</em></span><span class="tr par"><i style="width:${Math.max(3,p.sc[k])}%"></i><em>부모 예상 ${p.sc[k]}</em></span></div><span class="chip ${Math.abs(d)<15?"ok":"mid"}">${Math.abs(d)<15?"비슷해요":d>0?"아이가 더 높게":"부모가 더 높게"}</span></div>`}).join("")}</div>
+    <p class="muted fine">아이 답과 부모 예상을 각각 0~100점으로 바꿔 나란히 놓았어요. 15점 이상 차이 나는 영역을 '차이'로 표시했어요.</p></div>
+   ${S("생각이 가장 달랐던 문항")}<div class="card">${items.length?`<ul class="gapq">${items.map(({i})=>`<li><p>“${txt(i)}”</p><span class="kid">${nick}: <b>${A3(c.ans[i])}</b></span><span class="par">부모 예상: <b>${A3(p.ans[i])}</b></span></li>`).join("")}</ul>`:`<p class="big">크게 엇갈린 문항이 없어요. ${nick}의 마음을 잘 알고 계세요.</p>`}</div>
+   ${S("이렇게 대화해 보세요")}<div class="card"><ol class="steps plain">
+    ${up.map(k=>`<li><b>${D[k].n}</b> ${josa(nick,"는","은")} 이 부분을 부모님 생각보다 더 좋아하거나 자신 있어해요. "이거 할 때 어떤 점이 좋아?" 하고 물어봐 주세요. 부모님이 미처 못 본 모습이 나올 수 있어요.</li>`).join("")}
+    ${down.map(k=>`<li><b>${D[k].n}</b> 겉으로 보이는 것보다 ${josa(nick,"는","은")} 이 부분을 덜 좋아하거나 덜 자신 있어해요. 결과보다 과정을 알아봐 주고, 아이 이야기를 먼저 끝까지 들어주세요.</li>`).join("")}
+    <li><b>함께 보기</b> 이 결과지를 아이와 같이 보면서 "엄마(아빠)는 이렇게 생각했는데 너는 어때?"라고 물어보세요. 맞히는 게 목적이 아니라 서로 알아가는 게 목적이에요.</li></ol></div>
+   ${S("검사 안내")}<div class="card basis"><p>아이 응답은 ${josa(nick,"가","이")} 직접 고른 답이고, 부모 예상은 부모님이 '${josa(nick,"라면","이라면")} 이렇게 답할 것'이라고 고른 답이에요. 답한 날짜와 그날 기분에 따라 달라질 수 있어요.</p><p class="muted fine">공인된 표준화 검사가 아닌 대화를 돕는 자가 체크예요.</p></div>
+   <div class="seg mt2" style="justify-content:center"><button class="btn btn-ghost" data-quiz="pv-${id}">다시 예상하기</button><button class="btn btn-ghost" data-go="gap">다른 검사 비교</button><button class="btn btn-main" data-go2="${id}">${nick} 결과지 보기</button></div>`;
+  document.title=Q.t+" 마음 비교 | "+$(".brand-name").textContent}
+
 function renderQResult(id){const Q=QUIZ.find(x=>x.id===id),r=quizRes()[id],box=$("#qresBox");if(!Q||!r){go("tests");return}
   let sn=0;const S=t=>sec(++sn,t),hist=qHist(id),prev=hist[hist.length-2];
   const TY=Q.types[r.type],nick=profile?esc(profile.nick):"우리 아이",sc=r.sc,D=Q.dims,order=Object.keys(D).sort((a,b)=>sc[b]-sc[a]);
@@ -1600,13 +1680,14 @@ function renderQResult(id){const Q=QUIZ.find(x=>x.id===id),r=quizRes()[id],box=$
    ${S("종합 결과")}<div class="card sumcard"><div class="sumtop"><div class="char sm" style="background:${tint(TY.c)}">${mascot(col(TY.c),TY.acc,96)}</div><div><p class="rkind">결과 유형</p><p class="tyname">${head}</p>${code?`<p class="hcode">흥미 코드 <b>${code}</b></p>`:""}</div></div>
     <p class="big">${sumTxt}</p>
     ${TY.str?`<div class="two2"><div><h4>강점</h4><ul class="tiplist">${TY.str.map(x=>`<li>${x}</li>`).join("")}</ul></div><div><h4>살펴볼 점</h4><ul class="tiplist">${TY.care.map(x=>`<li>${x}</li>`).join("")}</ul></div></div>`:""}</div>
+   ${promoHtml(Q.id,`${Q.cat==="kid"?nick:"내"} 결과에 맞춘 추천`)}${Q.kid?pvBlock(Q):""}
    ${S("영역별 프로파일")}<div class="card">${Q.riasec?hexRadar(sc,D):""}
     <div class="dbars">${order.map(k=>`<div class="dbar"><span class="dn">${D[k].n}</span><span class="tr"><i style="width:${Math.max(3,sc[k])}%;background:${col(D[k].c)}"></i></span><span class="v">${sc[k]}</span>${chip(D[k],sc[k])}</div>`).join("")}</div>
     <p class="muted fine">각 영역 응답을 0~100점으로 환산했어요. 70점 이상 높음, 41~69점 보통, 40점 이하 낮음이에요.${Object.values(D).some(d=>d.neg)?" '주의' 표시 영역은 점수가 높을수록 관심이 필요한 영역이에요.":""}</p></div>
    ${prev?`${S("지난 검사와 비교")}<div class="card"><p class="muted" style="font-size:14.5px">${prev.date} → ${r.date} (${dayGap(prev.date,r.date)}일 간격)</p><div class="delta">${order.map(k=>{const d=sc[k]-prev.sc[k],good=D[k].neg?d<0:d>0;return `<div>${D[k].n}<b class="${Math.abs(d)<5?"same":good?"up":"dn"}">${d>0?"+":""}${d}</b></div>`}).join("")}</div><p class="muted fine">초록은 좋아진 변화, 주황은 살펴볼 변화예요. 5점 미만 차이는 응답할 때의 기분에 따른 자연스러운 변동일 수 있어요. ${prev.type!==r.type?`결과 유형이 '${Q.types[prev.type].n}'에서 '${TY.n}'(으)로 바뀌었어요.`:"결과 유형은 지난번과 같아요."}</p></div>`:""}
    ${S("영역별 해석")}<div class="card"><div class="dlist">${order.map(k=>`<div class="ditem"><div class="dh"><b>${D[k].n}</b><span>${chip(D[k],sc[k])} <span class="pts">${sc[k]}점</span></span></div><p>${D[k][LV(sc[k])]}</p>${D[k].job&&order.indexOf(k)<3?`<p class="job">관련 분야 예시: ${D[k].job}</p>`:""}<p class="dtip">${D[k].tip}</p></div>`).join("")}</div></div>
    ${S("이번 주 실천 플랜")}<div class="card"><ol class="steps">${planKeys(Q,sc).map((k,i)=>`<li><b>${["월~화","수~목","금~주말"][i]} · ${D[k].n}</b>${D[k].tip}</li>`).join("")}</ol></div>
-   ${promoHtml(Q.id)}${Q.extra||""}${Q.stress&&r.type!=="low"?Q.help:""}
+   ${Q.extra||""}${Q.stress&&r.type!=="low"?Q.help:""}
    ${S("검사 안내")}<div class="card basis"><p><b>이론적 근거</b> ${Q.ref}</p>${consistency(r.ans)}${prev?"":`<p>1~3개월 뒤 다시 검사하면 지난 결과와 비교해 변화를 보여드려요.</p>`}<p>${Q.note}</p><p class="muted fine">이 검사는 공인된 표준화 심리검사가 아니라, 위 이론을 바탕으로 만든 자가 체크예요. 또래 규준과 비교한 점수가 아니며, 정확한 평가가 필요하면 아동·청소년 상담 전문가와 상의해 주세요.</p></div>
    <div class="seg mt2" style="justify-content:center"><button class="btn btn-ghost" data-quiz="${Q.id}">다시 검사하기</button><button class="btn btn-ghost" id="qCopy">결과 요약 복사</button><button class="btn btn-main" id="qShare">이 검사 친구에게 알려주기</button></div>
    <h2 class="page-h" style="font-size:28px;margin-top:56px">${Q.cat==="kid"?"아이 검사 더 보기":"부모 검사 더 보기"}</h2>${testCards(Q.id,Q.cat)}`;
@@ -1619,7 +1700,7 @@ function testCards(except,cat){const res=quizRes(),done=k=>k==="talent"?!!latest
   const items=[TALENT,...QUIZ].filter(x=>x.id!==except&&(!cat||x.cat===cat));
   return `<div class="tcards ${cat||""}">${items.map(x=>`<button class="tcard${x.main?" main":""} ${x.cat}" ${x.id==="talent"?'data-go="intake"':`data-quiz="${x.id}"`} style="--c:${tint(x.c)}">
    <span class="gi">${mascot(col(x.c),x.acc,72)}</span><span class="tmeta">${x.who} · ${x.id==="talent"?"약 10~15분":`${x.q.length}문항 · 약 ${x.min}분`}${done(x.id)?" · ✔ 완료":""}</span><b>${x.t}</b><span class="ts">${x.s}</span></button>`).join("")}</div>`}
-function renderTests(){$("#testsBox").innerHTML=`<section class="tsec repsec"><div class="tsh"><span class="tlabel">통합 리포트</span><h2>검사를 모아 한 장으로</h2><p>여러 검사를 하면 결과끼리 엮어 분석해 드려요.</p></div><div class="reports">${reportCard("summary")}${reportCard("fit")}</div></section><section class="tsec kidsec"><div class="tsh"><span class="tlabel">아이 알아보기</span><h2>우리 아이를 더 깊이</h2><p>재능과 기질부터 집중력, 마음, 배우는 방식, 친구 관계까지</p>${kidChips()}</div>${testCards(null,"kid")}</section>
+function renderTests(){$("#testsBox").innerHTML=`<section class="tsec repsec"><div class="tsh"><span class="tlabel">통합 리포트</span><h2>검사를 모아 한 장으로</h2><p>여러 검사를 하면 결과끼리 엮어 분석해 드려요.</p></div><div class="reports">${reportCard("summary")}${reportCard("fit")}${reportCard("gap")}</div></section><section class="tsec kidsec"><div class="tsh"><span class="tlabel">아이 알아보기</span><h2>우리 아이를 더 깊이</h2><p>재능과 기질부터 집중력, 마음, 배우는 방식, 친구 관계까지</p>${kidChips()}</div>${testCards(null,"kid")}</section>
   <section class="tsec parsec"><div class="tsh"><span class="tlabel">부모 알아보기</span><h2>나는 어떤 부모일까?</h2><p>양육 태도와 훈육부터 관계, 함께 키우는 팀워크, 지친 마음까지</p></div>${testCards(null,"parent")}</section>`}
 
 /* ---------- guides (SEO content) ---------- */
@@ -1644,11 +1725,20 @@ function renderPost(i){const g=GUIDES[i];if(!g){go("guides");return}
 
 /* ---------- router ---------- */
 let cur="home";
-function go(v,arg){setTimeout(()=>window.dispatchEvent(new Event("scroll")),60);if(run&&v!=="test"){run.alive=false;run=null}cur=v;$$("[data-view]").forEach(s=>s.hidden=s.dataset.view!==v);document.body.classList.toggle("home",v==="home");document.body.classList.toggle("mc",["home","guides","faq","post"].includes(v));mcSync();
-  if(v==="intake")buildIntake(arg);if(v==="summary")renderSummary();if(v==="fit")renderFit();if(v==="result")renderResult();if(v==="dash")renderDash();if(v==="post")renderPost(arg);if(v==="tests"){renderTests();if(arg)setTimeout(()=>$("."+arg)?.scrollIntoView({behavior:"smooth"}),50)}if(v==="qresult")renderQResult(arg);
+function go(v,arg){const prevView=cur;setTimeout(()=>window.dispatchEvent(new Event("scroll")),60);if(run&&v!=="test"){run.alive=false;run=null}cur=v;$$("[data-view]").forEach(s=>s.hidden=s.dataset.view!==v);document.body.classList.toggle("home",v==="home");document.body.classList.toggle("mc",["home","guides","faq","post"].includes(v));mcSync();
+  if(v==="intake")buildIntake(arg);if(v==="summary")renderSummary();if(v==="gap")renderGap(arg);if(v==="fit")renderFit();if(v==="result")renderResult();if(v==="dash")renderDash();if(v==="post")renderPost(arg);if(v==="tests"){renderTests();if(arg)setTimeout(()=>$("."+arg)?.scrollIntoView({behavior:"smooth"}),50)}if(v==="qresult")renderQResult(arg);
   if(v!=="post"&&v!=="qresult")document.title=v==="home"?"아이 재능검사·적성검사 무료 | 기질·양육태도 검사 - 우리애 뭐잘해?":$(".brand-name").textContent;scrollTo(0,0);
-  try{history_push(v,arg)}catch(e){}}
-function history_push(v,arg){const h=v==="post"?"g"+arg:v==="qresult"?"tests":v;if(location.hash.slice(1)!==h)window.history.replaceState(null,"","#"+h)}
+  try{history_push(v,arg,prevView)}catch(e){}}
+/* 뒤로가기: 화면마다 기록을 남겨 브라우저 뒤로가기가 사이트 안 이전 화면으로 가게 */
+let navQuiet=false;
+function history_push(v,arg,prev){const h=v==="post"?"g"+arg:v==="qresult"?"r-"+arg:v==="gap"&&arg?"gap-"+arg:v;if(navQuiet||location.hash.slice(1)===h)return;
+  // 아이 고르기·검사 진행 화면은 기록에서 덮어써서, 결과에서 뒤로가면 검사 중간이 아니라 그 전 화면으로
+  if(prev==="test"||prev==="intake"&&v==="test")window.history.replaceState(null,"","#"+h);else window.history.pushState(null,"","#"+h)}
+function routeHash(h){navQuiet=true;try{
+  if(/^q-\w+$/.test(h)&&QQ(h.slice(2)))startQuiz(h.slice(2));else if(/^r-\w+$/.test(h)&&QQ(h.slice(2)))go("qresult",h.slice(2));else if(/^gap-\w+$/.test(h)&&QQ(h.slice(4)))go("gap",h.slice(4));else if(/^pv-\w+$/.test(h)&&QQ(h.slice(3)))startQuiz(h);else if(h==="intake")go("intake");else if(/^g\d$/.test(h))go("post",+h.slice(1));else if(["tests","guides","faq","dash","result","summary","fit","gap"].includes(h))go(h);else go("home")}finally{navQuiet=false}}
+addEventListener("popstate",()=>{const h=location.hash.slice(1);
+  if(cur==="test"&&h!=="test"){window.history.pushState(null,"","#test");$("#exitConfirm").hidden=false;return} // 검사 중 뒤로가기 → 그만둘지 먼저 묻기
+  routeHash(h)});
 function rerender(){({result:renderResult,dash:renderDash,tests:renderTests,summary:renderSummary,fit:renderFit})[cur]?.()}
 document.addEventListener("click",e=>{const g=e.target.closest("[data-go]");if(g){e.preventDefault();if(g.dataset.go==="intake"&&cur==="test")return;go(g.dataset.go,g.dataset.arg);return}
   const p=e.target.closest("[data-post]");if(p){go("post",+p.dataset.post);return}
@@ -1676,7 +1766,7 @@ if("IntersectionObserver" in window)new IntersectionObserver(es=>{heroCtaSeen=es
 addEventListener("scroll",()=>$(".top").classList.toggle("scrolled",scrollY>8),{passive:true});
 
 buildHome();
-const h=location.hash.slice(1);if(/^q-\w+$/.test(h)&&QQ(h.slice(2)))startQuiz(h.slice(2));else if(h==="intake")go("intake");else if(/^g\d$/.test(h))go("post",+h.slice(1));else if(["tests","guides","faq","dash","result","summary","fit"].includes(h))go(h);else go("home");
+routeHash(location.hash.slice(1));if(!location.hash)window.history.replaceState(null,"","#home");
 })();
 </script>
 
