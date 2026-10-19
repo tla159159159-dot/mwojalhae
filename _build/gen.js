@@ -59,7 +59,7 @@ a.btn{text-decoration:none}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
 .chips span{background:var(--surface);border:1.5px solid var(--line);border-radius:99px;padding:6px 12px;font-size:14px;font-weight:700}
 .sp-cta{margin-top:18px;display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center}
-.sp-cta .note{font-size:13.5px;color:var(--muted)}
+.sp-cta .note{font-size:13.5px;color:var(--ink)}
 .sp h2{font-family:var(--f-kid);font-weight:400;font-size:clamp(23px,3.6vw,29px);margin:44px 0 12px;word-break:keep-all}
 .sp p,.sp li{line-height:1.75;word-break:keep-all}
 .dimlist{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:0;list-style:none;margin:0}
@@ -82,12 +82,15 @@ a.btn{text-decoration:none}
 .sitemap-links{display:flex;flex-wrap:wrap;gap:0 4px;font-size:13px;margin-top:8px;width:100%}
 .sitemap-links a{color:var(--muted);text-decoration:none;padding:6px;min-height:44px;display:inline-flex;align-items:center}
 .pcat{margin-top:8px}
-@media (hover:hover){.rel a:hover{transform:translateY(-2px);box-shadow:3px 3px 0 var(--edge)}}
+@media (hover:hover) and (min-width:801px){.rel a:hover{transform:translateY(-2px);box-shadow:3px 3px 0 var(--edge)}}
 @media (max-width:640px){.sp-hero{grid-template-columns:1fr;padding:20px;text-align:left}.sp-hero .gi svg{width:84px;height:84px}.dimlist,.flow{grid-template-columns:1fr}.sp-cta .btn{width:100%}}
 body.sp-page .mcta{display:none}
 @media (max-width:720px){body.sp-page .mcta{display:block;transform:translateY(110%);transition:transform .3s}body.sp-page.mshow .mcta{transform:none}}
 `;
-fs.writeFileSync(path.join(ROOT,'s.css'),css);
+// 파일명에 해시: ?v= 쿼리는 CDN 캐시키에서 무시될 수 있음(가이드 3-7)
+const CSSN='s.'+require('crypto').createHash('md5').update(css).digest('hex').slice(0,8)+'.css';
+for(const f of fs.readdirSync(ROOT))if(/^s\.([0-9a-f]{8}\.)?css$/.test(f))fs.unlinkSync(path.join(ROOT,f));
+fs.writeFileSync(path.join(ROOT,CSSN),css);
 
 const footLinks=()=>`<nav class="sitemap-links" aria-label="검사·가이드 전체">${ALL.map(x=>`<a href="/${TS[x.id]}/">${KW[x.id][0]}</a>`).join('')}${D.GUIDES.map((g,i)=>`<a href="/${GSLUG[i]}/">${g.t}</a>`).join('')}<a href="/${HUB_F}/">자주 묻는 질문</a></nav>`;
 
@@ -102,15 +105,15 @@ function page({url,title,desc,body,ld,ctaHref,ctaTxt}){
 <meta name="description" content="${esc(desc)}">
 <link rel="canonical" href="${full}">
 <meta name="theme-color" content="#FFF3F6">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="article"><meta property="og:site_name" content="${BRAND}">
 <meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(desc)}">
-<meta property="og:url" content="${full}"><meta property="og:image" content="${SITE}/og.png">
-<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${esc(title)}"><meta name="twitter:description" content="${esc(desc)}"><meta name="twitter:image" content="${SITE}/og.png">
+<meta property="og:url" content="${full}"><meta property="og:image" content="${SITE}/og-v2.png">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${esc(title)}"><meta name="twitter:description" content="${esc(desc)}"><meta name="twitter:image" content="${SITE}/og-v2.png">
 <script type="application/ld+json">${JSON.stringify({'@context':'https://schema.org','@graph':ld})}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Gowun+Dodum&family=Jua&display=swap" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="/s.css?v=${TODAY}">
+<link rel="stylesheet" href="/${CSSN}">
 ${GA}
 </head>
 <body class="sp-page">
@@ -181,7 +184,7 @@ ${P.promoHtml(x.id)}
 <h2>${kid?'아이 검사 더 보기':'부모 검사 더 보기'}</h2>
 <div class="rel">${rel.map(y=>`<a href="/${TS[y.id]}/">${y.svg}<span>${KW[y.id][0]}<small>${y.t.trim()}</small></span></a>`).join('')}</div>`;
   out(TS[x.id],page({url,title,desc,body,ctaHref:cta(x.id),ctaTxt:'무료로 검사 시작하기',
-    ld:[{'@type':'WebPage',name:title,url:SITE+url,description:desc,inLanguage:'ko',isPartOf:{'@type':'WebSite',name:BRAND,url:SITE+'/'}},crumbLd([['홈','/'],['테스트 모음','/'+HUB_T+'/'],[kw,url]]),faqLd(faqs)]}));
+    ld:[{'@type':'WebPage',name:title,url:SITE+url,description:desc,inLanguage:'ko',dateModified:TODAY,isPartOf:{'@type':'WebSite',name:BRAND,url:SITE+'/'}},crumbLd([['홈','/'],['테스트 모음','/'+HUB_T+'/'],[kw,url]]),faqLd(faqs)]}));
   urls.push(url);
 });
 
@@ -225,10 +228,30 @@ ${P.promoHtml(OLDG[i])}
  const body=`${crumbHtml([['홈','/'],['자주 묻는 질문',url]])}<h1 class="page-h" style="margin-top:14px">자주 묻는 질문</h1>
 ${cats.map(c=>`<h2>${c}</h2>${faqHtml(D.FAQ.filter(f=>f[0]===c).map(f=>[f[1],f[2]]))}`).join('')}
 <div class="post-cta sp-cta" style="margin-top:36px"><p style="font-size:18px;margin:0" class="kid">궁금한 건 직접 해보는 게 제일 빨라요.</p><a class="btn btn-sun" href="/#intake">무료로 재능 찾기 시작하기</a></div>`;
- out(HUB_F,page({url,title,desc,body,ctaHref:'/#intake',ctaTxt:'무료로 재능 찾기 시작하기',ld:[{'@type':'WebPage',name:title,url:SITE+url,description:desc},crumbLd([['홈','/'],['자주 묻는 질문',url]]),faqLd(D.FAQ.map(f=>[f[1],f[2]]))]}));
+ out(HUB_F,page({url,title,desc,body,ctaHref:'/#intake',ctaTxt:'무료로 재능 찾기 시작하기',ld:[{'@type':'WebPage',name:title,url:SITE+url,description:desc,dateModified:TODAY},crumbLd([['홈','/'],['자주 묻는 질문',url]]),faqLd(D.FAQ.map(f=>[f[1],f[2]]))]}));
  urls.push(url);}
 
-/* ---- sitemap / llms ---- */
+/* ---- rss(가이드) / llms ---- */
+fs.writeFileSync(path.join(ROOT,'rss.xml'),`<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"><channel><title>${BRAND} 부모 가이드</title><link>${SITE}/</link><description>아이 재능·발달 부모 가이드</description><language>ko</language>
+${D.GUIDES.map((g,i)=>`<item><title>${esc(g.t)}</title><link>${SITE}${encodeURI('/'+GSLUG[i]+'/')}</link><guid>${SITE}${encodeURI('/'+GSLUG[i]+'/')}</guid><description>${esc(g.s)}</description><pubDate>${new Date('2026-10-08T09:00:00+09:00').toUTCString()}</pubDate></item>`).join('\n')}
+</channel></rss>
+`);
+fs.writeFileSync(path.join(ROOT,'llms.txt'),`# ${BRAND}
+
+> 만 5~12세 아이의 재능·기질·학습 성향과 부모의 양육 태도를 알아보는 무료 검사 사이트. 결과는 영역별 점수·해석·실천 플랜이 담긴 리포트로 나온다. 공인된 표준화 심리검사가 아닌, 발달·양육 이론 기반 자가 체크 도구다.
+
+## 검사
+${ALL.map(x=>`- [${KW[x.id][0]}](${SITE}/${TS[x.id]}/): ${x.s}`).join('\n')}
+
+## 부모 가이드
+${D.GUIDES.map((g,i)=>`- [${g.t}](${SITE}/${GSLUG[i]}/): ${g.s}`).join('\n')}
+
+## 기타
+- [테스트 모음](${SITE}/${HUB_T}/)
+- [자주 묻는 질문](${SITE}/${HUB_F}/)
+`);
+/* ---- sitemap ---- */
 fs.writeFileSync(path.join(ROOT,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.map(u=>`  <url><loc>${SITE}${encodeURI(u)}</loc><lastmod>${TODAY}</lastmod></url>`).join('\n')}

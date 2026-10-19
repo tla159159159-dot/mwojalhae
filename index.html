@@ -8,27 +8,27 @@
 <link rel="canonical" href="https://mwojalhae.kr/">
 <meta name="naver-site-verification" content="7708dfbaa67834db9efc552df92716e6ccbee6cf" />
 <meta name="theme-color" content="#FFF3F6">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="alternate" type="application/rss+xml" title="우리애 뭐잘해? 부모 가이드" href="/rss.xml">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="우리애 뭐잘해?">
 <meta property="og:title" content="우리 아이는 뭘 잘할까요? 무료 재능검사·적성검사 | 우리애 뭐잘해?">
 <meta name="keywords" content="아이 재능검사,어린이 적성검사,아이 기질검사,양육태도 검사,초등 적성검사,유아 재능검사,무료 재능검사">
 <meta property="og:description" content="무료 아이 재능검사·적성검사. 만 5~12세 기질·학습성향·사회성부터 부모 양육태도까지 17종, 전문 리포트로 확인하세요.">
 <meta property="og:url" content="https://mwojalhae.kr/">
-<meta property="og:image" content="https://mwojalhae.kr/og.png">
+<meta property="og:image" content="https://mwojalhae.kr/og-v2.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="우리 아이는 뭘 잘할까요? 무료 재능검사·적성검사 | 우리애 뭐잘해?">
 <meta name="twitter:description" content="무료 아이 재능검사·적성검사. 만 5~12세 기질·학습성향·사회성부터 부모 양육태도까지 17종, 전문 리포트로 확인하세요.">
-<meta name="twitter:image" content="https://mwojalhae.kr/og.png">
+<meta name="twitter:image" content="https://mwojalhae.kr/og-v2.png">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"우리애 뭐잘해?","url":"https://mwojalhae.kr/","description":"무료 아이 재능검사·적성검사. 만 5~12세 기질·학습성향·사회성부터 부모 양육태도까지 17종, 전문 리포트로 확인하세요.","inLanguage":"ko"}</script>
 <script>document.documentElement.classList.add("js")</script>
 <!--GA--><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-15K399GDQG");
 if(/(^|\.)mwojalhae\.kr$/.test(location.hostname))addEventListener("load",function(){setTimeout(function(){var s=document.createElement("script");s.async=1;s.src="https://www.googletagmanager.com/gtag/js?id=G-15K399GDQG";document.head.appendChild(s)},1200)});
 document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a.pc,.family a,a.btn");if(!a)return;gtag("event",a.matches(".btn")?"cta_click":"family_click",{link_url:a.href,link_text:(a.textContent||"").trim().slice(0,40)})});</script><!--/GA-->
-<style>html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>html{color-scheme:light;-webkit-text-size-adjust:100%}a,button,input,select,textarea,label,summary{touch-action:manipulation;-webkit-tap-highlight-color:rgba(201,61,103,.15)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Gowun+Dodum&family=Jua&display=swap">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Gowun+Dodum&family=Jua&display=swap" onload="this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Gowun+Dodum&family=Jua&display=swap"></noscript>
 <style>
 /* 컨셉: 딸기우유 스티커 도감 — 크림 핑크 종이 위 땡땡이, 진한 베리색 잉크 테두리 스티커.
    제목·버튼 주아체 / 긴 글 고운돋움 */
@@ -43,6 +43,7 @@ document.addEventListener("click",function(e){var a=e.target.closest&&e.target.c
   --f-kid:"Jua","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
   --f-body:"Gowun Dodum","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
   --pop:4px 4px 0 var(--edge);
+  --brand-d:#9E2649; /* 연한 배경 위 작은 글씨용(대비 4.5 이상) */
   --bg:var(--paper); --f-display:var(--f-kid); --shadow:none; --r:18px;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
@@ -63,7 +64,7 @@ a{color:var(--brand)}
 .kid{font-family:var(--f-kid);font-weight:400}
 
 /* header */
-.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(10px)}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper)}
 .top .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
 .logo{display:flex;align-items:center;gap:8px;font-family:var(--f-head);font-size:21px;color:var(--ink);background:none;border:0;padding:0}
 .logo svg{width:34px;height:34px}
@@ -84,7 +85,7 @@ a{color:var(--brand)}
 
 /* hero */
 .hero{position:relative;isolation:isolate;display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center;padding-block:40px 20px}
-.hero h1{font-family:var(--f-head);font-weight:400;font-size:clamp(46px,8.4vw,88px);line-height:1.08;letter-spacing:-.02em}
+.hero h1{font-family:var(--f-head);font-weight:400;font-size:clamp(46px,8.4vw,88px);line-height:1.2;letter-spacing:-.02em}
 .hero .sub{font-size:clamp(18px,2.4vw,21px);font-weight:700;margin-top:22px}
 .hero .sub2{color:var(--muted);margin-top:4px;font-size:17px}
 .hero .cta{margin-top:30px;display:flex;flex-direction:column;gap:12px;align-items:flex-start}
@@ -121,7 +122,7 @@ a{color:var(--brand)}
 section.blk{padding-block:80px 0}
 .blk h2{font-family:var(--f-head);font-weight:400;font-size:clamp(30px,4.6vw,46px);letter-spacing:-.01em}
 .blk .lead{color:var(--muted);margin-top:12px;max-width:58ch;font-size:17px}
-.eyebrow{font-size:14px;font-weight:700;color:var(--brand)}
+.eyebrow{font-size:14px;font-weight:700;color:var(--brand-d)}
 
 /* try (console) */
 .try{display:grid;grid-template-columns:260px 1fr;gap:24px;margin-top:36px;align-items:start}
@@ -476,7 +477,7 @@ footer{border-top:1px solid var(--line);padding-block:28px 110px;color:var(--mut
 footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;align-items:center}
 footer select{font:inherit;padding:8px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);min-height:44px}
 
-.mcta{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(8px);border-top:1px solid var(--line);display:none}
+.mcta{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:var(--paper);border-top:1px solid var(--line);display:none}
 @media (max-width:720px){body.mc .mcta{display:block;transform:translateY(110%);transition:transform .3s}body.mc.mshow .mcta{transform:none}}
 /* ---- 반응·움직임 ---- */
 .top{transition:box-shadow .2s}.top.scrolled{box-shadow:0 2px 14px rgba(74,38,51,.09)}
@@ -490,7 +491,7 @@ footer select{font:inherit;padding:8px;border-radius:10px;border:1px solid var(-
 @keyframes tapp{40%{transform:scale(1.07)}100%{transform:scale(1)}}
 .btn-sun.big-pulse{animation:pulse 2.4s ease-in-out 1.2s 3}
 @keyframes pulse{0%,100%{transform:none}50%{transform:scale(1.04)}}
-@media (hover:hover){
+@media (hover:hover) and (min-width:801px){
   .btn-sun:hover{transform:translate(-1px,-2px);box-shadow:5px 6px 0 var(--edge)}
   .btn-main:hover,.btn-ghost:hover{transform:translateY(-2px)}
   .tcard,.catcard,.area,.gcards button{transition:transform .18s,box-shadow .18s}
@@ -533,9 +534,9 @@ footer select{font:inherit;padding:8px;border-radius:10px;border:1px solid var(-
 .pc .pe{grid-row:1/3;font-size:34px;width:56px;height:56px;border-radius:16px;background:#fff;display:flex;align-items:center;justify-content:center;border:2px solid var(--edge)}
 .pc .pt{font-size:14.5px;line-height:1.5;word-break:keep-all}
 .pc .pt b{display:block;font-family:var(--f-kid);font-weight:400;font-size:19px}
-.pc .pg{font-weight:800;font-size:14px;color:var(--brand)}
+.pc .pg{font-weight:800;font-size:14px;color:var(--brand-d)}
 .pc:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--edge)}
-@media (hover:hover){.pc:hover{transform:translate(-1px,-3px);box-shadow:5px 6px 0 var(--edge)}}
+@media (hover:hover) and (min-width:801px){.pc:hover{transform:translate(-1px,-3px);box-shadow:5px 6px 0 var(--edge)}}
 @media (max-width:640px){.pcs{grid-template-columns:1fr}}
 .family{display:flex;flex-wrap:wrap;align-items:center;gap:0 6px;font-size:13.5px;width:100%}
 .family b{color:var(--ink);margin-right:4px}
@@ -632,7 +633,7 @@ footer select{font:inherit;padding:8px;border-radius:10px;border:1px solid var(-
   <div class="wrap narrow" style="padding-block:28px 60px">
     <div class="card">
       <p class="eyebrow">탐험 준비</p>
-      <h1 style="font-size:26px;margin-top:6px" id="intakeHead">누가 탐험을 떠나나요?</h1>
+      <h2 style="font-size:26px;margin-top:6px" id="intakeHead">누가 탐험을 떠나나요?</h2>
       <p class="muted" style="margin-top:6px">실명은 필요 없어요. 결과는 이 기기에만 저장돼요.</p>
       <form id="intakeForm" novalidate>
         <div class="field-row" id="kidPick" hidden></div>
@@ -682,14 +683,14 @@ footer select{font:inherit;padding:8px;border-radius:10px;border:1px solid var(-
 <!-- ===== GUIDES ===== -->
 <div data-view="guides" hidden>
   <div class="wrap" style="max-width:820px;padding-block:28px 60px">
-    <h1 class="page-h">부모 가이드</h1>
+    <h2 class="page-h">부모 가이드</h2>
     <p class="lead2">궁금한 주제를 골라 3분만 읽어보세요.</p>
     <div class="gcards" id="guideList2"></div>
   </div>
 </div>
 <div data-view="tests" hidden>
   <div class="wrap" style="max-width:920px;padding-block:28px 60px">
-    <h1 class="page-h">테스트 모음</h1>
+    <h2 class="page-h">테스트 모음</h2>
     <p class="lead2">모든 테스트는 발달·양육 이론을 바탕으로 영역별 점수와 해석, 실천 플랜을 드려요.</p>
     <div id="testsBox"></div>
   </div>
@@ -702,7 +703,7 @@ footer select{font:inherit;padding:8px;border-radius:10px;border:1px solid var(-
 <div data-view="fit" hidden><div class="wrap" style="max-width:860px;padding-bottom:60px" id="fitBox"></div></div>
 <div data-view="faq" hidden>
   <div class="wrap" style="max-width:820px;padding-block:28px 60px">
-    <h1 class="page-h">자주 묻는 질문</h1>
+    <h2 class="page-h">자주 묻는 질문</h2>
     <div class="seg mt" id="faqCats" role="tablist"></div>
     <div class="faq" id="faq"></div>
     <div class="post-cta"><p style="font-size:18px;margin:0" class="kid">궁금한 건 직접 해보는 게 제일 빨라요.</p><button class="btn btn-sun" data-go="intake">무료로 재능 찾기 시작하기</button></div>

@@ -6,9 +6,9 @@
 .pc .pe{grid-row:1/3;font-size:34px;width:56px;height:56px;border-radius:16px;background:#fff;display:flex;align-items:center;justify-content:center;border:2px solid var(--edge)}
 .pc .pt{font-size:14.5px;line-height:1.5;word-break:keep-all}
 .pc .pt b{display:block;font-family:var(--f-kid);font-weight:400;font-size:19px}
-.pc .pg{font-weight:800;font-size:14px;color:var(--brand)}
+.pc .pg{font-weight:800;font-size:14px;color:var(--brand-d)}
 .pc:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--edge)}
-@media (hover:hover){.pc:hover{transform:translate(-1px,-3px);box-shadow:5px 6px 0 var(--edge)}}
+@media (hover:hover) and (min-width:801px){.pc:hover{transform:translate(-1px,-3px);box-shadow:5px 6px 0 var(--edge)}}
 @media (max-width:640px){.pcs{grid-template-columns:1fr}}
 .family{display:flex;flex-wrap:wrap;align-items:center;gap:0 6px;font-size:13.5px;width:100%}
 .family b{color:var(--ink);margin-right:4px}
