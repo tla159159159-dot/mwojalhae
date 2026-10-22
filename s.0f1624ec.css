@@ -318,7 +318,9 @@ input:focus{outline:none;border-color:var(--brand)}
 @media (max-width:620px){.two2{grid-template-columns:1fr}}
 .dbars{display:flex;flex-direction:column;gap:12px;margin-top:16px}
 .dbar{display:grid;grid-template-columns:96px 1fr 34px 54px;gap:10px;align-items:center;font-size:15px;font-weight:700}
-.dbar .tr{height:12px;background:var(--soft);border-radius:9px;overflow:hidden}
+.dbar .tr{height:12px;background:linear-gradient(90deg,transparent calc(40% - 1px),#0003 calc(40% - 1px) 40%,transparent 40% calc(70% - 1px),#0003 calc(70% - 1px) 70%,transparent 70%) var(--soft);border-radius:9px;overflow:hidden}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px}.kpis div{background:var(--soft);border-radius:12px;padding:10px 12px;min-width:0}.kpis small{display:block;font-size:12px;color:var(--muted);font-weight:700}.kpis b{font-size:15px;display:block;margin-top:2px}
+@media print{.top,.mcta,.seg,.tcards,.promo,footer,#qResPrint,.toast,h2.page-h{display:none!important}.card,.rephead{break-inside:avoid;box-shadow:none}body{background:#fff}}
 .dbar .tr i{display:block;height:100%;border-radius:9px}
 .dbar .v{text-align:right;font-variant-numeric:tabular-nums}
 @media (max-width:420px){.dbar{grid-template-columns:78px 1fr 30px 46px;gap:8px;font-size:14px}}

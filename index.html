@@ -348,7 +348,9 @@ input:focus{outline:none;border-color:var(--brand)}
 @media (max-width:620px){.two2{grid-template-columns:1fr}}
 .dbars{display:flex;flex-direction:column;gap:12px;margin-top:16px}
 .dbar{display:grid;grid-template-columns:96px 1fr 34px 54px;gap:10px;align-items:center;font-size:15px;font-weight:700}
-.dbar .tr{height:12px;background:var(--soft);border-radius:9px;overflow:hidden}
+.dbar .tr{height:12px;background:linear-gradient(90deg,transparent calc(40% - 1px),#0003 calc(40% - 1px) 40%,transparent 40% calc(70% - 1px),#0003 calc(70% - 1px) 70%,transparent 70%) var(--soft);border-radius:9px;overflow:hidden}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px}.kpis div{background:var(--soft);border-radius:12px;padding:10px 12px;min-width:0}.kpis small{display:block;font-size:12px;color:var(--muted);font-weight:700}.kpis b{font-size:15px;display:block;margin-top:2px}
+@media print{.top,.mcta,.seg,.tcards,.promo,footer,#qResPrint,.toast,h2.page-h{display:none!important}.card,.rephead{break-inside:avoid;box-shadow:none}body{background:#fff}}
 .dbar .tr i{display:block;height:100%;border-radius:9px}
 .dbar .v{text-align:right;font-variant-numeric:tabular-nums}
 @media (max-width:420px){.dbar{grid-template-columns:78px 1fr 30px 46px;gap:8px;font-size:14px}}
@@ -1680,17 +1682,18 @@ function renderQResult(id){const Q=QUIZ.find(x=>x.id===id),r=quizRes()[id],box=$
   box.innerHTML=`${repHead({cat:Q.cat,title:Q.t,subject:subj,resp,date:r.date,n:`${Q.q.length}문항 · ${Object.keys(D).length}개 영역${Q.young?(r.band==="y"?" · 만 5~7세용":" · 만 8~12세용"):""}`,base:BASE[Q.id]})}
    ${S("종합 결과")}<div class="card sumcard"><div class="sumtop"><div class="char sm" style="background:${tint(TY.c)}">${mascot(col(TY.c),TY.acc,96)}</div><div><p class="rkind">결과 유형</p><p class="tyname">${head}</p>${code?`<p class="hcode">흥미 코드 <b>${code}</b></p>`:""}</div></div>
     <p class="big">${sumTxt}</p>
+    ${(()=>{const lo=order[order.length-1],g=sc[order[0]]-sc[lo];return `<div class="kpis"><div><small>가장 높은 영역</small><b>${D[order[0]].n} ${sc[order[0]]}</b></div><div><small>가장 낮은 영역</small><b>${D[lo].n} ${sc[lo]}</b></div><div><small>영역 간 차이</small><b>${g}점 · ${g>=40?"뚜렷한 편":g>=20?"보통":"고른 편"}</b></div></div>`})()}
     ${TY.str?`<div class="two2"><div><h4>강점</h4><ul class="tiplist">${TY.str.map(x=>`<li>${x}</li>`).join("")}</ul></div><div><h4>살펴볼 점</h4><ul class="tiplist">${TY.care.map(x=>`<li>${x}</li>`).join("")}</ul></div></div>`:""}</div>
    ${promoHtml(Q.id,`${Q.cat==="kid"?nick:"내"} 결과에 맞춘 추천`)}${Q.kid?pvBlock(Q):""}
    ${S("영역별 프로파일")}<div class="card">${Q.riasec?hexRadar(sc,D):""}
     <div class="dbars">${order.map(k=>`<div class="dbar"><span class="dn">${D[k].n}</span><span class="tr"><i style="width:${Math.max(3,sc[k])}%;background:${col(D[k].c)}"></i></span><span class="v">${sc[k]}</span>${chip(D[k],sc[k])}</div>`).join("")}</div>
-    <p class="muted fine">각 영역 응답을 0~100점으로 환산했어요. 70점 이상 높음, 41~69점 보통, 40점 이하 낮음이에요.${Object.values(D).some(d=>d.neg)?" '주의' 표시 영역은 점수가 높을수록 관심이 필요한 영역이에요.":""}</p></div>
+    <p class="muted fine">각 영역 응답을 0~100점으로 환산했어요. 70점 이상 높음, 41~69점 보통, 40점 이하 낮음이에요. 막대의 세로선이 40점·70점 기준이에요.${Object.values(D).some(d=>d.neg)?" '주의' 표시 영역은 점수가 높을수록 관심이 필요한 영역이에요.":""}</p></div>
    ${prev?`${S("지난 검사와 비교")}<div class="card"><p class="muted" style="font-size:14.5px">${prev.date} → ${r.date} (${dayGap(prev.date,r.date)}일 간격)</p><div class="delta">${order.map(k=>{const d=sc[k]-prev.sc[k],good=D[k].neg?d<0:d>0;return `<div>${D[k].n}<b class="${Math.abs(d)<5?"same":good?"up":"dn"}">${d>0?"+":""}${d}</b></div>`}).join("")}</div><p class="muted fine">초록은 좋아진 변화, 주황은 살펴볼 변화예요. 5점 미만 차이는 응답할 때의 기분에 따른 자연스러운 변동일 수 있어요. ${prev.type!==r.type?`결과 유형이 '${Q.types[prev.type].n}'에서 '${TY.n}'(으)로 바뀌었어요.`:"결과 유형은 지난번과 같아요."}</p></div>`:""}
    ${S("영역별 해석")}<div class="card"><div class="dlist">${order.map(k=>`<div class="ditem"><div class="dh"><b>${D[k].n}</b><span>${chip(D[k],sc[k])} <span class="pts">${sc[k]}점</span></span></div><p>${D[k][LV(sc[k])]}</p>${D[k].job&&order.indexOf(k)<3?`<p class="job">관련 분야 예시: ${D[k].job}</p>`:""}<p class="dtip">${D[k].tip}</p></div>`).join("")}</div></div>
    ${S("이번 주 실천 플랜")}<div class="card"><ol class="steps">${planKeys(Q,sc).map((k,i)=>`<li><b>${["월~화","수~목","금~주말"][i]} · ${D[k].n}</b>${D[k].tip}</li>`).join("")}</ol></div>
    ${Q.extra||""}${Q.stress&&r.type!=="low"?Q.help:""}
    ${S("검사 안내")}<div class="card basis"><p><b>이론적 근거</b> ${Q.ref}</p>${consistency(r.ans)}${prev?"":`<p>1~3개월 뒤 다시 검사하면 지난 결과와 비교해 변화를 보여드려요.</p>`}<p>${Q.note}</p><p class="muted fine">이 검사는 공인된 표준화 심리검사가 아니라, 위 이론을 바탕으로 만든 자가 체크예요. 또래 규준과 비교한 점수가 아니며, 정확한 평가가 필요하면 아동·청소년 상담 전문가와 상의해 주세요.</p></div>
-   <div class="seg mt2" style="justify-content:center"><button class="btn btn-ghost" data-quiz="${Q.id}">다시 검사하기</button><button class="btn btn-ghost" id="qCopy">결과 요약 복사</button><button class="btn btn-main" id="qShare">이 검사 친구에게 알려주기</button></div>
+   <div class="seg mt2" style="justify-content:center"><button class="btn btn-ghost" data-quiz="${Q.id}">다시 검사하기</button><button class="btn btn-ghost" id="qCopy">결과 요약 복사</button><button class="btn btn-ghost" id="qResPrint" onclick="print()">PDF로 저장</button><button class="btn btn-main" id="qShare">이 검사 친구에게 알려주기</button></div>
    <h2 class="page-h" style="font-size:28px;margin-top:56px">${Q.cat==="kid"?"아이 검사 더 보기":"부모 검사 더 보기"}</h2>${testCards(Q.id,Q.cat)}`;
   $("#qCopy").onclick=()=>navigator.clipboard.writeText(`[${Q.t}] ${head.replace(/<[^>]+>/g,"")}${code?" ("+code+")":""}\n`+order.map(k=>`${D[k].n} ${sc[k]}점`).join(" / ")).then(()=>toast("결과 요약을 복사했어요"),()=>toast("복사가 막혀 있어요"));
   $("#qShare").onclick=()=>shareLink(Q.t,`https://mwojalhae.kr/${TSLUG[Q.id]}/`);
