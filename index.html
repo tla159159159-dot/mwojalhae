@@ -1121,6 +1121,7 @@ function renderResult(){const box=$("#resultBox");const r=latest();if(!r||!profi
   <div class="card mt" style="text-align:center"><h3 class="rh">우리 아이 재능 카드</h3><p class="muted" style="font-size:14.5px;margin-top:4px">이미지를 길게 눌러 저장한 뒤 카카오톡·SNS에 공유하세요. 나이·성별은 들어가지 않아요.</p>
    <label class="check mt"><input type="checkbox" id="cardNick"> 카드에 닉네임 넣기</label>
    <img class="share-img mt" id="shareImg" alt="우리 아이 재능 카드"><div class="seg mt" style="justify-content:center"><button class="btn btn-ghost" id="copyShare">공유 문구 복사</button></div></div>
+  ${S("종합 소견")}${insight(tp.map(k=>({n:T[k].n,v:sc[k]})))}
   ${S("검사 안내")}<div class="card basis"><p><b>이론적 근거</b> Gardner의 다중지능 이론과 CHC(Cattell-Horn-Carroll) 인지능력 모델에서 다루는 시각 처리·작업 기억·유동 추론·주의 등을 참고해, 관찰력·공간지각·언어·수리·창의력·집중력·기억력·문제해결력 8개 영역을 게임 과제로 구성했어요.</p>
    <p>그림을 보여주는 시간은 나이에 맞게 조절했어요(만 5~6세는 1.4배 길게, 10세 이상은 조금 짧게). 영역마다 서로 다른 과제 3개를 평균해 한 번의 실수가 결과를 좌우하지 않게 했어요. 창의력 과제는 정답 대신 생각의 다양성을 봐요.</p>
    <p class="muted fine">이 검사는 놀이 기반 강점 탐색 도구이며 지능 검사나 의학적·심리학적 진단이 아니에요. 아이의 컨디션에 따라 달라질 수 있으니 1~3개월 뒤 다시 해보면 변화를 볼 수 있어요.</p></div>
@@ -1630,6 +1631,16 @@ const BASE={temper:"Thomas & Chess 기질 이론",learn:"VARK 학습 선호 모�
 function repHead(o){return `<header class="rephead"><div class="rh-top"><span class="rk-badge ${o.cat}">${o.badge||(o.cat==="parent"?"부모 검사 결과지":"아동 검사 결과지")}</span><span class="rh-brand">${esc($(".brand-name").textContent)}</span></div>
   <h1>${o.title}</h1><dl>${[["검사 대상",o.subject],["응답 방식",o.resp],["검사일",o.date],["구성",o.n],["기준 이론",o.base]].map(([k,v])=>`<div><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl></header>`}
 const sec=(n,t)=>`<h2 class="rsec"><span>${n}</span>${t}</h2>`;
+/* 종합 소견: 점수 분포만으로 만드는 공통 해설 (rows=[{n,v,neg}] 높은 순) */
+function insight(rows){const m=rows.length,v=rows.map(x=>x.v),mean=v.reduce((a,b)=>a+b,0)/m,sd=Math.sqrt(v.reduce((a,b)=>a+(b-mean)**2,0)/m),g=v[0]-v[m-1],hi=rows.filter(x=>x.v>=70).length,lo=rows.filter(x=>x.v<=40).length;
+  const shape=sd>=18?"영역별 차이가 뚜렷한 '뾰족형' 프로파일":sd>=9?"완만한 차이가 있는 '기울기형' 프로파일":"영역이 고르게 분포한 '평탄형' 프로파일";
+  const a=rows[0],b=rows[1],z=rows[m-1],P=(x,p1,p2)=>josa(x.n,p1,p2);
+  return `<div class="card insight"><div class="kpis"><div><small>평균 점수</small><b>${Math.round(mean)}점</b></div><div><small>높음(70↑) / 낮음(40↓)</small><b>${hi}개 / ${lo}개 영역</b></div><div><small>분포 형태</small><b>${sd>=18?"뾰족형":sd>=9?"기울기형":"평탄형"}</b></div></div>
+   <ul class="tiplist" style="margin-top:14px"><li><b>프로파일 읽기</b> ${shape}이에요. 가장 높은 ${P(a,"와","과")} 가장 낮은 ${P(z,"의","의")} 차이는 ${g}점이에요.</li>
+   <li><b>함께 높은 조합</b> ${P(a,"와","과")} ${P(b,"가","이")} 상위에 함께 놓였어요. 두 영역이 같이 쓰이는 활동에서 시너지가 나기 쉬워요.</li>
+   <li><b>낮은 영역 해석</b> ${P(z,"는","은")} 상대적으로 낮게 나왔어요. ${z.neg?"점수가 낮을수록 양호한 영역이라 걱정할 신호는 아니에요.":"부족하다는 뜻이 아니라 아직 경험이 적었다는 신호일 수 있어요."}</li>
+   <li><b>해석할 때 주의</b> 한 번의 검사는 그날 컨디션과 기분의 영향을 받아요. 4~12주 간격으로 다시 해서 변화의 방향을 보세요.</li>
+   <li><b>전문가 상담 기준</b> 걱정되는 모습이 2주 이상 이어지고 수면·식사·등원 같은 일상에 영향을 준다면 점수와 상관없이 아동·청소년 상담 전문가와 상의해 주세요.</li></ul></div>`}
 /* ---------- 부모 눈 vs 아이 마음: 아이가 직접 답하는 검사에 부모가 '우리 아이라면?'을 예상해 답하고 비교 ---------- */
 const PV3=[["😐","아니라고 할 것 같아요",1],["🙂","조금이라고 할 것 같아요",3],["😍","맞다고 할 것 같아요",5]];
 const PVT=()=>QUIZ.filter(Q=>Q.kid);
@@ -1692,6 +1703,7 @@ function renderQResult(id){const Q=QUIZ.find(x=>x.id===id),r=quizRes()[id],box=$
    ${S("영역별 해석")}<div class="card"><div class="dlist">${order.map(k=>`<div class="ditem"><div class="dh"><b>${D[k].n}</b><span>${chip(D[k],sc[k])} <span class="pts">${sc[k]}점</span></span></div><p>${D[k][LV(sc[k])]}</p>${D[k].job&&order.indexOf(k)<3?`<p class="job">관련 분야 예시: ${D[k].job}</p>`:""}<p class="dtip">${D[k].tip}</p></div>`).join("")}</div></div>
    ${S("이번 주 실천 플랜")}<div class="card"><ol class="steps">${planKeys(Q,sc).map((k,i)=>`<li><b>${["월~화","수~목","금~주말"][i]} · ${D[k].n}</b>${D[k].tip}</li>`).join("")}</ol></div>
    ${Q.extra||""}${Q.stress&&r.type!=="low"?Q.help:""}
+   ${S("종합 소견")}${insight(order.map(k=>({n:D[k].n,v:sc[k],neg:D[k].neg})))}
    ${S("검사 안내")}<div class="card basis"><p><b>이론적 근거</b> ${Q.ref}</p>${consistency(r.ans)}${prev?"":`<p>1~3개월 뒤 다시 검사하면 지난 결과와 비교해 변화를 보여드려요.</p>`}<p>${Q.note}</p><p class="muted fine">이 검사는 공인된 표준화 심리검사가 아니라, 위 이론을 바탕으로 만든 자가 체크예요. 또래 규준과 비교한 점수가 아니며, 정확한 평가가 필요하면 아동·청소년 상담 전문가와 상의해 주세요.</p></div>
    <div class="seg mt2" style="justify-content:center"><button class="btn btn-ghost" data-quiz="${Q.id}">다시 검사하기</button><button class="btn btn-ghost" id="qCopy">결과 요약 복사</button><button class="btn btn-ghost" id="qResPrint" onclick="print()">PDF로 저장</button><button class="btn btn-main" id="qShare">이 검사 친구에게 알려주기</button></div>
    <h2 class="page-h" style="font-size:28px;margin-top:56px">${Q.cat==="kid"?"아이 검사 더 보기":"부모 검사 더 보기"}</h2>${testCards(Q.id,Q.cat)}`;
