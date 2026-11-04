@@ -358,8 +358,9 @@ input:focus{outline:none;border-color:var(--brand)}
 .ev{font-size:14px;margin-top:6px;color:var(--muted)}.ev b{color:var(--ink);margin-right:4px}
 .stbl{width:100%;border-collapse:collapse;font-size:15px}.stbl th,.stbl td{padding:8px 6px;border-bottom:1px solid var(--line);text-align:left}.stbl th{font-size:13px;color:var(--muted)}
 .chk{list-style:none;padding:0;margin:0;display:grid;gap:10px}.chk li::before{content:"☐ ";font-size:18px}
+.dbar2{display:grid;grid-template-columns:96px 1fr 56px;gap:10px;align-items:center;font-size:15px;font-weight:700}.dist{display:flex;height:12px;border-radius:7px;overflow:hidden;background:var(--soft)}.dist i{background:var(--brand)}.dbar2 .v{text-align:right;font-size:13px;color:var(--muted)}
 @page{margin:14mm}
-@media print{*{-webkit-print-color-adjust:exact;print-color-adjust:exact}.rv{opacity:1!important;transform:none!important}.prem-note,.plock,.confetti,.promo,.pvcard{display:none!important}h2.rsec{break-after:avoid}.top,.mcta,.seg,.tcards,.promo,footer,#qResPrint,.toast,h2.page-h{display:none!important}.card,.rephead{break-inside:avoid;box-shadow:none}body{background:#fff}}
+@media print{.prem-ok .card{border:0!important;box-shadow:none!important;border-top:1px solid #ccc!important;border-radius:0!important;padding:14px 0!important}.prem-ok h2.rsec{margin-top:22px}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}.rv{opacity:1!important;transform:none!important}.prem-note,.plock,.confetti,.promo,.pvcard{display:none!important}h2.rsec{break-after:avoid}.top,.mcta,.seg,.tcards,.promo,footer,#qResPrint,.toast,h2.page-h{display:none!important}.card,.rephead{break-inside:avoid;box-shadow:none}body{background:#fff}}
 .dbar .tr i{display:block;height:100%;border-radius:9px}
 .dbar .v{text-align:right;font-variant-numeric:tabular-nums}
 @media (max-width:420px){.dbar{grid-template-columns:78px 1fr 30px 46px;gap:8px;font-size:14px}}
@@ -1640,10 +1641,10 @@ function consistency(ans){if(!ans||!ans.length)return"";const m=ans.reduce((a,b)
   return sd<.5?`<div class="notice">응답이 대부분 같은 번호로 몰려 있어요. 결과가 실제 모습과 다를 수 있으니, 시간을 두고 다시 해보길 권해요.</div>`:`<p class="okline">✔ 응답 양상: 문항별로 고르게 응답해 결과 해석에 무리가 없어요.</p>`}
 const BASE={temper:"Thomas & Chess 기질 이론",learn:"VARK 학습 선호 모델",career:"Holland RIASEC 흥미 이론",social:"아동 사회성 기술(SSIS) 영역",style:"Baumrind 양육 유형 이론",emotion:"Gottman 감정 코칭 이론",stress:"양육 스트레스 척도(PSI) 영역",media:"AAP 가족 미디어 계획 · WHO 권고",attention:"실행기능 모델(Diamond)",eq:"Mayer & Salovey 정서 지능 모델",esteem:"Harter 아동 자기지각 프로파일",mindset:"Dweck 마인드셋 · 자기결정성 이론",efficacy:"양육 역량감 척도(PSOC)",relation:"아동-부모 관계 척도(CPRS)",coparent:"Feinberg 공동양육 모델",discipline:"양육 척도(Parenting Scale)"};
 function repHead(o){return `<header class="rephead"><div class="rh-top"><span class="rk-badge ${o.cat}">${o.badge||(o.cat==="parent"?"부모 검사 결과지":"아동 검사 결과지")}</span><span class="rh-brand">${esc($(".brand-name").textContent)}</span></div>
-  <h1>${o.title}</h1><dl>${[["검사 대상",o.subject],["응답 방식",o.resp],["검사일",o.date],["구성",o.n],["기준 이론",o.base]].map(([k,v])=>`<div><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl></header>`}
+  <h1>${o.title}</h1><dl>${[["검사 대상",o.subject],["응답 방식",o.resp],["검사일",o.date],["구성",o.n],["기준 이론",o.base],["발급번호","KT-"+String(o.date||"").replace(/\D/g,"")+"-"+((o.title.length*37+String(o.subject).length*11)%900+100)]].map(([k,v])=>`<div><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl></header>`}
 const sec=(n,t)=>`<h2 class="rsec"><span>${n}</span>${t}</h2>`;
 /* ---------- 정밀 리포트(단건 결제) ---------- */
-const PAY={on:false,price:3900,clientId:""};/* on=true는 결제(PG) 연동 후 켠다. false면 정밀 리포트가 전부 열려 있다 */
+const PAY={on:true,price:3900,clientId:""};/* on=true는 결제(PG) 연동 후 켠다. false면 정밀 리포트가 전부 열려 있다 */
 const LS=(k,v)=>{try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}};
 if(/[?&]owner=1/.test(location.search))LS("kt_owner","1");
 const payOn=()=>PAY.on||/[?&]pay=1/.test(location.search);
@@ -1665,7 +1666,7 @@ async function payReturn(){const q=new URLSearchParams(location.search),o=q.get(
 function gate(id,d,dims,fn){if(unlocked(id,d))return `<div class="prem-ok">${payOn()?"":`<p class="prem-note">정밀 리포트 사전 오픈 기간이라 지금은 무료로 열려 있어요.</p>`}${fn()}</div>`;
   const ks=Object.values(dims).map(x=>x.n);
   return `<section class="plock card"><p class="eyebrow">정밀 리포트 · PDF 포함</p><h2 class="rsec lk">더 자세한 결과가 궁금하세요?</h2>
-   <ul class="lklist"><li><b>${ks.length}개 영역 상세 해석</b> ${ks.slice(0,4).join("·")}${ks.length>4?" 외":""} 영역별 해석과 실천 팁</li><li><b>종합 소견</b> 점수 분포·조합·낮은 영역 해석</li><li><b>이번 주 실천 플랜</b> 요일별 맞춤 활동</li><li><b>문항별 응답 부록</b> 전체 문항과 응답 기록</li><li><b>PDF 저장</b> 인쇄·보관·상담용 정식 리포트</li></ul>
+   <ul class="lklist"><li><b>종합 판정·강점과 살펴볼 점</b> 결과 유형 상세 해설</li><li><b>${ks.length}개 영역 상세 분석</b> ${ks.slice(0,4).join("·")}${ks.length>4?" 외":""} 점수·응답 근거 문항·실천 팁</li><li><b>응답 패턴·균형 분석</b> 응답 분포와 영역 간 균형표</li><li><b>4주 실천 로드맵</b> 결과 기반 맞춤 계획</li><li><b>문항별 응답 부록</b> 전체 문항과 응답 기록</li><li><b>PDF 저장</b> 인쇄·보관·상담용 정식 리포트</li></ul>
    <div class="lkbuy"><span class="lkp">${PAY.price.toLocaleString()}원 <small>1회 결제 · 이 결과 영구 열람</small></span><button class="btn btn-main" data-buy="${id}|${d}">정밀 리포트 열기</button></div></section>`}
 const ansLab=(Q,v)=>{const sc=Q.kid?KID3:LIK5,x=sc.find(z=>z[Q.kid?2:1]===v);return x?x[Q.kid?1:0]:"-"};
 function appendix(Q,r){const rows=Q.q.map(([t,d,rev],i)=>({d,i,t:(r.band==="y"&&Q.young?.[i])||t,rev,a:r.ans[i]}));
@@ -1674,32 +1675,32 @@ document.addEventListener("click",e=>{const b=e.target.closest("[data-buy]");if(
 addEventListener("beforeprint",()=>$$("details.app").forEach(d=>d.open=true));
 /* ---------- 정밀 리포트 본문 엔진 ---------- */
 const lvN=(v,neg)=>neg?(v>=70?"주의":v>=41?"보통":"양호"):(v>=70?"높음":v>=41?"보통":"낮음");
-function deepExtra(o,S){const R=o.rows,m=R.length,mean=Math.round(R.reduce((a,x)=>a+x.v,0)/m),a=R[0],z=R[m-1],b=R[1]||a,nk=o.kid?o.nick:"부모님",pp=(w,x,y)=>josa(w,x,y);
-  const age=!o.kid?"부모 본인의 결과는 최근의 수면·업무·돌봄 분담 같은 생활 상황에 크게 영향을 받아요. 지금의 '상태'를 보여주는 결과로 읽고, 좋고 나쁨을 가르는 점수로 쓰지 마세요. 상황이 달라지면 점수도 달라지는 게 정상이에요.":
-   o.age<=7?"만 5~7세는 같은 활동도 그날 기분과 놀이 상황에 따라 반응이 크게 달라지는 시기예요. 이 시기 결과는 '타고난 한계'가 아니라 '지금 눈에 띄는 경향'으로 읽어 주세요. 한 영역에 일찍 고정하지 말고 다양한 놀이와 경험을 열어 주는 것이 가장 좋아요.":
-   o.age<=10?"만 8~10세는 학교생활을 하며 '좋아하는 것'과 '잘하는 것'이 구분되기 시작하는 시기예요. 결과를 아이와 함께 보면서 '어떤 순간에 이 결과가 맞다고 느꼈는지' 이야기해 보세요. 아이 스스로 자기를 설명해 보는 경험이 자기이해를 키워요.":
-   "만 11~12세는 또래 비교와 자기 평가가 커지는 시기라, 점수가 아이의 자존감에 주는 영향이 커요. 점수보다 '왜 그렇게 답했는지'를 먼저 들어 주고, 결과를 아이가 직접 해석할 수 있게 맡겨 보세요.";
-  const wk=[["1주차 · 관찰하기",`일상에서 ${a.n} 영역이 드러나는 장면을 하루 한 줄씩 적어 보세요. 평가하지 않고 본 것만 적어요.`,`"오늘 ${a.n}이(가) 필요한 일에서 어떤 게 재밌었어?"`,"기록 7일 중 5일 이상 적었는지"],
-   ["2주차 · 강점 키우기",a.tip,`"그걸 하는 모습이 멋졌어. 어떻게 생각한 거야?"`,"아이가 스스로 먼저 시작한 횟수"],
-   ["3주차 · 보완하기",z.neg?`${z.n} 영역은 ${z.tip}`:z.tip,`"어려운 게 있으면 같이 해 볼까? 천천히 해도 돼."`,"시도 횟수(결과보다 시도를 세요)"],
-   ["4주차 · 점검하기",`3주 동안의 기록을 ${o.kid?"아이와 함께":"함께"} 훑어보고, 가장 재밌었던 것과 어려웠던 것을 이야기해 다음 달 계획을 정해요.`,`"이번 달에 제일 기억나는 건 뭐야?"`,"다음 달에 이어갈 활동 1가지 정하기"]];
-  return `${S("영역 간 균형 분석")}<div class="card"><div style="overflow-x:auto"><table class="stbl"><tr><th>영역</th><th>점수</th><th>평균 대비</th><th>수준</th></tr>${R.map(x=>`<tr><td>${x.n}</td><td>${x.v}</td><td>${x.v-mean>0?"+":""}${x.v-mean}</td><td>${lvN(x.v,x.neg)}</td></tr>`).join("")}</table></div><p class="muted fine">전체 평균 ${mean}점을 기준으로 각 영역이 얼마나 높거나 낮은지 보여줘요. ±15점 이상이면 눈에 띄는 차이로 볼 수 있어요. 가장 높은 ${pp(a.n,"과","와")} ${pp(b.n,"이","가")} 함께 상위권이고, 가장 낮은 영역은 ${z.n}이에요.</p></div>
-   ${S(o.kid?"나이에 맞는 해석":"해석할 때 유의점")}<div class="card"><p class="big">${age}</p></div>
-   ${S("4주 실천 로드맵")}<div class="card"><ol class="steps">${wk.map(([t,d,q,c])=>`<li><b>${t}</b>${d}<br><span class="muted">이렇게 말해 보세요 ${q}</span><br><span class="muted">확인 지표 · ${c}</span></li>`).join("")}</ol></div>
-   ${S("대화 가이드")}<div class="card"><div class="two2"><div><h4>이렇게 말해 주세요</h4><ul class="tiplist"><li>결과가 아니라 과정을 구체적으로 짚어 주세요. "끝까지 해낸 게 멋졌어."</li><li>${a.n} 영역은 "네가 이런 걸 좋아하는 게 보여서 좋아." 하고 인정해 주세요.</li><li>어려운 영역은 "같이 해 보자."로 시작해 주세요.</li></ul></div><div><h4>피해 주세요</h4><ul class="tiplist"><li>"다른 애들은 더 잘하던데" 같은 비교</li><li>"너는 ${a.n}만 잘하면 돼"처럼 한 영역으로 고정하는 말</li><li>낮은 점수를 아이 앞에서 문제처럼 다루는 일</li></ul></div></div></div>
-   ${S("점검 체크리스트")}<div class="card"><ul class="chk"><li>결과를 ${o.kid?"아이와 함께 보며 이야기했나요?":"가족과 함께 이야기했나요?"}</li><li>${a.n} 영역이 드러나는 장면을 일주일간 기록했나요?</li><li>${z.n} 영역을 비교·평가 없이 경험할 기회를 만들었나요?</li><li>점수를 다른 사람과 비교하지 않았나요?</li><li>4주 뒤 재검사 날짜를 정했나요?</li><li>걱정되는 모습이 2주 이상 이어지면 전문가와 상의하기로 했나요?</li></ul></div>`}
+function deepExtra(o,S){const R=o.rows,m=R.length,mean=Math.round(R.reduce((a,x)=>a+x.v,0)/m),a=R[0],z=R[m-1],b=R[1]||a;
+  const wk=[["1주차 · 관찰",`${a.n} 영역(${a.v}점)이 드러나는 장면을 하루 한 줄씩 기록해요. 평가 없이 본 것만 적어요.`,"기록 7일 중 5일 이상"],
+   ["2주차 · 강점 활용",`${a.n}: ${a.tip}`,"아이가 먼저 시작한 횟수"],
+   ["3주차 · 보완 경험",`${z.n}(${z.v}점): ${z.tip}`,"결과가 아닌 시도 횟수"],
+   ["4주차 · 점검",`${b.n}까지 포함해 3주간 기록을 훑고, 가장 재밌었던 것과 어려웠던 것을 이야기해요.`,"다음 달 이어갈 활동 1가지 선정"]];
+  return `${S("영역 간 균형 분석")}<div class="card"><div style="overflow-x:auto"><table class="stbl"><tr><th>영역</th><th>점수</th><th>평균 대비</th><th>수준</th></tr>${R.map(x=>`<tr><td>${x.n}</td><td>${x.v}</td><td>${x.v-mean>0?"+":""}${x.v-mean}</td><td>${lvN(x.v,x.neg)}</td></tr>`).join("")}</table></div><p class="muted fine">전체 평균 ${mean}점 기준이에요. ±15점 이상이면 눈에 띄는 차이로 봐요. 가장 높은 영역은 ${a.n}(${a.v}점), 가장 낮은 영역은 ${z.n}(${z.v}점)이에요.</p></div>
+   ${S("4주 실천 로드맵")}<div class="card"><ol class="steps">${wk.map(([t,d,c])=>`<li><b>${t}</b>${d}<br><span class="muted">확인 지표 · ${c}</span></li>`).join("")}</ol></div>`}
 function deepQ(Q,r,order,S){const D=Q.dims,sc=r.sc,kid=Q.cat==="kid",nick=profile?esc(profile.nick):"우리 아이",TY=Q.types[r.type],q3=Q.kid;
-  const items=Q.q.map(([t,d,rev],i)=>({d,t:(r.band==="y"&&Q.young?.[i])||t,v:rev?6-r.ans[i]:r.ans[i]}));
+  const items=Q.q.map(([t,d,rev],i)=>({d,t:(r.band==="y"&&Q.young?.[i])||t,v:rev?6-r.ans[i]:r.ans[i],raw:r.ans[i]}));
   const subj=kid?nick:"부모님",rows=order.map(k=>({k,n:D[k].n,v:sc[k],neg:D[k].neg,tip:D[k].tip}));
-  const cnt=k=>items.filter(x=>x.d===k).length,a=D[order[0]],z=D[order[order.length-1]];
-  const sum=`<div class="card"><p class="big">${TY.sum||""} ${josa(subj,"는","은")} ${a.n} 영역에서 가장 높은 점수를 보였고, ${z.n} 영역에서 가장 낮은 점수를 보였어요. ${a.hi}</p><p class="big">${z.neg?`${z.n} 영역은 점수가 낮을수록 양호한 영역이라 걱정할 신호는 아니에요.`:`${z.n} 영역은 상대적으로 낮게 나왔지만, 이는 부족함이 아니라 아직 경험이 적거나 지금 우선순위가 아니라는 뜻일 수 있어요.`} 결과는 지금 이 시점의 모습이며, 시간과 환경에 따라 달라질 수 있어요.</p></div>`;
-  const deep=`<div class="card"><div class="dlist">${order.map(k=>{const it=items.filter(x=>x.d===k).sort((p,q)=>q.v-p.v),H=it.filter(x=>x.v>=4).slice(0,2),L=it.filter(x=>x.v<=2).slice(-2),lv=LV(sc[k]);
-   const qs=lv==="hi"?`"${D[k].n} 관련해서 요즘 제일 재밌었던 순간이 뭐였어?"`:lv==="mid"?`"${D[k].n} 할 때 어떤 건 쉽고 어떤 건 어려워?"`:`"${D[k].n}이(가) 어려울 때는 뭐가 제일 힘들어?"`;
+  const cnt=k=>items.filter(x=>x.d===k).length,a=D[order[0]],z=D[order[order.length-1]],mean=Math.round(rows.reduce((p,x)=>p+x.v,0)/rows.length);
+  const head=`<div class="card"><p class="rkind">종합 판정</p><p class="tyname">${esc(TY.n)}</p><p class="big">${TY.sum||""}</p>
+   <div class="kpis"><div><small>가장 높은 영역</small><b>${a.n} ${sc[order[0]]}</b></div><div><small>가장 낮은 영역</small><b>${z.n} ${sc[order[order.length-1]]}</b></div><div><small>전체 평균</small><b>${mean}점</b></div></div>
+   ${TY.str?`<div class="two2"><div><h4>강점</h4><ul class="tiplist">${TY.str.map(x=>`<li>${x}</li>`).join("")}</ul></div><div><h4>살펴볼 점</h4><ul class="tiplist">${TY.care.map(x=>`<li>${x}</li>`).join("")}</ul></div></div>`:""}
+   <p class="big">${josa(subj,"는","은")} ${a.n} 영역에서 가장 높은 점수를 보였어요. ${a.hi} ${z.neg?`${z.n} 영역은 점수가 낮을수록 양호한 영역이에요.`:`${z.n} 영역은 상대적으로 낮았어요. 부족함이 아니라 아직 경험이 적거나 지금 우선순위가 아니라는 뜻일 수 있어요.`}</p></div>`;
+  const deep=`<div class="card"><div class="dlist">${order.map(k=>{const it=items.filter(x=>x.d===k).sort((p,q)=>q.v-p.v),H=it.filter(x=>x.v>=4).slice(0,3),L=it.filter(x=>x.v<=2).slice(-2),lv=LV(sc[k]);
    return `<div class="ditem"><div class="dh"><b>${D[k].n}</b><span>${chip(D[k],sc[k])} <span class="pts">${sc[k]}점 · ${cnt(k)}문항</span></span></div><p>${D[k][lv]||D[k].hi}</p>
-   ${H.length?`<p class="ev"><b>높게 응답한 문항</b> ${H.map(x=>`“${x.t}”`).join(" · ")}</p>`:""}${L.length?`<p class="ev"><b>낮게 응답한 문항</b> ${L.map(x=>`“${x.t}”`).join(" · ")}</p>`:""}
-   <p class="dtip"><b>실천 팁</b> ${D[k].tip}</p><p class="ev"><b>대화 질문</b> ${qs}</p>${D[k].job&&order.indexOf(k)<3?`<p class="job">관련 분야 예시: ${D[k].job}</p>`:""}</div>`}).join("")}</div></div>`;
-  const how=`<div class="card basis"><p><b>점수 산출</b> 각 문항 응답을 ${q3?"1·3·5점":"1~5점"}으로 바꾸고, 역문항은 6에서 뺀 값으로 계산해요. 영역마다 문항 평균을 구한 뒤 (평균−1)÷4×100으로 0~100점으로 바꿨어요. 영역별 문항 수는 ${order.map(k=>D[k].n+" "+cnt(k)+"개").join(", ")}예요.</p><p><b>수준 기준</b> 70점 이상 높음, 41~69점 보통, 40점 이하 낮음으로 나눴어요. 또래 규준과 비교한 점수가 아니라 ${kid?"아이":"본인"} 안에서 영역끼리 비교한 상대 프로파일이에요.</p><p><b>이론적 근거</b> ${Q.ref}</p><p class="muted fine">${Q.note}</p></div>`;
-  return `${S("종합 해설")}${sum}${S("영역별 심층 해석")}${deep}${deepExtra({nick,kid,age:profile?.age||9,rows},S)}${insightSec(rows,S)}${S("부록 · 문항별 응답")}${appendix(Q,r)}${S("산출 방법과 근거")}${how}`}
+   ${H.length?`<p class="ev"><b>${D[k].neg?"높게":"강하게"} 응답한 문항</b> ${H.map(x=>`“${x.t}”`).join(" · ")}</p>`:""}${L.length?`<p class="ev"><b>낮게 응답한 문항</b> ${L.map(x=>`“${x.t}”`).join(" · ")}</p>`:""}
+   <p class="dtip"><b>실천 팁</b> ${D[k].tip}</p>${D[k].job&&order.indexOf(k)<3?`<p class="job">관련 분야 예시: ${D[k].job}</p>`:""}</div>`}).join("")}</div></div>`;
+  const dist=k=>{const c=[0,0,0,0,0,0];items.filter(x=>x.d===k).forEach(x=>c[x.raw]++);return c},tot=items.length,ext=items.filter(x=>x.raw===1||x.raw===5).length,mid=items.filter(x=>x.raw===3).length;
+  const pat=`<div class="card"><div class="dbars">${order.map(k=>{const c=dist(k),n=cnt(k);return `<div class="dbar2"><span class="dn">${D[k].n}</span><span class="dist">${(q3?[1,3,5]:[1,2,3,4,5]).map(v=>`<i style="flex:${c[v]};opacity:${.25+.15*v}" title="${v}점 ${c[v]}개"></i>`).join("")}</span><span class="v">${n}문항</span></div>`}).join("")}</div>
+   <p class="muted fine">막대는 응답 분포예요. 왼쪽(연한색)이 낮은 응답, 오른쪽(진한색)이 높은 응답이에요.</p>
+   <p class="big">전체 ${tot}문항 중 극단 응답(${q3?"‘아니야’·‘맞아!’":"1점·5점"})이 ${Math.round(ext/tot*100)}%, 중간 응답이 ${Math.round(mid/tot*100)}%예요. ${ext/tot>=.6?"좋고 싫음을 분명하게 표현한 응답이라 결과가 뚜렷하게 나왔어요.":mid/tot>=.5?"중간 응답이 많아 영역 간 차이가 작게 나왔을 수 있어요. 시간을 두고 다시 하면 더 뚜렷해질 수 있어요.":"극단과 중간 응답이 고르게 섞여 있어 해석에 무리가 없어요."}</p></div>`;
+  const how=`<div class="card basis"><p><b>점수 산출</b> 각 문항 응답을 ${q3?"1·3·5점":"1~5점"}으로 바꾸고, 역문항은 6에서 뺀 값으로 계산해요. 영역마다 문항 평균을 구한 뒤 (평균−1)÷4×100으로 0~100점으로 바꿨어요. 영역별 문항 수는 ${order.map(k=>D[k].n+" "+cnt(k)+"개").join(", ")}예요.</p><p><b>수준 기준</b> 70점 이상 높음, 41~69점 보통, 40점 이하 낮음이에요. 또래 규준과 비교한 점수가 아니라 ${kid?"아이":"본인"} 안에서 영역끼리 비교한 상대 프로파일이에요.</p><p><b>이론적 근거</b> ${Q.ref}</p><p class="muted fine">${Q.note}</p></div>`;
+  const ex=(r.sc&&Q.extra)||"";
+  return `${S("종합 판정")}${head}${S("영역별 상세 분석")}${deep}${S("응답 패턴 분석")}${pat}${deepExtra({kid,rows},S)}${insightSec(rows,S)}${S("부록 · 문항별 응답")}${appendix(Q,r)}${S("산출 방법과 근거")}${how}`}
 const insightSec=(rows,S)=>S("종합 소견")+insight(rows);
 /* 종합 소견: 점수 분포만으로 만드는 공통 해설 (rows=[{n,v,neg}] 높은 순) */
 function insight(rows){const m=rows.length,v=rows.map(x=>x.v),mean=v.reduce((a,b)=>a+b,0)/m,sd=Math.sqrt(v.reduce((a,b)=>a+(b-mean)**2,0)/m),g=v[0]-v[m-1],hi=rows.filter(x=>x.v>=70).length,lo=rows.filter(x=>x.v<=40).length;
@@ -1762,9 +1763,7 @@ function renderQResult(id){const Q=QUIZ.find(x=>x.id===id),r=quizRes()[id],box=$
   const subj=Q.cat==="kid"?`${nick}${profile?` (만 ${profile.age}세)`:""}`:"부모 본인", resp=Q.kid?"아이 직접 응답 (3단계)":Q.cat==="kid"?"부모가 아이를 관찰해 응답 (5점 척도)":"부모 본인 응답 (5점 척도)";
   box.innerHTML=`${repHead({cat:Q.cat,title:Q.t,subject:subj,resp,date:r.date,n:`${Q.q.length}문항 · ${Object.keys(D).length}개 영역${Q.young?(r.band==="y"?" · 만 5~7세용":" · 만 8~12세용"):""}`,base:BASE[Q.id]})}
    ${S("종합 결과")}<div class="card sumcard"><div class="sumtop"><div class="char sm" style="background:${tint(TY.c)}">${mascot(col(TY.c),TY.acc,96)}</div><div><p class="rkind">결과 유형</p><p class="tyname">${head}</p>${code?`<p class="hcode">흥미 코드 <b>${code}</b></p>`:""}</div></div>
-    <p class="big">${sumTxt}</p>
-    ${(()=>{const lo=order[order.length-1],g=sc[order[0]]-sc[lo];return `<div class="kpis"><div><small>가장 높은 영역</small><b>${D[order[0]].n} ${sc[order[0]]}</b></div><div><small>가장 낮은 영역</small><b>${D[lo].n} ${sc[lo]}</b></div><div><small>영역 간 차이</small><b>${g}점 · ${g>=40?"뚜렷한 편":g>=20?"보통":"고른 편"}</b></div></div>`})()}
-    ${TY.str?`<div class="two2"><div><h4>강점</h4><ul class="tiplist">${TY.str.map(x=>`<li>${x}</li>`).join("")}</ul></div><div><h4>살펴볼 점</h4><ul class="tiplist">${TY.care.map(x=>`<li>${x}</li>`).join("")}</ul></div></div>`:""}</div>
+    <p class="big">${sumTxt}</p></div>
    ${promoHtml(Q.id,`${Q.cat==="kid"?nick:"내"} 결과에 맞춘 추천`)}${Q.kid?pvBlock(Q):""}
    ${S("영역별 프로파일")}<div class="card">${Q.riasec?hexRadar(sc,D):""}
     <div class="dbars">${order.map(k=>`<div class="dbar"><span class="dn">${D[k].n}</span><span class="tr"><i style="width:${Math.max(3,sc[k])}%;background:${col(D[k].c)}"></i></span><span class="v">${sc[k]}</span>${chip(D[k],sc[k])}</div>`).join("")}</div>
