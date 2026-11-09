@@ -6,11 +6,12 @@ const PROMO={
  mom:{n:"맘먼트",u:"https://mommoment.kr",e:"💬",c:"#DDF2EA",l:"비슷한 고민을 하는 엄마들과 육아 이야기 나누기",g:"이야기 나누러 가기"},
  malang:{n:"말랑영어",u:"https://malangenglish.co.kr",e:"🔤",c:"#DCEBFF",l:"엄마표 영어, 학습지부터 소리까지 한 곳에서",g:"말랑영어 보기"}
 };
-const PROMO_FOR={gap:["mom","bamtol"],talent:["kokcolor","dojang"],temper:["bamtol","mom"],learn:["dojang","malang"],career:["malang","dojang"],social:["mom","bamtol"],attention:["dojang","kokcolor"],eq:["bamtol","kokcolor"],esteem:["bamtol","dojang"],mindset:["dojang","malang"],style:["mom","bamtol"],emotion:["bamtol","mom"],stress:["mom","bamtol"],media:["kokcolor","bamtol"],efficacy:["mom","malang"],relation:["bamtol","mom"],coparent:["mom","bamtol"],discipline:["mom","bamtol"],
+const PROMO_FOR={gap:["mom","bamtol"],talent:["kokcolor","dojang"],temper:["bamtol","mom"],iq:["dojang","malang"],learn:["dojang","malang"],career:["malang","dojang"],social:["mom","bamtol"],attention:["dojang","kokcolor"],eq:["bamtol","kokcolor"],esteem:["bamtol","dojang"],mindset:["dojang","malang"],style:["mom","bamtol"],emotion:["bamtol","mom"],stress:["mom","bamtol"],media:["kokcolor","bamtol"],efficacy:["mom","malang"],relation:["bamtol","mom"],coparent:["mom","bamtol"],discipline:["mom","bamtol"],
  "talent-find":["kokcolor","dojang"],"creativity-play":["kokcolor","bamtol"],"spatial-ability":["kokcolor","dojang"],"math-talent":["dojang","malang"],observation:["kokcolor","dojang"],"focus-play":["dojang","kokcolor"],"age5-development":["bamtol","kokcolor"],"age6-development":["kokcolor","dojang"],"age7-development":["dojang","malang"],"elementary-talent":["dojang","malang"]};
 const promoUrl=(k,src)=>PROMO[k].u+"/?utm_source=mwojalhae&utm_medium=referral&utm_campaign=family&utm_content="+src;
 const PROMO_WHY={
  talent:{kokcolor:"강점이 보인 날, 좋아하는 그림으로 몰입 놀이 이어가기",dojang:"강점 영역부터 시작하는 하루 10분 프린트 학습지"},
+ iq:{dojang:"강점 영역부터 시작하는 하루 10분 프린트 학습지",malang:"언어·논리를 키우는 엄마표 영어 그림책과 소리"},
  temper:{bamtol:"기질에 맞춘 잠자리 루틴, 아이 이름이 나오는 동화로",mom:"비슷한 기질 아이 키우는 엄마들 이야기 듣기"},
  learn:{dojang:"우리 아이 배우는 방식에 맞춰 고르는 학습지",malang:"보고·듣고·따라 하는 엄마표 영어"},
  career:{malang:"흥미를 넓혀주는 엄마표 영어 그림책·소리",dojang:"관심 분야를 넓혀주는 주제별 학습지"},

@@ -350,6 +350,19 @@ input:focus{outline:none;border-color:var(--brand)}
 .dbar{display:grid;grid-template-columns:96px 1fr 34px 54px;gap:10px;align-items:center;font-size:15px;font-weight:700}
 .dbar .tr{height:12px;background:linear-gradient(90deg,transparent calc(40% - 1px),#0003 calc(40% - 1px) 40%,transparent 40% calc(70% - 1px),#0003 calc(70% - 1px) 70%,transparent 70%) var(--soft);border-radius:9px;overflow:hidden}
 .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px}.kpis div{background:var(--soft);border-radius:12px;padding:10px 12px;min-width:0}.kpis small{display:block;font-size:12px;color:var(--muted);font-weight:700}.kpis b{font-size:15px;display:block;margin-top:2px}
+.iqstim{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:120px;margin:4px 0 6px}
+.iqstim svg{max-width:100%;height:auto}.iqsub{display:block;font-size:14px;font-weight:600;color:var(--muted);margin-top:4px}
+.iqopts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;width:100%;max-width:460px}.iqopts.one{grid-template-columns:1fr}
+.iqopt{min-height:76px;border-radius:16px;border:2px solid var(--line);background:var(--surface);font-weight:800;font-size:18px;color:var(--ink);padding:8px 10px;display:flex;align-items:center;justify-content:center;cursor:pointer;line-height:1.35;word-break:keep-all}
+.iqopt:hover{background:var(--soft)}.iqopt.sel{border-color:var(--brand);background:var(--soft);animation:tapp .28s cubic-bezier(.3,1.6,.5,1)}.iqopt:disabled{cursor:default}
+.nseq{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:460px}.nseq b{min-width:46px;padding:10px 8px;border:2px solid var(--line);border-radius:12px;background:var(--surface);font-size:24px;text-align:center}.nseq b.qm{background:var(--soft);color:var(--brand-d);border-style:dashed}
+.memseq{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;font-size:clamp(34px,9vw,48px);line-height:1.15}.eseq{font-size:clamp(22px,6.4vw,30px);letter-spacing:4px;white-space:nowrap}
+.iqhint{font-size:15px;color:var(--muted);font-weight:700;margin-top:10px;text-align:center}
+.iqhero{text-align:center;padding:6px 0 2px}.iqhero small{display:block;font-weight:800;color:var(--muted);font-size:14px}.iqhero small em{font-style:normal;font-weight:700}.iqhero b{display:block;font-family:var(--f-head);font-weight:400;font-size:clamp(64px,18vw,92px);line-height:1.05;color:var(--brand-d)}.iqhero span{display:inline-block;margin-top:2px;padding:4px 14px;border-radius:99px;background:var(--soft);font-weight:800;font-size:15px}
+.kpis.k4{grid-template-columns:repeat(2,1fr)}@media(min-width:640px){.kpis.k4{grid-template-columns:repeat(4,1fr)}}
+.ox{letter-spacing:3px;font-size:16px;white-space:nowrap}.ox i{font-style:normal}.ox i.x{color:var(--muted)}.ox i.o{color:var(--brand-d)}
+.hotb{display:inline-block;margin-left:4px;padding:1px 8px;border-radius:99px;background:#ff5a5f;color:#fff;font-size:12px;font-weight:800;vertical-align:middle}
+@media print{.iqopts,.iqstim{display:none}}
 .qdom{display:inline-block;margin-left:8px;padding:2px 9px;border-radius:9px;background:var(--soft);color:var(--brand-d);font-size:12.5px;font-weight:800}
 .plock{margin-top:28px;text-align:left;border:1.5px dashed var(--brand)}.plock .lk{margin:6px 0 10px}.lklist{list-style:none;padding:0;margin:0;display:grid;gap:8px;font-size:15px}.lklist li::before{content:"🔒 "}.lklist b{margin-right:4px}
 .lkbuy{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:18px}.lkp{font-weight:900;font-size:22px}.lkp small{display:block;font-size:12.5px;color:var(--muted);font-weight:700}
@@ -735,7 +748,7 @@ footer select{font:inherit;padding:8px;border-radius:10px;border:1px solid var(-
     <b class="brand-name" style="color:var(--ink)">우리애 뭐잘해?</b> · 놀이 기반 강점 탐색 서비스<br>
     이 검사는 아이의 성향과 강점을 살펴보는 놀이형 도구이며, 의학적·심리학적 진단이나 지능 검사가 아니에요.
   </div>
-  <!--SITELINKS--><nav class="family" aria-label="패밀리 사이트"><b>패밀리 사이트</b><a href="https://bamtol.co.kr/?utm_source=mwojalhae&utm_medium=referral&utm_campaign=family&utm_content=footer" target="_blank" rel="noopener">🌙 밤톨</a><a href="https://www.dojangkwang.co.kr/?utm_source=mwojalhae&utm_medium=referral&utm_campaign=family&utm_content=footer" target="_blank" rel="noopener">✏️ 도장쾅</a><a href="https://kokcolor.kr/?utm_source=mwojalhae&utm_medium=referral&utm_campaign=family&utm_content=footer" target="_blank" rel="noopener">🖍️ 콕콕</a><a href="https://mommoment.kr/?utm_source=mwojalhae&utm_medium=referral&utm_campaign=family&utm_content=footer" target="_blank" rel="noopener">💬 맘먼트</a><a href="https://malangenglish.co.kr/?utm_source=mwojalhae&utm_medium=referral&utm_campaign=family&utm_content=footer" target="_blank" rel="noopener">🔤 말랑영어</a></nav><nav class="sitemap-links" aria-label="검사·가이드 전체"><a href="/아이재능검사/">아이 재능검사</a><a href="/아이기질검사/">아이 기질검사</a><a href="/아이학습유형검사/">아이 학습유형 검사</a><a href="/아이진로적성검사/">아이 진로적성검사</a><a href="/아이사회성검사/">아이 사회성 검사</a><a href="/양육태도검사/">양육태도 검사</a><a href="/감정코칭검사/">감정코칭 검사</a><a href="/육아스트레스검사/">육아 스트레스 검사</a><a href="/아이미디어습관검사/">아이 미디어 습관 검사</a><a href="/아이집중력검사/">아이 집중력 검사</a><a href="/아이정서지능검사/">아이 정서지능 검사</a><a href="/아이자존감검사/">아이 자존감 검사</a><a href="/성장마인드셋검사/">성장 마인드셋 검사</a><a href="/부모효능감검사/">부모 효능감 검사</a><a href="/부모자녀관계검사/">부모 자녀 관계 검사</a><a href="/공동양육검사/">공동양육 검사</a><a href="/훈육방식검사/">훈육 방식 검사</a><a href="/우리아이재능찾는법/">우리 아이 재능 찾는 법</a><a href="/아이창의력키우는놀이/">아이 창의력 키우는 놀이</a><a href="/공간지각력좋은아이특징/">공간지각력이 좋은 아이 특징</a><a href="/수학잘하는아이특징/">수학을 잘하는 아이 특징</a><a href="/관찰력좋은아이특징/">관찰력이 좋은 아이 특징</a><a href="/집중력키우는놀이/">집중력이 좋은 아이 놀이</a><a href="/5세아이발달/">5세 아이 발달</a><a href="/6세아이발달/">6세 아이 발달</a><a href="/7세아이발달/">7세 아이 발달</a><a href="/초등학생재능찾기/">초등학생 재능 찾기</a><a href="/자주묻는질문/">자주 묻는 질문</a></nav><!--/SITELINKS-->
+  <!--SITELINKS--><nav class="family" aria-label="패밀리 사이트"><b>패밀리 사이트</b><a href="https://bamtol.co.kr/?utm_source=mwojalhae&utm_medium=referral&utm_campaign=family&utm_content=footer" target="_blank" rel="noopener">🌙 밤톨</a><a href="https://www.dojangkwang.co.kr/?utm_source=mwojalhae&utm_medium=referral&utm_campaign=family&utm_content=footer" target="_blank" rel="noopener">✏️ 도장쾅</a><a href="https://kokcolor.kr/?utm_source=mwojalhae&utm_medium=referral&utm_campaign=family&utm_content=footer" target="_blank" rel="noopener">🖍️ 콕콕</a><a href="https://mommoment.kr/?utm_source=mwojalhae&utm_medium=referral&utm_campaign=family&utm_content=footer" target="_blank" rel="noopener">💬 맘먼트</a><a href="https://malangenglish.co.kr/?utm_source=mwojalhae&utm_medium=referral&utm_campaign=family&utm_content=footer" target="_blank" rel="noopener">🔤 말랑영어</a></nav><nav class="sitemap-links" aria-label="검사·가이드 전체"><a href="/아이재능검사/">아이 재능검사</a><a href="/어린이아이큐테스트/">어린이 아이큐 테스트</a><a href="/아이기질검사/">아이 기질검사</a><a href="/아이학습유형검사/">아이 학습유형 검사</a><a href="/아이진로적성검사/">아이 진로적성검사</a><a href="/아이사회성검사/">아이 사회성 검사</a><a href="/양육태도검사/">양육태도 검사</a><a href="/감정코칭검사/">감정코칭 검사</a><a href="/육아스트레스검사/">육아 스트레스 검사</a><a href="/아이미디어습관검사/">아이 미디어 습관 검사</a><a href="/아이집중력검사/">아이 집중력 검사</a><a href="/아이정서지능검사/">아이 정서지능 검사</a><a href="/아이자존감검사/">아이 자존감 검사</a><a href="/성장마인드셋검사/">성장 마인드셋 검사</a><a href="/부모효능감검사/">부모 효능감 검사</a><a href="/부모자녀관계검사/">부모 자녀 관계 검사</a><a href="/공동양육검사/">공동양육 검사</a><a href="/훈육방식검사/">훈육 방식 검사</a><a href="/우리아이재능찾는법/">우리 아이 재능 찾는 법</a><a href="/아이창의력키우는놀이/">아이 창의력 키우는 놀이</a><a href="/공간지각력좋은아이특징/">공간지각력이 좋은 아이 특징</a><a href="/수학잘하는아이특징/">수학을 잘하는 아이 특징</a><a href="/관찰력좋은아이특징/">관찰력이 좋은 아이 특징</a><a href="/집중력키우는놀이/">집중력이 좋은 아이 놀이</a><a href="/5세아이발달/">5세 아이 발달</a><a href="/6세아이발달/">6세 아이 발달</a><a href="/7세아이발달/">7세 아이 발달</a><a href="/초등학생재능찾기/">초등학생 재능 찾기</a><a href="/자주묻는질문/">자주 묻는 질문</a></nav><!--/SITELINKS-->
 </div></footer>
 
 <script>
@@ -751,11 +764,12 @@ const PROMO={
  mom:{n:"맘먼트",u:"https://mommoment.kr",e:"💬",c:"#DDF2EA",l:"비슷한 고민을 하는 엄마들과 육아 이야기 나누기",g:"이야기 나누러 가기"},
  malang:{n:"말랑영어",u:"https://malangenglish.co.kr",e:"🔤",c:"#DCEBFF",l:"엄마표 영어, 학습지부터 소리까지 한 곳에서",g:"말랑영어 보기"}
 };
-const PROMO_FOR={gap:["mom","bamtol"],talent:["kokcolor","dojang"],temper:["bamtol","mom"],learn:["dojang","malang"],career:["malang","dojang"],social:["mom","bamtol"],attention:["dojang","kokcolor"],eq:["bamtol","kokcolor"],esteem:["bamtol","dojang"],mindset:["dojang","malang"],style:["mom","bamtol"],emotion:["bamtol","mom"],stress:["mom","bamtol"],media:["kokcolor","bamtol"],efficacy:["mom","malang"],relation:["bamtol","mom"],coparent:["mom","bamtol"],discipline:["mom","bamtol"],
+const PROMO_FOR={gap:["mom","bamtol"],talent:["kokcolor","dojang"],temper:["bamtol","mom"],iq:["dojang","malang"],learn:["dojang","malang"],career:["malang","dojang"],social:["mom","bamtol"],attention:["dojang","kokcolor"],eq:["bamtol","kokcolor"],esteem:["bamtol","dojang"],mindset:["dojang","malang"],style:["mom","bamtol"],emotion:["bamtol","mom"],stress:["mom","bamtol"],media:["kokcolor","bamtol"],efficacy:["mom","malang"],relation:["bamtol","mom"],coparent:["mom","bamtol"],discipline:["mom","bamtol"],
  "talent-find":["kokcolor","dojang"],"creativity-play":["kokcolor","bamtol"],"spatial-ability":["kokcolor","dojang"],"math-talent":["dojang","malang"],observation:["kokcolor","dojang"],"focus-play":["dojang","kokcolor"],"age5-development":["bamtol","kokcolor"],"age6-development":["kokcolor","dojang"],"age7-development":["dojang","malang"],"elementary-talent":["dojang","malang"]};
 const promoUrl=(k,src)=>PROMO[k].u+"/?utm_source=mwojalhae&utm_medium=referral&utm_campaign=family&utm_content="+src;
 const PROMO_WHY={
  talent:{kokcolor:"강점이 보인 날, 좋아하는 그림으로 몰입 놀이 이어가기",dojang:"강점 영역부터 시작하는 하루 10분 프린트 학습지"},
+ iq:{dojang:"강점 영역부터 시작하는 하루 10분 프린트 학습지",malang:"언어·논리를 키우는 엄마표 영어 그림책과 소리"},
  temper:{bamtol:"기질에 맞춘 잠자리 루틴, 아이 이름이 나오는 동화로",mom:"비슷한 기질 아이 키우는 엄마들 이야기 듣기"},
  learn:{dojang:"우리 아이 배우는 방식에 맞춰 고르는 학습지",malang:"보고·듣고·따라 하는 엄마표 영어"},
  career:{malang:"흥미를 넓혀주는 엄마표 영어 그림책·소리",dojang:"관심 분야를 넓혀주는 주제별 학습지"},
@@ -768,7 +782,7 @@ const PROMO_WHY={
 function promoHtml(src,head){const ks=PROMO_FOR[src]||["bamtol","dojang"],why=PROMO_WHY[src]||{};return `<aside class="promo${head?" top":""}" aria-label="함께 쓰면 좋은 서비스"><p class="pl">${head||"함께 쓰면 좋아요"} <span>AD</span></p><div class="pcs">${ks.map(k=>{const p=PROMO[k];return `<a class="pc" href="${promoUrl(k,src)}" target="_blank" rel="noopener" style="--pc:${p.c}"><span class="pe" aria-hidden="true">${p.e}</span><span class="pt"><b>${p.n}</b>${why[k]||p.l}</span><span class="pg">${p.g} →</span></a>`}).join("")}</div></aside>`}
 function familyHtml(){return `<nav class="family" aria-label="패밀리 사이트"><b>패밀리 사이트</b>${Object.keys(PROMO).map(k=>`<a href="${promoUrl(k,"footer")}" target="_blank" rel="noopener">${PROMO[k].e} ${PROMO[k].n}</a>`).join("")}</nav>`}
 
-const TSLUG={"talent":"아이재능검사","temper":"아이기질검사","learn":"아이학습유형검사","career":"아이진로적성검사","social":"아이사회성검사","attention":"아이집중력검사","eq":"아이정서지능검사","esteem":"아이자존감검사","mindset":"성장마인드셋검사","style":"양육태도검사","emotion":"감정코칭검사","stress":"육아스트레스검사","media":"아이미디어습관검사","efficacy":"부모효능감검사","relation":"부모자녀관계검사","coparent":"공동양육검사","discipline":"훈육방식검사"};
+const TSLUG={"iq":"어린이아이큐테스트","talent":"아이재능검사","temper":"아이기질검사","learn":"아이학습유형검사","career":"아이진로적성검사","social":"아이사회성검사","attention":"아이집중력검사","eq":"아이정서지능검사","esteem":"아이자존감검사","mindset":"성장마인드셋검사","style":"양육태도검사","emotion":"감정코칭검사","stress":"육아스트레스검사","media":"아이미디어습관검사","efficacy":"부모효능감검사","relation":"부모자녀관계검사","coparent":"공동양육검사","discipline":"훈육방식검사"};
 /*/PROMO*/
 const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
 const pick=a=>a[Math.random()*a.length|0];
@@ -1522,11 +1536,237 @@ mindset:{grow:["연습하면 처음엔 못하던 것도 잘하게 돼","~머리�
 QUIZ.forEach(Q=>{const x=XQ[Q.id];if(!x)return;const ks=Object.keys(Q.dims),m=Math.max(...ks.map(k=>(x[k]||[]).length));
   for(let i=0;i<m;i++)ks.forEach(k=>{const t=(x[k]||[])[i];if(t)Q.q.push(t[0]==="~"?[t.slice(1),k,1]:[t,k])});
   Q.min=Math.max(3,Math.round(Q.q.length/4.8))});
+/*IQ-CORE*/
+/* ===== 사고력(IQ) 테스트 코어: 문항 생성기 + 점수 추정 (DOM 없음) ===== */
+const IQK=["mat","lng","num","spa","mem"],IQB=a=>a<=7?"a":a<=10?"b":"c",IQBN={a:"만 5~7세용",b:"만 8~10세용",c:"만 11~12세용"};
+const IQLV=[-1.7,-1.05,-.45,.15,.8,1.5]; /* 6단계 설계 난이도(같은 나이 또래 기준 z점수) */
+const iqR=s=>()=>{s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296};
+const iqPick=(R,a)=>a[Math.floor(R()*a.length)],iqShuf=(R,a)=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(R()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+/* 정답 1개 + 오답 3개를 섞고 정답 위치를 돌려줌 */
+const iqMix=(R,right,wrong)=>{const o=iqShuf(R,[right,...wrong.slice(0,3)]);return{opts:o,a:o.indexOf(right)}};
+
+/* ---- 1) 도형 추리: 3×3 행렬, 속성(모양·색·크기·개수) 규칙 1~4개 ---- */
+const IQFILL=["#fff","#c9d3e6","#3b4a6b"];
+const iqGlyph=(sh,f,x,y,r)=>{const a=`fill="${IQFILL[f]}" stroke="#3b4a6b" stroke-width="2.4" stroke-linejoin="round"`;return sh===0?`<circle cx="${x}" cy="${y}" r="${r}" ${a}/>`:sh===1?`<rect x="${x-r}" y="${y-r}" width="${2*r}" height="${2*r}" ${a}/>`:`<polygon points="${x},${y-r*1.1} ${x+r*1.15},${y+r*.85} ${x-r*1.15},${y+r*.85}" ${a}/>`};
+const iqInner=v=>{const [sh,f,sz,ci]=v,ct=ci+1,r=[10,14,19][sz]*(ct>1?.58:1),P=ct===1?[[28,28]]:ct===2?[[16,28],[40,28]]:[[28,15],[15,41],[41,41]];return P.map(p=>iqGlyph(sh,f,p[0],p[1],r)).join("")};
+const iqSvg=(v,w)=>`<svg viewBox="0 0 56 56" width="${w}" height="${w}" role="img" aria-hidden="true">${iqInner(v)}</svg>`;
+function iqMat(band,lv,R){
+  const k=({a:[1,1,1,2,2,2],b:[1,1,2,2,3,3],c:[1,2,2,3,3,4]})[band][lv-1],attrs=iqShuf(R,[0,1,2,3]).slice(0,k);
+  let pt=iqShuf(R,[[0,1],[1,0],[1,1],[1,2]]);if(k===1&&lv===1)pt=[iqPick(R,[[0,1],[1,0]])];
+  const base=[0,1,2,3].map(()=>Math.floor(R()*3)),off=[0,1,2,3].map(()=>Math.floor(R()*3));
+  const cellAt=(r,c)=>[0,1,2,3].map(a=>{const i=attrs.indexOf(a);return i<0?base[a]:(((off[a]+r*pt[i][0]+c*pt[i][1])%3)+3)%3});
+  const ans=cellAt(2,2),key=v=>v.join(""),seen=new Set([key(ans)]),wrong=[];
+  const ch=[];for(let a=0;a<4;a++)for(let x=0;x<3;x++)if(x!==ans[a]){const v=ans.slice();v[a]=x;ch.push(v)}
+  iqShuf(R,ch).forEach(v=>{if(wrong.length<3&&!seen.has(key(v))){seen.add(key(v));wrong.push(v)}});
+  const m=iqMix(R,ans,wrong);
+  let g="";for(let r=0;r<3;r++)for(let c=0;c<3;c++){const x=c*56,y=r*56;g+=`<rect x="${x}" y="${y}" width="56" height="56" fill="none" stroke="#c8cfdd" stroke-width="1.5"/>`+((r===2&&c===2)?`<rect x="${x+2}" y="${y+2}" width="52" height="52" fill="#eef1f8"/><text x="${x+28}" y="${y+38}" text-anchor="middle" font-size="30" font-weight="800" fill="#6a7491">?</text>`:`<g transform="translate(${x},${y})">${iqInner(cellAt(r,c))}</g>`)}
+  return{q:"빈칸(?)에 들어갈 그림은?",stim:`<svg viewBox="0 0 168 168" width="${band==="a"?170:180}" height="${band==="a"?170:180}" role="img" aria-label="3×3 그림 규칙표">${g}</svg>`,opts:m.opts.map(v=>iqSvg(v,60)),a:m.a,t:`도형 행렬 3×3 · 규칙 ${k}개`};
+}
+
+/* ---- 2) 언어 추리: 낱말 관계·분류·논리 (구간별 6문항, 정답 위치는 매번 섞음) ---- */
+const IQV={
+ a:[{q:"나머지와 다른 하나는?",o:["사과","바나나","포도","자동차"],a:3,t:"분류"},
+    {q:"새는 하늘, 물고기는 어디일까요?",o:["물속","땅","나무","구름"],a:0,t:"관계 유추"},
+    {q:"‘뜨겁다’의 반대말은?",o:["차갑다","크다","빠르다","높다"],a:0,t:"반대말"},
+    {q:"신발은 발에 신어요. 모자는 어디에 쓸까요?",o:["머리","손","눈","코"],a:0,t:"관계 유추"},
+    {q:"민수는 지수보다 키가 커요. 지수는 하나보다 키가 커요. 키가 가장 작은 사람은?",o:["민수","지수","하나","모두 같아요"],a:2,t:"순서 추론"},
+    {q:"모든 새는 날개가 있어요. 참새는 새예요. 그러면 참새는?",o:["날개가 있어요","물고기예요","날개가 없어요","알 수 없어요"],a:0,t:"삼단 논법"}],
+ b:[{q:"‘넓다’의 반대말은?",o:["좁다","깊다","높다","두껍다"],a:0,t:"반대말"},
+    {q:"나머지와 성격이 다른 하나는?",o:["서울","부산","대구","한강"],a:3,t:"분류"},
+    {q:"의사는 병원에서 일해요. 선생님은 어디에서 일할까요?",o:["학교","시장","극장","주유소"],a:0,t:"관계 유추"},
+    {q:"온도계로 온도를 재요. 자로는 무엇을 잴까요?",o:["길이","무게","시간","색깔"],a:0,t:"관계 유추"},
+    {q:"모든 포유류는 새끼를 낳아요. 고래와 박쥐는 포유류예요. 반드시 맞는 말은?",o:["고래와 박쥐는 새끼를 낳아요","박쥐는 알을 낳아요","고래는 알을 낳아요","새끼를 낳는 동물은 모두 포유류예요"],a:0,t:"삼단 논법"},
+    {q:"‘신중하다’와 뜻이 가장 비슷한 말은?",o:["조심스럽다","서두르다","게으르다","용감하다"],a:0,t:"어휘"}],
+ c:[{q:"‘확대’의 반대가 ‘축소’인 것처럼, ‘증가’의 반대는?",o:["감소","상승","성장","팽창"],a:0,t:"관계 유추"},
+    {q:"씨앗이 자라서 열매가 되듯, 올챙이가 자라면?",o:["개구리","물고기","거북이","잠자리"],a:0,t:"관계 유추"},
+    {q:"도서관에는 책이 있어요. 미술관에는 무엇이 있을까요?",o:["그림","물감","붓","도화지"],a:0,t:"관계 유추"},
+    {q:"A는 B보다 크고, C는 B보다 작아요. A와 C 중 더 큰 것은?",o:["A","C","같아요","알 수 없어요"],a:0,t:"순서 추론"},
+    {q:"‘비가 오면 소풍을 가지 않는다’는 말이 맞아요. 소풍을 갔다면 반드시 맞는 말은?",o:["비가 오지 않았다","비가 왔다","날씨가 아주 맑았다","알 수 없다"],a:0,t:"조건 추론"},
+    {q:"갑, 을, 병 중 한 명만 진실을 말해요. 갑: ‘을은 거짓말을 해.’ 을: ‘병은 거짓말을 해.’ 병: ‘갑과 을 둘 다 거짓말을 해.’ 진실을 말하는 사람은?",o:["갑","을","병","알 수 없다"],a:1,t:"진위 추론"}]};
+function iqVer(band,lv,R){const x=IQV[band][lv-1],o=iqShuf(R,x.o.map((s,i)=>[s,i===x.a])),a=o.findIndex(z=>z[1]);return{q:x.q,stim:"",opts:o.map(z=>z[0]),a,t:`언어 · ${x.t}`,one:x.o.some(s=>s.length>9)}}
+
+/* ---- 3) 수·규칙 추리: 규칙 종류가 단계마다 바뀜 ---- */
+function iqNum(band,lv,R){
+  const ri=(a,b)=>a+Math.floor(R()*(b-a+1)),L=n=>Array.from({length:n});
+  const grow=(a,d0,e,n)=>{const s=[a];for(let i=1;i<n;i++)s.push(s[i-1]+d0+e*(i-1));return s};
+  const alt=(a,d1,d2,n)=>{const s=[a];for(let i=1;i<n;i++)s.push(s[i-1]+(i%2?d1:d2));return s};
+  const inter=(a,d1,b,d2,n)=>L(n).map((_,i)=>i%2?b+d2*((i-1)/2):a+d1*(i/2));
+  const F={a:[()=>{const d=ri(1,2),a=ri(1,6);return L(6).map((_,i)=>a+d*i)},
+              ()=>{const d=ri(3,5),a=ri(1,5);return L(6).map((_,i)=>a+d*i)},
+              ()=>{const d=ri(1,3),a=ri(18,22);return L(6).map((_,i)=>a-d*i)},
+              ()=>alt(ri(1,3),1,2,7),
+              ()=>{const a=ri(1,2);return L(6).map((_,i)=>a*2**i)},
+              ()=>grow(ri(1,2),1,1,6)],
+           b:[()=>{const d=ri(6,9),a=ri(3,20);return L(6).map((_,i)=>a+d*i)},
+              ()=>{const d=ri(4,8),a=ri(60,80);return L(6).map((_,i)=>a-d*i)},
+              ()=>alt(ri(2,9),ri(2,4),ri(5,8),7),
+              ()=>R()<.5?L(6).map((_,i)=>3*2**i):L(6).map((_,i)=>3**i),
+              ()=>grow(ri(1,4),ri(2,3),2,6),
+              ()=>inter(ri(2,6),ri(2,4),ri(10,20),ri(3,6),8)],
+           c:[()=>alt(ri(2,9),ri(2,5),ri(6,9),7),
+              ()=>{const c=iqPick(R,[1,-1,2]),s=[ri(2,4)];for(let i=1;i<6;i++)s.push(s[i-1]*2+c);return s},
+              ()=>grow(ri(1,5),ri(1,3),ri(2,3),7),
+              ()=>inter(ri(1,5),ri(2,4),ri(40,50),-ri(2,5),8),
+              ()=>{const s=[ri(1,3),ri(2,5)];for(let i=2;i<7;i++)s.push(s[i-1]+s[i-2]);return s},
+              ()=>L(6).map((_,i)=>(i+1)**3)]};
+  const s=F[band][lv-1](),a=s[s.length-1],shown=s.slice(0,-1),d=Math.abs(a-s[s.length-2]);
+  const pool=[...new Set([a+1,a-1,a+2,a-2,a+d,a-d,a+d+1,a-d-1,a*2,Math.round(a/2),a+3,a-3,a+10])].filter(x=>x>0&&x!==a),m=iqMix(R,a,iqShuf(R,pool));
+  return{q:"빈칸(?)에 들어갈 숫자는?",stim:`<div class="nseq">${shown.map(x=>`<b>${x}</b>`).join("")}<b class="qm">?</b></div>`,opts:m.opts.map(String),a:m.a,t:`수열 · ${shown.length}항`};
+}
+
+/* ---- 4) 공간 시각화: 돌리면 같은 모양(뒤집힌 모양·변형은 오답) ---- */
+const iqNorm=c=>{const r0=Math.min(...c.map(x=>x[0])),c0=Math.min(...c.map(x=>x[1]));return c.map(x=>[x[0]-r0,x[1]-c0]).sort((p,q)=>p[0]-q[0]||p[1]-q[1])};
+const iqKey=c=>iqNorm(c).join(";"),iqRot=c=>iqNorm(c.map(([r,k])=>[k,-r])),iqMir=c=>iqNorm(c.map(([r,k])=>[r,-k]));
+const iqRotN=(c,n)=>{for(let i=0;i<n;i++)c=iqRot(c);return c};
+const iqCanon=c=>{let m=iqNorm(c),b=iqKey(m);for(let i=0;i<3;i++){m=iqRot(m);const k=iqKey(m);if(k<b)b=k}return b};
+const iqNB=(c,g)=>{const o=[];c.forEach(([r,k])=>[[1,0],[-1,0],[0,1],[0,-1]].forEach(([a,b])=>{const x=r+a,y=k+b;if(x>=0&&y>=0&&x<g&&y<g&&!c.some(z=>z[0]===x&&z[1]===y))o.push([x,y])}));return o};
+const iqConn=c=>{const seen=[c[0]],q=[c[0]];while(q.length){const [r,k]=q.pop();c.forEach(z=>{if(!seen.includes(z)&&Math.abs(z[0]-r)+Math.abs(z[1]-k)===1){seen.push(z);q.push(z)}})}return seen.length===c.length};
+const iqPoly=(R,n,g)=>{const c=[[Math.floor(R()*g),Math.floor(R()*g)]];while(c.length<n)c.push(iqPick(R,iqNB(c,g)));return iqNorm(c)};
+const iqMod=(R,c,g)=>{for(const m of iqShuf(R,c)){const rest=c.filter(z=>z!==m);for(const p of iqShuf(R,iqNB(rest,g))){const nc=rest.concat([p]);if(iqConn(nc)&&iqCanon(nc)!==iqCanon(c))return iqNorm(nc)}}return null};
+const iqShape=c=>{const W=Math.max(...c.map(x=>x[1]))+1,H=Math.max(...c.map(x=>x[0]))+1,s=13,ox=(60-s*W)/2,oy=(60-s*H)/2;return `<svg viewBox="0 0 60 60" width="64" height="64" role="img" aria-hidden="true">${c.map(([r,k])=>`<rect x="${ox+k*s}" y="${oy+r*s}" width="${s}" height="${s}" rx="2" fill="#6c8ae4" stroke="#fff" stroke-width="1.4"/>`).join("")}</svg>`};
+function iqSpa(band,lv,R){
+  const n=({a:[4,4,4,5,5,5],b:[4,4,5,5,5,6],c:[4,5,5,6,6,6]})[band][lv-1],g=4;
+  for(let tr=0;tr<200;tr++){
+    const B=iqPoly(R,n,g),k=iqPick(R,[1,2,3]),right=iqRotN(B,k);
+    if(iqCanon(iqMir(B))===iqCanon(B)||iqKey(right)===iqKey(B))continue;
+    const seen=new Set([iqCanon(B)]),wrong=[],add=c=>{if(c&&wrong.length<3&&!seen.has(iqCanon(c))){seen.add(iqCanon(c));wrong.push(iqRotN(c,Math.floor(R()*4)))}};
+    add(iqMir(B));const M=iqMod(R,B,g);add(M);if(M)add(iqMir(M));add(iqMod(R,B,g));
+    if(wrong.length<3)continue;
+    const m=iqMix(R,right,wrong);
+    return{q:"왼쪽 모양을 돌리기만 하면 똑같아지는 것은?",sub:"뒤집으면 안 돼요",stim:iqShape(B).replace('width="64" height="64"','width="96" height="96"'),opts:m.opts.map(iqShape),a:m.a,t:`모양 돌리기 · ${n}칸`};
+  }
+  throw new Error("iqSpa 생성 실패");
+}
+
+/* ---- 5) 작업기억: 그림 순서를 잠깐 보여 준 뒤 숨김 (구간별 3~7개, 높은 단계는 거꾸로) ---- */
+const IQE=["🍎","🚗","🌟","🐶","🎈","🔔","🍌","🐟","🚀","🎵","🌷","⚽"];
+function iqMem(band,lv,R){
+  const K=({a:[3,3,4,4,5,5],b:[4,4,5,5,6,6],c:[4,5,5,6,6,7]})[band][lv-1],rev=(band==="b"&&lv>=5)||(band==="c"&&lv>=3);
+  const seq=iqShuf(R,IQE).slice(0,K),tgt=rev?seq.slice().reverse():seq.slice(),seen=new Set([tgt.join("")]),wrong=[];
+  for(let tr=0;tr<80&&wrong.length<3;tr++){
+    const w=tgt.slice(),t=Math.floor(R()*4);
+    if(t===0){const i=Math.floor(R()*(K-1));[w[i],w[i+1]]=[w[i+1],w[i]]}
+    else if(t===1){w[Math.floor(R()*K)]=iqPick(R,IQE.filter(e=>!seq.includes(e)))}
+    else if(t===2){[w[0],w[K-1]]=[w[K-1],w[0]]}
+    else if(rev){if(!seen.has(seq.join(""))){seen.add(seq.join(""));wrong.push(seq.slice())}continue}
+    else w.push(w.shift());
+    if(!seen.has(w.join(""))){seen.add(w.join(""));wrong.push(w)}
+  }
+  const m=iqMix(R,tgt,wrong.slice(0,3));
+  return{q:rev?"방금 본 그림을 거꾸로 말하면? (마지막 그림부터)":"방금 본 그림과 순서가 똑같은 것은?",mem:{html:`<div class="memseq">${seq.map(e=>`<span>${e}</span>`).join("")}</div><p class="iqhint">👀 잘 보고 순서를 기억하세요!</p>`,ms:K*850+700},opts:m.opts.map(o=>`<span class="eseq">${o.join("")}</span>`),a:m.a,one:true,t:`그림 순서 기억 · ${K}개${rev?" · 거꾸로":""}`};
+}
+
+/* ---- 문항 세트(구간·회차 seed로 항상 같은 문항을 다시 만들 수 있음) ---- */
+function iqItems(band,seed){const bi={a:1,b:2,c:3}[band],out=[];
+  for(let lv=1;lv<=6;lv++)IQK.forEach((d,di)=>{const R=iqR(seed*7919+bi*1009+di*101+lv*13+1),it=({mat:iqMat,lng:iqVer,num:iqNum,spa:iqSpa,mem:iqMem})[d](band,lv,R);it.d=d;it.lv=lv;it.b=IQLV[lv-1];out.push(it)});
+  return out}
+
+/* ---- 점수 추정: 문항반응이론(3모수 로지스틱, 추측도 .25) + 사전분포 N(0,1) 베이즈 추정(EAP) ---- */
+const iqPhi=z=>{const t=1/(1+.2316419*Math.abs(z)),p=.3989423*Math.exp(-z*z/2)*t*(.3193815+t*(-.3565638+t*(1.781478+t*(-1.821256+t*1.330274))));return z>0?1-p:p};
+function iqEAP(its,ok){const G=[],W=[];let S=0;
+  for(let th=-3.5;th<=3.5001;th+=.05){let lp=-th*th/2;its.forEach((it,i)=>{const p=.25+.75/(1+Math.exp(-1.4*(th-it.b)));lp+=Math.log(ok[i]?p:1-p)});G.push(th);const w=Math.exp(lp);W.push(w);S+=w}
+  let m=0,v=0,c=0,lo=null,hi=null;G.forEach((th,i)=>{const w=W[i]/S;m+=th*w});G.forEach((th,i)=>{const w=W[i]/S;v+=(th-m)**2*w;c+=w;if(lo===null&&c>=.1)lo=th;if(hi===null&&c>=.9)hi=th});
+  return{th:m,sd:Math.sqrt(v),lo,hi}}
+const iqCl=x=>Math.max(55,Math.min(145,Math.round(x)));
+function iqScore(items,ok,rt){const e=iqEAP(items,ok),sc={},dom={};
+  IQK.forEach(d=>{const ix=items.map((it,i)=>i).filter(i=>items[i].d===d),r=iqEAP(ix.map(i=>items[i]),ix.map(i=>ok[i]));dom[d]={th:+r.th.toFixed(2),n:ix.filter(i=>ok[i]).length};sc[d]=Math.max(1,Math.min(99,Math.round(iqPhi(r.th)*100)))});
+  const fast=items.filter((it,i)=>!ok[i]&&rt[i]!=null&&rt[i]<2.5&&it.d!=="mem").length,easyMiss=items.filter((it,i)=>it.lv<=2&&!ok[i]).length;
+  const rel=fast>=6?"lo":(fast>=3||easyMiss>=3||e.sd>.6)?"mid":"hi";
+  return{sc,sum:{v:iqCl(100+15*e.th),lo:iqCl(100+15*e.lo),hi:iqCl(100+15*e.hi),top:Math.max(1,Math.round((1-iqPhi(e.th))*100)),th:+e.th.toFixed(2),sd:+e.sd.toFixed(2),n:ok.filter(Boolean).length,rel,fast,easyMiss,dom}}}
+/*/IQ-CORE*/
+
+/*IQ-UI*/
+const IQDIM={
+ mat:{n:"도형 추리",c:"spa",hi:"겉으로 드러나지 않은 규칙을 그림에서 찾아내는 힘이 또래보다 뛰어나요. 처음 보는 문제도 규칙부터 찾으려는 아이예요.",mid:"그림 속 규칙을 찾는 힘이 또래 수준이에요. 규칙이 두세 개 겹치면 시간이 더 걸릴 수 있어요.",lo:"여러 규칙이 겹친 그림은 아직 어려워해요. '무엇이 바뀌었지?'를 하나씩 말로 짚어보면 도움이 돼요.",tip:"패턴 블록·퍼즐을 하며 '무엇이 바뀌었는지' 한 가지씩 말하게 해주세요."},
+ lng:{n:"언어 추리",c:"lan",hi:"낱말 사이의 관계와 논리를 정확히 파악해요. 읽고 설명하며 배우는 학습에서 강점이 돼요.",mid:"낱말의 뜻과 관계는 무난히 이해해요. 논리가 길어지면 천천히 읽을 때 더 잘해요.",lo:"낱말 관계와 논리 문장은 아직 어려워해요. 책을 읽고 '왜 그랬을까?'를 이야기하면 빠르게 늘어요.",tip:"그림책을 읽은 뒤 반대말 찾기, 같은 점·다른 점 말하기 놀이를 해보세요."},
+ num:{n:"수·규칙 추리",c:"num",hi:"숫자 사이의 규칙을 빠르게 알아채고 다음 수를 예측해요. 수학적 사고의 바탕이 탄탄해요.",mid:"기본 규칙은 잘 찾고, 규칙이 섞이면 천천히 풀어요.",lo:"수가 변하는 규칙을 찾는 경험이 더 필요해요. 일상 속 숫자 놀이로 시작하면 좋아요.",tip:"계단·달력·카드로 '다음 수는 뭘까?' 놀이를 하고, 규칙을 말로 설명해보게 해주세요."},
+ spa:{n:"공간 시각화",c:"obs",hi:"머릿속에서 모양을 돌리고 뒤집어 보는 힘이 좋아요. 도형·지도·조립에서 강점이 나타나요.",mid:"모양을 돌려 보는 힘이 또래 수준이에요. 칸 수가 많아지면 직접 돌려보는 경험이 도움이 돼요.",lo:"머릿속에서 모양을 돌리는 건 아직 어려워해요. 손으로 직접 돌려보는 경험을 늘려주세요.",tip:"블록·종이접기·펜토미노로 '돌리면 어떻게 보일까?'를 직접 해보게 해주세요."},
+ mem:{n:"작업기억",c:"mem",hi:"순서와 정보를 머릿속에 붙잡아 두는 힘이 좋아요. 여러 지시를 한 번에 기억하는 데 강점이 있어요.",mid:"한 번에 기억하는 양이 또래 수준이에요. 길어지면 소리 내어 반복할 때 더 잘 기억해요.",lo:"한 번에 기억하는 양이 아직 적어요. 정보를 짧게 나눠 주면 훨씬 잘 해내요.",tip:"심부름을 2~3개씩 말해주고 순서대로 해내는 놀이를 해보세요. 늘어나면 칭찬해 주세요."}};
+const IQTY={
+ bal:{n:"균형 발달형",c:"num",acc:"star",sum:"다섯 영역이 고르게 발달한 균형형 프로파일이에요. 어떤 과제를 만나도 안정적으로 해내는 바탕이 있어요."},
+ mat:{n:"도형·패턴 추리형",c:"spa",acc:"bulb",sum:"그림 속 규칙을 찾아내는 힘이 가장 돋보이는 프로파일이에요. 새로운 유형의 문제에서도 규칙부터 찾아요."},
+ lng:{n:"언어·논리형",c:"lan",acc:"cap",sum:"낱말의 관계와 논리를 다루는 힘이 가장 돋보이는 프로파일이에요. 읽고 말하며 이해하는 학습에 잘 맞아요."},
+ num:{n:"수·규칙 추리형",c:"num",acc:"blocks",sum:"숫자의 규칙을 알아채는 힘이 가장 돋보이는 프로파일이에요. 수학적 사고로 이어지기 좋은 바탕이에요."},
+ spa:{n:"공간·시각형",c:"obs",acc:"glass",sum:"머릿속에서 모양을 다루는 힘이 가장 돋보이는 프로파일이에요. 만들고 조립하고 그리는 활동에서 빛나요."},
+ mem:{n:"기억·집중형",c:"mem",acc:"star",sum:"정보를 붙잡아 두는 작업기억이 가장 돋보이는 프로파일이에요. 순서가 있는 과제를 잘 따라가요."}};
+const IQQ={id:"iq",cat:"kid",iq:true,hot:true,t:"우리 아이 사고력(IQ) 테스트",s:"도형·수·언어·공간·기억 5영역 30문항으로 보는 예상 IQ 범위",who:"아이가 풀어요",min:15,c:"num",acc:"bulb",
+ ref:"Cattell-Horn-Carroll(CHC) 인지능력 모델의 유동추론·언어·시각공간 처리·작업기억 요인을 참고해 5개 영역으로 구성했어요. 점수는 문항반응이론(IRT) 기반 베이지안 추정으로 계산해요.",
+ note:"문항은 만 5~7세, 8~10세, 11~12세 구간별로 난이도를 다르게 설계했어요. 도형·수·공간·기억 문항은 검사할 때마다 새로 만들어져요.",
+ sampleQ:["빈칸(?)에 들어갈 그림은?","새는 하늘, 물고기는 어디일까요?","빈칸(?)에 들어갈 숫자는? 2 · 4 · 6 · 8 · ?","방금 본 그림과 순서가 똑같은 것은?"],
+ q:Array.from({length:30},()=>["","mat"]),dims:IQDIM,types:IQTY,
+ typeOf:sc=>{const o=IQK.slice().sort((a,b)=>sc[b]-sc[a]);return sc[o[0]]-sc[o[4]]<25?"bal":o[0]}};
+QUIZ.splice(0,0,IQQ);
+const iqCls=v=>v>=130?{n:"매우 우수 수준",d:"또래보다 한참 앞선 추론 능력을 보였어요. 이런 아이는 쉬운 문제를 반복하면 금방 지루해해요. 깊이 있는 도전 과제가 잘 맞아요."}
+ :v>=120?{n:"우수 수준",d:"또래보다 눈에 띄게 빠르게 규칙을 찾고 추론해요. 한 단계 높은 도전도 즐길 수 있는 수준이에요."}
+ :v>=110?{n:"평균 상 수준",d:"또래 평균보다 조금 위로 추정돼요. 관심 있는 분야에서는 더 높은 수준까지 해낼 수 있어요."}
+ :v>=90?{n:"평균 수준",d:"또래에서 가장 흔한 범위예요. 아이의 절반가량이 이 범위에 있어요. 점수 자체보다 어떤 영역이 상대적으로 강한지가 더 중요해요."}
+ :v>=80?{n:"평균 하 수준",d:"또래 평균보다 조금 아래로 추정돼요. 그날 컨디션이나 집중, 낯선 문제 형식의 영향일 수도 있어요."}
+ :{n:"평균보다 낮게 추정된 수준",d:"이번 결과만으로 아이의 능력을 판단하지 말아 주세요. 컨디션·집중·낯선 문제 형식의 영향이 커요. 걱정이 이어지면 전문기관과 상의해 주세요."};
+const IQREL={hi:"높음",mid:"보통",lo:"낮음"};
+
+function nextIQ(me){const Q=me.quiz,st=$("#testStage"),n=30;
+  if(!me.items){me.band=IQB(profile.age);me.seed=qHist(Q.id).length%4;me.items=iqItems(me.band,me.seed);me.ok=[];me.rt=[];me.ans=[]}
+  setProg(me.i,n);
+  if(me.i>=n){const s=iqScore(me.items,me.ok,me.rt),type=Q.typeOf(s.sc),bk=qBucket(Q);
+    (bk[Q.id]=bk[Q.id]||[]).push({sc:s.sc,type,date:today(),ans:me.ans.slice(),band:me.band,seed:me.seed,ok:me.ok.slice(),rt:me.rt.slice(),iq:s.sum});
+    saveAll();run.alive=false;run=null;go("qresult",Q.id);confetti();window.gtag?.("event","test_complete",{test_id:Q.id,result_type:type,iq:s.sum.v});return}
+  const it=me.items[me.i];st.classList.add("pstage");
+  st.innerHTML=`<p class="qn">${esc(profile.nick)} · ${me.i+1} / ${n}<span class="qdom">${IQD_N[it.d]}</span></p><p class="q">${it.q}${it.sub?`<small class="iqsub">${it.sub}</small>`:""}</p><div class="play"><div class="iqstim" id="iqS">${it.mem?it.mem.html:it.stim||""}</div><div class="iqopts${it.one?" one":""}" id="iqO"></div></div>`;
+  const show=()=>{if(run!==me)return;const O=$("#iqO");if(!O)return;if(it.mem)$("#iqS").innerHTML='<p class="iqhint big">❓ 방금 본 그림을 떠올려 보세요</p>';
+    O.innerHTML=it.opts.map((o,i)=>`<button class="iqopt" data-i="${i}" aria-label="보기 ${i+1}">${o}</button>`).join("");const t0=Date.now();
+    $$(".iqopt",O).forEach(b=>b.onclick=async()=>{if(run!==me)return;$$(".iqopt",O).forEach(x=>x.disabled=true);b.classList.add("sel");try{navigator.vibrate?.(12)}catch(e){}
+      const i=+b.dataset.i;me.ans[me.i]=i;me.ok[me.i]=i===it.a?1:0;me.rt[me.i]=Math.round((Date.now()-t0)/100)/10;me.i++;await new Promise(r=>setTimeout(r,220));if(run===me)nextQuiz()})};
+  it.mem?setTimeout(show,it.mem.ms):show()}
+const IQD_N={mat:"도형 추리",lng:"언어 추리",num:"수·규칙 추리",spa:"공간 시각화",mem:"작업기억"};
+
+function renderIQ(Q,r,box){let sn=0;const S=t=>sec(++sn,t),hist=qHist(Q.id),prev=hist[hist.length-2],nick=profile?esc(profile.nick):"우리 아이",D=Q.dims,sc=r.sc,order=Object.keys(D).sort((a,b)=>sc[b]-sc[a]),I=r.iq,TY=Q.types[r.type],cls=iqCls(I.v),pos=I.top<=50?`상위 약 ${I.top}%`:`또래 평균 범위(백분위 ${100-I.top})`;
+  box.innerHTML=`${repHead({cat:"kid",title:Q.t,subject:`${nick}${profile?` (만 ${profile.age}세)`:""}`,resp:"아이 직접 풀이 · 정답형 30문항",date:r.date,n:`30문항 · 5개 영역 · ${IQBN[r.band]}`,base:BASE.iq})}
+   ${S("종합 결과")}<div class="card sumcard"><div class="iqhero"><small>예상 IQ <em>(추정)</em></small><b>${I.v}</b><span>예상 범위 ${I.lo} ~ ${I.hi}</span></div>
+    <p class="tyname" style="text-align:center">${cls.n}</p>
+    <p class="big" style="text-align:center">${josa(nick,"는","은")} 같은 나이 또래와 견줘 <b>${pos}</b>로 추정돼요.</p>
+    <p class="big">${cls.d}</p><p class="big">${nick} 결과 유형은 <b>${TY.n}</b>이에요. ${TY.sum}</p>
+    <p class="muted fine">공인 지능검사(웩슬러 등)가 아니라, 연령별로 설계한 난이도를 기준으로 계산한 추정치예요. 범위는 80% 신뢰구간이에요. 정확한 진단이 필요하면 전문기관의 검사를 받아 주세요.</p></div>
+   ${promoHtml(Q.id,`${nick} 결과에 맞춘 추천`)}
+   ${S("영역별 프로파일")}<div class="card">${hexRadar(sc,D)}
+    <div class="dbars">${order.map(k=>`<div class="dbar"><span class="dn">${D[k].n}</span><span class="tr"><i style="width:${Math.max(3,sc[k])}%;background:${col(D[k].c)}"></i></span><span class="v">${sc[k]}</span>${chip(D[k],sc[k])}</div>`).join("")}</div>
+    <p class="muted fine">각 영역 값은 같은 나이 또래 기준 추정 백분위(1~99)예요. 70 이상 높음, 41~69 보통, 40 이하 낮음이에요. 영역당 6문항이라 전체 점수보다 오차가 커요.</p></div>
+   ${prev?`${S("지난 검사와 비교")}<div class="card"><p class="muted" style="font-size:14.5px">${prev.date} → ${r.date} (${dayGap(prev.date,r.date)}일 간격)</p><div class="delta"><div>예상 IQ<b class="${Math.abs(I.v-prev.iq.v)<6?"same":I.v>prev.iq.v?"up":"dn"}">${I.v-prev.iq.v>0?"+":""}${I.v-prev.iq.v}</b></div>${order.map(k=>{const d=sc[k]-prev.sc[k];return `<div>${D[k].n}<b class="${Math.abs(d)<10?"same":d>0?"up":"dn"}">${d>0?"+":""}${d}</b></div>`}).join("")}</div><p class="muted fine">IQ는 6점 미만, 영역 값은 10 미만 차이면 오차 범위로 봐요. 일부 문항은 비슷한 유형이 다시 나와 익숙함의 영향이 있을 수 있어요.${prev.band!==r.band?" 나이 구간이 달라져 비교는 참고만 해주세요.":""}</p></div>`:""}
+   ${gate(Q.id,r.date,D,()=>deepIQ(Q,r,order,S))}
+   ${S("검사 안내")}<div class="card basis"><p><b>이론적 근거</b> ${Q.ref}</p><p>${Q.note}</p>${prev?"":`<p>1~3개월 뒤 다시 검사하면 지난 결과와 비교해 변화를 보여드려요.</p>`}<p class="muted fine">이 검사는 공인된 표준화 지능검사가 아니에요. 문항 난이도는 연령별로 설계한 기준값이며 실제 응답으로 보정되기 전이라 오차가 있어요. 한 번의 결과로 아이의 가능성을 판단하지 말아 주세요.</p></div>
+   <div class="seg mt2" style="justify-content:center"><button class="btn btn-ghost" data-quiz="${Q.id}">다시 검사하기</button><button class="btn btn-ghost" id="qCopy">결과 요약 복사</button>${unlocked(Q.id,r.date)?`<button class="btn btn-ghost" id="qResPrint" onclick="print()">정밀 리포트 PDF 저장</button>`:""}<button class="btn btn-main" id="qShare">이 검사 친구에게 알려주기</button></div>
+   <h2 class="page-h" style="font-size:28px;margin-top:56px">아이 검사 더 보기</h2>${testCards(Q.id,"kid")}`;
+  $("#qCopy").onclick=()=>navigator.clipboard.writeText(`[${Q.t}] 예상 IQ ${I.v} (${I.lo}~${I.hi}) · ${pos}\n`+order.map(k=>`${D[k].n} ${sc[k]}`).join(" / ")+"\nhttps://mwojalhae.kr/"+TSLUG[Q.id]+"/").then(()=>toast("결과 요약을 복사했어요"),()=>toast("복사가 막혀 있어요"));
+  $("#qShare").onclick=()=>shareLink(Q.t,`https://mwojalhae.kr/${TSLUG[Q.id]}/`);
+  document.title=Q.t+" 결과 | "+$(".brand-name").textContent}
+
+function deepIQ(Q,r,order,S){const D=Q.dims,sc=r.sc,I=r.iq,its=iqItems(r.band,r.seed),ok=r.ok,rt=r.rt,cls=iqCls(I.v),nick=profile?esc(profile.nick):"우리 아이",last=order[order.length-1],top=order[0];
+  const rows=order.map(k=>({k,n:D[k].n,v:sc[k],tip:D[k].tip})),by=k=>its.map((it,i)=>({it,i})).filter(x=>x.it.d===k);
+  const lvOk=lv=>its.filter((it,i)=>it.lv===lv&&ok[i]).length,easy=lvOk(1)+lvOk(2),hard=lvOk(5)+lvOk(6),avgT=Math.round(rt.reduce((a,b)=>a+(b||0),0)/rt.length*10)/10;
+  const F=[["추론(도형·수)",Math.round((sc.mat+sc.num)/2)],["언어",sc.lng],["공간",sc.spa],["기억",sc.mem]].sort((a,b)=>b[1]-a[1]);
+  const head=`<div class="card"><p class="rkind">종합 판정</p><p class="tyname">${cls.n}</p>
+   <div class="kpis k4"><div><small>예상 IQ</small><b>${I.v}</b></div><div><small>80% 범위</small><b>${I.lo}~${I.hi}</b></div><div><small>정답 수</small><b>${I.n} / 30</b></div><div><small>결과 신뢰도</small><b>${IQREL[I.rel]}</b></div></div>
+   <p class="big">${josa(nick,"는","은")} 30문항 중 ${I.n}문항을 맞혔고, 같은 나이 또래 기준 예상 IQ는 ${I.v}(80% 범위 ${I.lo}~${I.hi})로 추정돼요. ${cls.d}</p>
+   <p class="big">${sc[top]-sc[last]<10?"다섯 영역의 차이가 크지 않아 뚜렷하게 앞서거나 뒤처진 영역 없이 고른 프로파일이에요.":`가장 돋보인 영역은 ${D[top].n}(백분위 ${sc[top]}), 상대적으로 낮은 영역은 ${D[last].n}(백분위 ${sc[last]})이에요. 요인별로 보면 ${F[0][0]}(${F[0][1]})이 가장 높고 ${F[3][0]}(${F[3][1]})이 가장 낮아요. ${sc[top]-sc[last]>=40?"영역 간 차이가 큰 편이라 합계 점수보다 영역별 프로파일을 함께 보는 게 중요해요.":"영역 간 차이는 보통 수준이에요."}`}</p>
+   ${I.n>=28?`<p class="muted fine">정답이 거의 모두 맞아 상한 근처에서는 추정이 덜 정확해요. 실제 수준이 더 높을 수 있어요.</p>`:""}</div>`;
+  const deep=`<div class="card"><div class="dlist">${order.map(k=>`<div class="ditem"><div class="dh"><b>${D[k].n}</b><span>${chip(D[k],sc[k])} <span class="pts">백분위 ${sc[k]} · ${I.dom[k].n}/6 정답</span></span></div><p>${D[k][LV(sc[k])]}</p>
+    <p class="ev"><b>단계별 결과</b> <span class="ox">${by(k).map(x=>`<i class="${ok[x.i]?"o":"x"}" title="${x.it.lv}단계 · ${x.it.t}">${ok[x.i]?"●":"○"}</i>`).join("")}</span> <small>● 정답 ○ 오답 (왼쪽 쉬움 → 오른쪽 어려움)</small></p>
+    <p class="ev"><b>풀이한 유형</b> ${[...new Set(by(k).map(x=>x.it.t))].join(" · ")}</p><p class="dtip"><b>실천 팁</b> ${D[k].tip}</p></div>`).join("")}</div></div>`;
+  const pat=`<div class="card"><div class="dbars">${[1,2,3,4,5,6].map(lv=>`<div class="dbar"><span class="dn">${lv}단계</span><span class="tr"><i style="width:${Math.max(3,lvOk(lv)*20)}%;background:var(--brand)"></i></span><span class="v">${lvOk(lv)}/5</span><span></span></div>`).join("")}</div>
+   <div class="kpis k4"><div><small>쉬운 단계(1~2) 정답</small><b>${easy} / 10</b></div><div><small>어려운 단계(5~6) 정답</small><b>${hard} / 10</b></div><div><small>평균 풀이 시간</small><b>${avgT}초</b></div><div><small>2.5초 안의 오답</small><b>${I.fast}개</b></div></div>
+   <ul class="tiplist" style="margin-top:14px"><li><b>난이도 곡선</b> ${easy>=9&&hard<=3?"쉬운 문제는 거의 다 맞히고 어려운 단계에서 막혔어요. 전형적인 곡선이라 추정치의 신뢰가 높아요.":easy<=6?"쉬운 단계에서 놓친 문항이 많아요. 능력보다 집중이나 낯선 형식 때문일 수 있어, 실제 수준은 추정치보다 높을 수 있어요.":hard>=7?"어려운 단계도 대부분 맞혔어요. 난이도가 더 높은 문제에서 능력이 더 정확히 드러날 수 있어요.":"단계가 올라갈수록 정답이 자연스럽게 줄어드는 곡선이에요."}</li>
+   <li><b>풀이 속도</b> ${avgT<5?"빠르게 푸는 편이에요. 속도가 빨라 실수가 늘지 않았는지 오답 문항을 함께 살펴보세요.":avgT>15?"신중하게 오래 생각하는 편이에요. 시간제한이 있는 시험에서는 속도 연습이 도움이 될 수 있어요.":"무리 없는 속도로 풀었어요."}</li>
+   <li><b>추측 가능성</b> ${I.fast>=3?`2.5초 안에 답하고 틀린 문항이 ${I.fast}개예요. 끝까지 읽지 않고 답했거나 찍은 문항이 섞였을 수 있어요.`:"너무 빨리 답하고 틀린 문항이 적어 추측이 결과에 미친 영향은 작아 보여요."}</li>
+   <li><b>결과 신뢰도 ${IQREL[I.rel]}</b> ${I.rel==="lo"?"추측 가능성이 커서 다시 한번 컨디션 좋은 날 검사해 보시길 권해요.":I.rel==="mid"?"일부 변수가 있어요. 2~4주 뒤 다시 하면 더 안정적인 값을 볼 수 있어요.":"풀이 패턴이 안정적이라 결과를 참고하기에 무리가 없어요."}</li></ul></div>`;
+  const apx=`<details class="card app"><summary>전체 30문항 풀이 기록 보기</summary>${Object.keys(D).map(k=>`<h4>${D[k].n}</h4><table>${by(k).map(x=>`<tr><td>${x.i+1}</td><td>${x.it.lv}단계 · ${x.it.t}</td><td>${ok[x.i]?"정답":"오답"} · ${rt[x.i]}초</td></tr>`).join("")}</table>`).join("")}<p class="muted fine">단계 1은 가장 쉽고 6은 가장 어려워요. 시간은 보기가 나온 뒤 고르기까지 걸린 시간이에요.</p></details>`;
+  const how=`<div class="card basis"><p><b>문항 구성</b> 도형 추리·언어 추리·수·규칙 추리·공간 시각화·작업기억 5개 영역을 6단계 난이도로 6문항씩 풀었어요. 모든 문항은 보기 4개(우연 정답률 25%)예요.</p><p><b>점수 산출</b> 문항반응이론(IRT)의 3모수 로지스틱 모형(변별도 1.4, 추측도 0.25)과 사전분포 N(0,1)을 쓴 베이지안 추정(EAP)으로 능력값을 구하고 IQ=100+15×능력값으로 환산했어요. 80% 범위는 사후분포의 10~90% 구간이에요. 영역 값은 영역별 6문항으로 같은 방식으로 추정한 능력값을 또래 백분위로 바꾼 값이에요.</p><p><b>난이도 기준</b> 각 단계의 난이도는 같은 나이 또래를 기준으로 설계한 값(−1.7~+1.5 표준편차)이에요. 실제 응답 데이터로 보정하기 전의 값이라 오차가 있고, 공인 규준 점수가 아니에요.</p><p><b>이론적 근거</b> ${Q.ref}</p><p class="muted fine">이 결과는 진단이 아니라 참고 자료예요. 학습·발달에 대한 걱정이 2주 이상 이어지면 아동·청소년 상담 전문가나 공인 검사 기관과 상의해 주세요.</p></div>`;
+  return `${S("종합 판정")}${head}${S("영역별 상세 분석")}${deep}${S("풀이 패턴 분석")}${pat}${deepExtra({kid:true,rows},S)}${insightSec(rows,S)}${S("부록 · 문항별 풀이 기록")}${apx}${S("산출 방법과 근거")}${how}`}
+/*/IQ-UI*/
+
 function startQuiz(id){let pv=false;if(id.startsWith("pv-")){pv=true;id=id.slice(3)}const Q=QUIZ.find(x=>x.id===id);if(!Q)return;if(Q.cat==="kid"&&!profile){go("intake",(pv?"pv-":"")+id);return}go("test");window.gtag?.("event","test_start",{test_id:Q.id});$("#walker").innerHTML=mascot(col(Q.c),Q.acc,34);
   $("#starCount").textContent=Q.kid&&!pv?"⭐ 0":"";run={alive:true,quiz:Q,pv,i:0,ans:[],stars:0,young:Q.cat==="kid"&&!!Q.young&&profile.age<=7};nextQuiz()}
 function scoreQuiz(Q,ans){const sum={},cnt={};Q.q.forEach(([,d,rev],i)=>{const v=rev?6-ans[i]:ans[i];sum[d]=(sum[d]||0)+v;cnt[d]=(cnt[d]||0)+1});
   const sc={};Object.keys(sum).forEach(d=>sc[d]=Math.round((sum[d]/cnt[d]-1)/4*100));return sc}
-function nextQuiz(){const me=run;if(!me||!me.alive)return;const Q=me.quiz,st=$("#testStage"),n=Q.q.length;setProg(me.i,n);
+function nextQuiz(){const me=run;if(!me||!me.alive)return;if(me.quiz.iq)return nextIQ(me);const Q=me.quiz,st=$("#testStage"),n=Q.q.length;setProg(me.i,n);
   if(me.i>=n&&me.pv){const k=DB.kids[DB.cur];k.pview=k.pview||{};(k.pview[Q.id]=k.pview[Q.id]||[]).push({sc:scoreQuiz(Q,me.ans),date:today(),ans:me.ans.slice(0,n)});
     saveAll();run.alive=false;run=null;go("gap",Q.id);confetti();window.gtag?.("event","test_complete",{test_id:"pv-"+Q.id});return}
   if(me.i>=n){const sc=scoreQuiz(Q,me.ans),type=Q.typeOf(sc),bk=qBucket(Q);(bk[Q.id]=bk[Q.id]||[]).push({sc,type,date:today(),ans:me.ans.slice(0,n),band:me.young?"y":"o"});
@@ -1700,7 +1940,7 @@ function planKeys(Q,sc){const ks=Object.keys(Q.dims),need=k=>Q.dims[k].neg?sc[k]
 function chip(D,s){const l=LV(s);return D.neg?`<span class="chip ${l==="hi"?"warn":l==="lo"?"ok":"mid"}">${l==="hi"?"주의":l==="lo"?"양호":"보통"}</span>`:`<span class="chip ${l}">${LVN[l]}</span>`}
 function consistency(ans){if(!ans||!ans.length)return"";const m=ans.reduce((a,b)=>a+b,0)/ans.length,sd=Math.sqrt(ans.reduce((a,b)=>a+(b-m)**2,0)/ans.length);
   return sd<.5?`<div class="notice">응답이 대부분 같은 번호로 몰려 있어요. 결과가 실제 모습과 다를 수 있으니, 시간을 두고 다시 해보길 권해요.</div>`:`<p class="okline">✔ 응답 양상: 문항별로 고르게 응답해 결과 해석에 무리가 없어요.</p>`}
-const BASE={temper:"Thomas & Chess 기질 이론",learn:"VARK 학습 선호 모델",career:"Holland RIASEC 흥미 이론",social:"아동 사회성 기술(SSIS) 영역",style:"Baumrind 양육 유형 이론",emotion:"Gottman 감정 코칭 이론",stress:"양육 스트레스 척도(PSI) 영역",media:"AAP 가족 미디어 계획 · WHO 권고",attention:"실행기능 모델(Diamond)",eq:"Mayer & Salovey 정서 지능 모델",esteem:"Harter 아동 자기지각 프로파일",mindset:"Dweck 마인드셋 · 자기결정성 이론",efficacy:"양육 역량감 척도(PSOC)",relation:"아동-부모 관계 척도(CPRS)",coparent:"Feinberg 공동양육 모델",discipline:"양육 척도(Parenting Scale)"};
+const BASE={temper:"Thomas & Chess 기질 이론",learn:"VARK 학습 선호 모델",career:"Holland RIASEC 흥미 이론",social:"아동 사회성 기술(SSIS) 영역",style:"Baumrind 양육 유형 이론",emotion:"Gottman 감정 코칭 이론",stress:"양육 스트레스 척도(PSI) 영역",media:"AAP 가족 미디어 계획 · WHO 권고",attention:"실행기능 모델(Diamond)",eq:"Mayer & Salovey 정서 지능 모델",esteem:"Harter 아동 자기지각 프로파일",mindset:"Dweck 마인드셋 · 자기결정성 이론",efficacy:"양육 역량감 척도(PSOC)",relation:"아동-부모 관계 척도(CPRS)",coparent:"Feinberg 공동양육 모델",discipline:"양육 척도(Parenting Scale)",iq:"CHC 인지능력 모델 · 문항반응이론(IRT)"};
 function repHead(o){return `<header class="rephead"><div class="rh-top"><span class="rk-badge ${o.cat}">${o.badge||(o.cat==="parent"?"부모 검사 결과지":"아동 검사 결과지")}</span><span class="rh-brand">${esc($(".brand-name").textContent)}</span></div>
   <h1>${o.title}</h1><dl>${[["검사 대상",o.subject],["응답 방식",o.resp],["검사일",o.date],["구성",o.n],["기준 이론",o.base],["발급번호","KT-"+String(o.date||"").replace(/\D/g,"")+"-"+((o.title.length*37+String(o.subject).length*11)%900+100)]].map(([k,v])=>`<div><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl></header>`}
 const sec=(n,t)=>`<h2 class="rsec"><span>${n}</span>${t}</h2>`;
@@ -1815,6 +2055,7 @@ function renderGap(id){const box=$("#gapBox");if(!profile){box.innerHTML=emptySt
   document.title=Q.t+" 마음 비교 | "+$(".brand-name").textContent}
 
 function renderQResult(id){const Q=QUIZ.find(x=>x.id===id),r=quizRes()[id],box=$("#qresBox");if(!Q||!r){go("tests");return}
+  if(Q.iq)return renderIQ(Q,r,box);
   let sn=0;const S=t=>sec(++sn,t),hist=qHist(id),prev=hist[hist.length-2];
   const TY=Q.types[r.type],nick=profile?esc(profile.nick):"우리 아이",sc=r.sc,D=Q.dims,order=Object.keys(D).sort((a,b)=>sc[b]-sc[a]);
   const code=Q.riasec?order.slice(0,3).join(""):"";
@@ -1843,7 +2084,7 @@ const TALENT={id:"talent",cat:"kid",t:"우리 아이는 뭘 잘할까?",s:"미�
 function testCards(except,cat){const res=quizRes(),done=k=>k==="talent"?!!latest():!!res[k];
   const items=[TALENT,...QUIZ].filter(x=>x.id!==except&&(!cat||x.cat===cat));
   return `<div class="tcards ${cat||""}">${items.map(x=>`<button class="tcard${x.main?" main":""} ${x.cat}" ${x.id==="talent"?'data-go="intake"':`data-quiz="${x.id}"`} style="--c:${tint(x.c)}">
-   <span class="gi">${mascot(col(x.c),x.acc,72)}</span><span class="tmeta">${x.who} · ${x.id==="talent"?"약 10~15분":`${x.q.length}문항 · 약 ${x.min}분`}${done(x.id)?" · ✔ 완료":""}</span><b>${x.t}</b><span class="ts">${x.s}</span></button>`).join("")}</div>`}
+   <span class="gi">${mascot(col(x.c),x.acc,72)}</span><span class="tmeta">${x.who} · ${x.id==="talent"?"약 10~15분":`${x.q.length}문항 · 약 ${x.min}분`}${done(x.id)?" · ✔ 완료":""}</span><b>${x.t}${x.hot?' <span class="hotb">인기</span>':""}</b><span class="ts">${x.s}</span></button>`).join("")}</div>`}
 function renderTests(){$("#testsBox").innerHTML=`<section class="tsec repsec"><div class="tsh"><span class="tlabel">통합 리포트</span><h2>검사를 모아 한 장으로</h2><p>여러 검사를 하면 결과끼리 엮어 분석해 드려요.</p></div><div class="reports">${reportCard("summary")}${reportCard("fit")}${reportCard("gap")}</div></section><section class="tsec kidsec"><div class="tsh"><span class="tlabel">아이 알아보기</span><h2>우리 아이를 더 깊이</h2><p>재능과 기질부터 집중력, 마음, 배우는 방식, 친구 관계까지</p>${kidChips()}</div>${testCards(null,"kid")}</section>
   <section class="tsec parsec"><div class="tsh"><span class="tlabel">부모 알아보기</span><h2>나는 어떤 부모일까?</h2><p>양육 태도와 훈육부터 관계, 함께 키우는 팀워크, 지친 마음까지</p></div>${testCards(null,"parent")}</section>`}
 

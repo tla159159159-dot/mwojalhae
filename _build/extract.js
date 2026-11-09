@@ -3,7 +3,7 @@ const {chromium}=require('playwright'),fs=require('fs'),path=require('path');
 (async()=>{
   let html=fs.readFileSync(path.join(__dirname,'..','index.html'),'utf8');
   const hook=`window.__D={QUIZ:QUIZ.map(q=>({id:q.id,cat:q.cat,t:q.t,s:q.s,who:q.who,min:q.min,n:q.q.length,ref:q.ref,base:BASE[q.id]||"",note:q.note||"",young:!!q.young,kid:!!q.kid,
-    sample:q.q.filter((x,i)=>!x[2]).slice(0,40).filter((x,i)=>i%7===0).slice(0,4).map(x=>x[0]),
+    sample:q.sampleQ||q.q.filter((x,i)=>!x[2]).slice(0,40).filter((x,i)=>i%7===0).slice(0,4).map(x=>x[0]),
     dims:Object.entries(q.dims).map(([k,d])=>({n:d.n,hi:d.hi,tip:d.tip,neg:!!d.neg})),
     types:Object.values(q.types).map(t=>({n:t.n,sum:t.sum||""})),svg:mascot(col(q.c),q.acc,96),tint:tint(q.c)})),
    TALENT:{...TALENT,svg:mascot(col(TALENT.c),TALENT.acc,96),tint:tint(TALENT.c)},
