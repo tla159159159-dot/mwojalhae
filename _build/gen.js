@@ -268,3 +268,5 @@ fs.writeFileSync(path.join(ROOT,'vercel.json'),JSON.stringify({redirects:[
   ...[...ALL.map(x=>[`/test/${x.id}`,TS[x.id]]),...OLDG.map((o,i)=>[`/guide/${o}`,GSLUG[i]]),['/test',HUB_T],['/guide',HUB_G],['/faq',HUB_F]]
     .flatMap(([o,n])=>[o,o+'/'].map(src=>({source:src,destination:encodeURI(`/${n}/`),permanent:true})))]},null,1));
 console.log(urls.length,'urls');
+// 랭킹 서버가 같은 코드로 다시 채점하도록 index.html의 IQ-CORE 블록을 api/_iqcore.js로 복사
+{const h=fs.readFileSync(path.join(ROOT,'index.html'),'utf8'),i=h.indexOf('/*IQ-CORE*/'),j=h.indexOf('/*/IQ-CORE*/');fs.writeFileSync(path.join(ROOT,'api/_iqcore.js'),'// 자동 생성: index.html의 IQ-CORE 블록 (node _build/gen.js)\n'+h.slice(i,j)+'\nmodule.exports={iqItems,iqScore};\n')}
