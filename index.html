@@ -369,6 +369,8 @@ input:focus{outline:none;border-color:var(--brand)}
 .rklist .rk-n{font-weight:800;text-align:center;font-size:18px;color:var(--muted)}.rklist .rk-m{font-weight:800;font-size:17px;letter-spacing:1px}.rklist .rk-b{font-size:13px;color:var(--muted);font-weight:700}.rklist .rk-v{color:var(--brand-d);font-size:17px}
 .rkme{text-align:center;padding:8px 0 4px}.rkme small{display:block;font-weight:800;color:var(--muted);font-size:14px}.rkme b{display:block;font-family:var(--f-head);font-weight:400;font-size:clamp(44px,12vw,60px);line-height:1.1;color:var(--brand-d)}.rkme span{display:inline-block;padding:4px 14px;border-radius:99px;background:var(--soft);font-weight:800;font-size:15px}
 @media print{#iqRank{display:none}}
+.rkstrip{display:flex;align-items:center;gap:12px;width:100%;max-width:460px;margin-top:16px;padding:12px 16px;border-radius:18px;border:2px solid var(--line);background:var(--surface);cursor:pointer;text-align:left;color:var(--ink);box-shadow:0 3px 0 var(--line)}
+.rkstrip:hover{background:var(--soft)}.rks-i{font-size:28px}.rks-t{flex:1;min-width:0;display:flex;flex-direction:column}.rks-t b{font-size:17px}.rks-t small{font-size:13.5px;color:var(--muted);font-weight:700;margin-top:2px}.rks-go{font-weight:800;color:var(--brand-d);white-space:nowrap}
 .qdom{display:inline-block;margin-left:8px;padding:2px 9px;border-radius:9px;background:var(--soft);color:var(--brand-d);font-size:12.5px;font-weight:800}
 .plock{margin-top:28px;text-align:left;border:1.5px dashed var(--brand)}.plock .lk{margin:6px 0 10px}.lklist{list-style:none;padding:0;margin:0;display:grid;gap:8px;font-size:15px}.lklist li::before{content:"🔒 "}.lklist b{margin-right:4px}
 .lkbuy{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:18px}.lkp{font-weight:900;font-size:22px}.lkp small{display:block;font-size:12.5px;color:var(--muted);font-weight:700}
@@ -607,6 +609,7 @@ footer select{font:inherit;padding:8px;border-radius:10px;border:1px solid var(-
           <span class="note">회원가입 없이 바로 시작해요 · 만 5~12세</span>
           <button class="alt" data-go="tests" data-arg="parsec">부모 검사부터 해볼래요 →</button>
         </div>
+        <button class="rkstrip" data-go="rank"><span class="rks-i">🏆</span><span class="rks-t"><b>사고력 랭킹</b><small id="hrStrip">우리 아이는 또래 몇 등?</small></span><span class="rks-go">보기 →</span></button>
       </div>
       <div class="field" id="heroStickers" aria-label="8가지 재능 스티커"></div>
     </section>
@@ -617,6 +620,13 @@ footer select{font:inherit;padding:8px;border-radius:10px;border:1px solid var(-
       <div><b>맞춤 리포트</b><span>놀이·미션까지 추천</span></div>
     </div>
   </div>
+
+  <section class="blk" id="homeRank"><div class="wrap rv">
+    <h2>🏆 우리 아이 사고력, 또래 몇 등일까요?</h2>
+    <p class="lead">도형·수·언어·공간·기억 30문항으로 예상 IQ를 보고, 같은 나이대 랭킹에서 순위를 확인해요.</p>
+    <div class="card" id="hrBox"><p class="big" style="text-align:center;margin:0">🏆 5~7세·8~10세·11~12세로 나눠 겨루는 랭킹을 곧 열어요!</p></div>
+    <div class="seg" style="justify-content:center;margin-top:14px"><button class="btn btn-main" data-quiz="iq">IQ 테스트 도전하기</button><button class="btn btn-ghost" data-go="rank">전체 랭킹 보기</button></div>
+  </div></section>
 
   <section class="blk"><div class="wrap rv">
     <h2>우리 아이는 어떤 스티커일까요?</h2>
@@ -1794,6 +1804,8 @@ async function iqRank(Q,r){const el=$("#iqRank");if(!el)return;const b=r.band;
   $("#rkGo")?.addEventListener("click",async e=>{const bt=e.target;bt.disabled=true;bt.textContent="등록 중…";
     try{const res=await(await fetch("/api/rank-submit",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({rid:(rkDev()+DB.cur).replace(/[^A-Za-z0-9]/g,""),band:r.band,seed:r.seed,ans:r.ans,rt:r.rt,nick:profile.nick})})).json();if(!res.ok)throw 0;
       r.rank={rank:res.rank,total:res.total};saveAll();iqRank(Q,r)}catch(err){bt.disabled=false;bt.textContent="랭킹 등록하고 내 순위 보기";toast("등록에 실패했어요. 잠시 후 다시 해주세요")}})}
+async function homeRank(){const el=$("#hrBox");if(!el)return;const b=profile?IQB(profile.age):"all",j=await rkGet(b);if(!el.isConnected||!j.ok)return;
+  el.innerHTML=`<p class="muted" style="text-align:center;margin:0 0 6px">${IQBL[b]} 도전자 ${j.total}명 · TOP 3</p>${rkList(j.list.slice(0,3))}`;const st=$("#hrStrip");if(st&&j.total)st.textContent=`지금 ${j.total}명이 도전 중이에요`}
 async function renderRank(arg){const box=$("#rankBox");let b=["a","b","c","all"].includes(arg)?arg:(profile?IQB(profile.age):"all");
   const draw=async()=>{box.innerHTML=`<div class="seg" style="justify-content:center;flex-wrap:wrap">${["all","a","b","c"].map(k=>`<button class="btn ${k===b?"btn-main":"btn-ghost"}" data-rb="${k}">${IQBL[k]}</button>`).join("")}</div><div id="rkL" class="card" style="margin-top:16px"><p class="muted" style="text-align:center">불러오는 중…</p></div><div class="seg" style="justify-content:center;margin-top:18px"><button class="btn btn-main" data-quiz="iq">나도 도전하기</button></div>`;
     $$("[data-rb]",box).forEach(x=>x.onclick=()=>{b=x.dataset.rb;draw()});
@@ -2151,7 +2163,7 @@ function renderPost(i){const g=GUIDES[i];if(!g){go("guides");return}
 /* ---------- router ---------- */
 let cur="home";
 function go(v,arg){const prevView=cur;setTimeout(()=>window.dispatchEvent(new Event("scroll")),60);if(run&&v!=="test"){run.alive=false;run=null}cur=v;$$("[data-view]").forEach(s=>s.hidden=s.dataset.view!==v);document.body.classList.toggle("home",v==="home");document.body.classList.toggle("mc",["home","guides","faq","post"].includes(v));mcSync();
-  if(v==="intake")buildIntake(arg);if(v==="summary")renderSummary();if(v==="gap")renderGap(arg);if(v==="fit")renderFit();if(v==="result")renderResult();if(v==="dash")renderDash();if(v==="post")renderPost(arg);if(v==="tests"){renderTests();if(arg)setTimeout(()=>$("."+arg)?.scrollIntoView({behavior:"smooth"}),50)}if(v==="qresult")renderQResult(arg);if(v==="rank")renderRank(arg);
+  if(v==="intake")buildIntake(arg);if(v==="summary")renderSummary();if(v==="gap")renderGap(arg);if(v==="fit")renderFit();if(v==="result")renderResult();if(v==="dash")renderDash();if(v==="post")renderPost(arg);if(v==="tests"){renderTests();if(arg)setTimeout(()=>$("."+arg)?.scrollIntoView({behavior:"smooth"}),50)}if(v==="qresult")renderQResult(arg);if(v==="rank")renderRank(arg);if(v==="home")homeRank();
   if(v!=="post"&&v!=="qresult")document.title=v==="home"?"아이 재능검사·적성검사 무료 | 기질·양육태도 검사 - 우리애 뭐잘해?":$(".brand-name").textContent;scrollTo(0,0);
   try{history_push(v,arg,prevView)}catch(e){}}
 /* 뒤로가기: 화면마다 기록을 남겨 브라우저 뒤로가기가 사이트 안 이전 화면으로 가게 */
@@ -2191,7 +2203,7 @@ if("IntersectionObserver" in window)new IntersectionObserver(es=>{heroCtaSeen=es
 addEventListener("scroll",()=>$(".top").classList.toggle("scrolled",scrollY>8),{passive:true});
 
 buildHome();
-routeHash(location.hash.slice(1));payReturn();if(!location.hash)window.history.replaceState(null,"","#home");
+routeHash(location.hash.slice(1));payReturn();homeRank();if(!location.hash)window.history.replaceState(null,"","#home");
 })();
 </script>
 
